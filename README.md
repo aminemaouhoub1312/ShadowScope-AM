@@ -1,107 +1,114 @@
-# ShadowScope AM
+<div align="center">
+
+# SHADOWSCOPE AM
 
 ### Agentic AI-Powered Cyber Threat Intelligence & Autonomous Defense Platform
 
-> Global Intelligence. Connected Threats. Agentic Investigation. Proactive Defense.
+**From Global Threat Intelligence to AI-Driven Investigation, Threat Hunting and Detection Engineering**
+
+<br>
+
+**Global Intelligence · Connected Threats · Agentic Investigation · Proactive Defense**
+
+<br>
+
+![Python](https://img.shields.io/badge/Python-Engineering-blue?logo=python)
+![OpenSearch](https://img.shields.io/badge/OpenSearch-CTI%20Analytics-blue)
+![Neo4j](https://img.shields.io/badge/Neo4j-Knowledge%20Graph-blue)
+![Qdrant](https://img.shields.io/badge/Qdrant-Vector%20Intelligence-purple)
+![RAG](https://img.shields.io/badge/RAG-Multi--Context-orange)
+![AI](https://img.shields.io/badge/AI-Agentic%20Security-red)
+
+</div>
 
 ---
 
-## 🚀 Overview
+## Overview
 
-ShadowScope AM is an Agentic AI-powered Cyber Threat Intelligence & Autonomous Defense platform designed to transform fragmented threat data into connected, contextualized and actionable security intelligence.
+**ShadowScope AM** is an Agentic AI-powered Cyber Threat Intelligence and Autonomous Defense platform designed to transform fragmented threat data into **connected, contextualized and actionable security intelligence**.
 
-The platform connects:
+The platform brings together multiple security intelligence layers into one investigation and detection workflow:
 
-**Global Threat Intelligence → Knowledge Graphs → Semantic Intelligence → RAG → LLMs → AI Agents → Investigation → Detection Engineering**
+> **Global Threat Intelligence → Correlation → Knowledge Graphs → Semantic Intelligence → RAG → LLMs → AI Agents → Investigation → Detection Engineering**
 
----
+The objective is not simply to collect more Indicators of Compromise.
 
-## 🏗️ Architecture
+ShadowScope AM is designed to move from an isolated security signal toward a broader understanding of:
 
-![ShadowScope AM Architecture](shadowscope-am-architecture.png)
-
----
-
-## 🎯 The Challenge
-
-Security teams already have access to massive volumes of Threat Intelligence.
-
-The real challenge is not simply collecting more IOCs.
-
-It is transforming fragmented threat data into:
-
-- Context
-- Relationships
-- Investigation paths
-- Threat hunting opportunities
-- Detection capabilities
+- what the indicator is,
+- what infrastructure it belongs to,
+- what malware or campaign it may be associated with,
+- which threat actors or attack techniques may be relevant,
+- what similar threats have already been observed,
+- and how this intelligence can improve detection.
 
 ---
 
-## 🧠 Core Vision
+## The Challenge
 
-**Collect → Correlate → Understand → Hunt → Investigate → Detect → Improve**
+Security teams already have access to massive amounts of Cyber Threat Intelligence.
 
-ShadowScope AM aims to move from:
+The challenge is that this intelligence is often fragmented across:
 
-**IOC → Context → Relationships → Intelligence → Investigation → Detection**
+**IOC feeds · malware intelligence · vulnerability intelligence · reputation services · infrastructure intelligence · campaigns · threat actors · MITRE ATT&CK · security events**
 
----
+The real challenge is therefore not only access to information.
 
-## 🔥 Core Capabilities
+It is the ability to:
 
-- Multi-Source Cyber Threat Intelligence
-- Automated CTI Processing
-- Threat Correlation
-- Cyber Threat Knowledge Graph
-- Vector Intelligence
-- Semantic Threat Hunting
-- Multi-Context RAG
-- Local LLM Reasoning
-- Agentic AI Security Orchestration
-- AI-Assisted Investigation
-- AI Threat Classification
-- Detection Engineering
-- Sigma, Splunk, Wazuh & Suricata Detection Generation
+**Collect → Normalize → Correlate → Understand → Investigate → Detect**
+
+ShadowScope AM was designed around this problem.
 
 ---
 
-## 🧩 Technology Stack
+## Architecture
 
-**Python • OpenSearch • Neo4j • Qdrant • Ollama • LLMs • MITRE ATT&CK • Sigma • Splunk • Wazuh • Suricata**
+<p align="center">
+  <img src="shadowscope-am-architecture.png" alt="ShadowScope AM Architecture" width="100%">
+</p>
 
----
-
-## 🎥 Technical Demos
-
-Technical demonstrations will be progressively added:
-
-- Global CTI Pipeline
-- Threat Correlation
-- Knowledge Graph Investigation
-- Semantic Threat Hunting
-- RAG Investigation
-- AI Security Agents
-- Detection Engineering
-- End-to-End Investigation
+The architecture combines several intelligence layers that progressively transform raw threat data into contextualized investigations and detection opportunities.
 
 ---
 
-## 🗺️ Roadmap
+## Core Intelligence Pipeline
 
-ShadowScope AM is continuously evolving toward a more:
-
-**Intelligence-Driven → Proactive → Agentic Cyber Defense model**
-
----
-
-## 👤 Author
-
-**Amine Maouhoub**  
-Cybersecurity Engineer
-
----
-
-## ShadowScope AM
-
-**From Threat Intelligence to Autonomous Cyber Defense.**
+```text
+External Threat Intelligence
+          │
+          ▼
+ Multi-Source Acquisition
+          │
+          ▼
+ Parsing & Normalization
+          │
+          ▼
+ Validation & Enrichment
+          │
+          ▼
+ Deduplication & Scoring
+          │
+          ▼
+   Unified CTI Index
+          │
+          ▼
+   Threat Correlation
+          │
+          ├──────────────► Knowledge Graph
+          │
+          ├──────────────► Vector Intelligence
+          │
+          └──────────────► Semantic Search
+                              │
+                              ▼
+                     Multi-Context RAG
+                              │
+                              ▼
+                   Agentic AI Orchestrator
+                              │
+                              ▼
+                       AI Investigation
+                              │
+                              ▼
+                    Detection Engineering
