@@ -172,7 +172,7 @@ flowchart TD
 
 #  Core Capabilities
 
-## 01-Continuous Global Threat Intelligence Acquisition
+## 01 - Continuous Global Threat Intelligence Acquisition
 
 ShadowScope AM continuously builds a global Cyber Threat Intelligence knowledge base from multiple intelligence categories.
 
@@ -205,7 +205,7 @@ Python collectors periodically retrieve and store new intelligence for downstrea
 
 ---
 
-#  02 — Automated CTI Processing Pipeline
+#  02 - Automated CTI Processing Pipeline
 
 Raw threat intelligence cannot be consumed directly.
 
@@ -237,7 +237,7 @@ The objective is to transform heterogeneous threat feeds into a **unified intell
 
 ---
 
-#  03 — Unified Global CTI Knowledge Base
+#  03 - Unified Global CTI Knowledge Base
 
 The normalized data is indexed and analyzed using **OpenSearch**.
 
@@ -268,7 +268,7 @@ OpenSearch provides:
 
 ---
 
-#  04 — Threat Correlation Engine
+#  04 - Threat Correlation Engine
 
 An IOC alone provides limited intelligence.
 
@@ -320,7 +320,7 @@ to:
 
 ---
 
-#  05 — Cyber Threat Knowledge Graph
+#  05 - Cyber Threat Knowledge Graph
 
 ShadowScope AM uses **Neo4j** to build a Cyber Threat Knowledge Graph.
 
@@ -370,7 +370,7 @@ This provides a significantly richer view than traditional flat IOC databases.
 
 ---
 
-#  06 — Vector Intelligence
+#  06 - Vector Intelligence
 
 ShadowScope AM adds a second intelligence representation based on embeddings.
 
@@ -391,7 +391,7 @@ This creates a semantic intelligence layer capable of retrieving content based o
 
 ---
 
-#  07 — AI-Powered Semantic Threat Hunting
+#  07 - AI-Powered Semantic Threat Hunting
 
 Traditional Threat Intelligence searches often rely on exact indicators.
 
@@ -431,7 +431,7 @@ The objective is to move from:
 
 ---
 
-#  08 — Multi-Context RAG Architecture
+#  08 - Multi-Context RAG Architecture
 
 ShadowScope AM integrates a cybersecurity-oriented Retrieval-Augmented Generation architecture.
 
@@ -865,7 +865,7 @@ From a single IOC to related threat entities.
 <tr>
 <td>
 
-### 🧠 Demo 03
+###  Demo 03
 ### Knowledge Graph Investigation
 
 Interactive Neo4j graph-based investigation.
