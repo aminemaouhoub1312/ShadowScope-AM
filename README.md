@@ -848,7 +848,7 @@ Validation of the global CTI acquisition layer across multiple intelligence sour
 20 CTI collectors were successfully tested, with raw intelligence stored in MinIO for downstream processing.
 
 <p align="center">
-  <img src="docs/images/demo01-01-multi-source-cti-acquisition.png"
+  <img src="demo01-01-multi-source-cti-acquisition.png.png"
        alt="ShadowScope AM Multi-Source CTI Acquisition"
        width="100%">
 </p>
