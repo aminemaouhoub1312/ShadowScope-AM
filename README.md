@@ -878,6 +878,25 @@ Raw intelligence is stored in **MinIO** before being processed by the downstream
 **Validation Result:** `20/20 CTI Collectors Successful` · `Automated Daily Acquisition` · `Storage Backend: MinIO` · `Mode: Multi-Source CTI`
 
 
+### Capture 02 — Raw CTI Storage Layer
+
+Threat intelligence collected from multiple external sources is centralized in the **MinIO raw intelligence layer** before downstream processing.
+
+Each source is logically separated within the `cti/raw/` storage hierarchy, preserving the original collected data and its source provenance.
+
+This layer provides a persistent foundation for normalization, enrichment, deduplication, scoring and indexing while allowing raw intelligence to remain available for traceability and reprocessing.
+
+At the time of validation, the raw CTI storage contained **85 objects representing approximately 436.8 MiB of collected intelligence** across multiple CTI providers.
+
+<p align="center">
+  <img src="demo01-02-raw-cti-storage-minio.png"
+       alt="ShadowScope AM Raw CTI Storage Layer in MinIO"
+       width="100%">
+</p>
+
+**Validation Result:** `Multi-Source Raw CTI Stored` · `85 Objects` · `436.8 MiB` · `Backend: MinIO`
+
+
 #  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
