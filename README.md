@@ -847,7 +847,7 @@ The objective is to demonstrate the platform through real execution results, sys
 
 ---
 
-## Demo 01 — Global CTI Pipeline
+## Demo 01 - Global CTI Pipeline
 
 The **Global CTI Pipeline** demonstrates the first intelligence layer of ShadowScope AM.
 
@@ -859,7 +859,7 @@ The complete workflow covers:
 
 This pipeline establishes the intelligence foundation used by the correlation, knowledge graph, semantic search and AI investigation layers of the platform.
 
-### Capture 01 — Multi-Source CTI Acquisition
+### Capture 01 - Multi-Source CTI Acquisition
 
 The first stage validates the automated global CTI acquisition layer across multiple intelligence providers and intelligence domains.
 
