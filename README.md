@@ -914,6 +914,49 @@ The example below shows the normalization of an **RSS security intelligence feed
 
 **Example:** `Source: RSS` · `Type: Security News` · `437 Records Normalized` · `Structured CTI Output`
 
+### Capture 04 - Unified CTI Schema
+
+To enable consistent processing across heterogeneous intelligence providers, ShadowScope AM transforms normalized data into a **Unified CTI Schema**.
+
+Instead of keeping provider-specific structures, intelligence from vulnerability, malware, phishing, infrastructure, threat actor and external CTI sources is represented through a common data model.
+
+The unified schema standardizes core intelligence attributes such as:
+
+- unique entity identifier,
+- entity and indicator type,
+- source provenance,
+- threat classification,
+- malware families,
+- threat actors / APT groups,
+- campaigns,
+- severity and confidence,
+- first-seen and last-seen timestamps,
+- tags and references,
+- related CVEs and IOCs,
+- contextual description,
+- raw-source references,
+- update timestamp.
+
+Not every intelligence object requires every field.  
+Fields are populated according to the available context and the type of intelligence being represented, while preserving a consistent schema across the platform.
+
+This allows downstream components such as correlation, enrichment, search, knowledge graphs, semantic intelligence and AI investigation to consume CTI through a standardized representation.
+
+#### Unified CTI Object Example
+
+The example below shows a vulnerability intelligence object created from multiple CTI sources and represented using the common ShadowScope AM schema.
+
+<p align="center">
+  <img src="demo01-04-unified-cti-schema.png"
+       alt="ShadowScope AM Unified CTI Schema"
+       width="100%">
+</p>
+
+In this example, **CVE-2010-0249** is represented as a unified vulnerability entity with intelligence originating from multiple sources, including **CISA KEV** and **NVD**, while maintaining common contextual fields for severity, confidence, threat relationships, references and related entities.
+
+**Validation Result:** `Multi-Source Intelligence Unified` · `Common CTI Schema` · `Source Provenance Preserved`
+
+
 
 #  What Makes ShadowScope AM Different?
 
