@@ -838,22 +838,45 @@ Critical security decisions can remain under human supervision.
 ---
 
 #  Technical Demonstrations
+# Technical Demonstrations
 
+The following technical demonstrations provide practical validation of the main capabilities implemented within **ShadowScope AM**.
+
+Each demo focuses on a specific layer of the platform and progressively demonstrates the complete security intelligence lifecycle — from multi-source threat intelligence acquisition to correlation, investigation, semantic intelligence, AI-assisted analysis and detection engineering.
+
+The objective is to demonstrate the platform through real execution results, system outputs and operational workflows rather than architecture diagrams alone.
+
+---
+
+## Demo 01 — Global CTI Pipeline
+
+The **Global CTI Pipeline** demonstrates the first intelligence layer of ShadowScope AM.
+
+Its objective is to collect heterogeneous Cyber Threat Intelligence from multiple external sources and prepare it for downstream processing through a unified pipeline.
+
+The complete workflow covers:
+
+**Multi-Source Acquisition → Raw CTI Storage → Normalization → Enrichment → Deduplication → Scoring → Indexing**
+
+This pipeline establishes the intelligence foundation used by the correlation, knowledge graph, semantic search and AI investigation layers of the platform.
 
 <br>
 
-#### Capture 01 — Multi-Source CTI Acquisition
+### Capture 01 — Multi-Source CTI Acquisition
 
-Validation of the global CTI acquisition layer across multiple intelligence sources.  
-20 CTI collectors were successfully tested, with raw intelligence stored in MinIO for downstream processing.
+The first stage validates the global CTI acquisition layer across multiple intelligence providers and intelligence domains.
+
+20 CTI collectors were successfully tested, demonstrating simultaneous acquisition capabilities across vulnerability intelligence, malware intelligence, phishing intelligence, infrastructure reputation, threat knowledge and external security feeds.
+
+Raw intelligence is stored in **MinIO** before being processed by the downstream CTI pipeline.
 
 <p align="center">
-  <img src="demo01-01-multi-source-cti-acquisition.png.png"
+  <img src="demo01-01-multi-source-cti-acquisition.png"
        alt="ShadowScope AM Multi-Source CTI Acquisition"
        width="100%">
 </p>
 
-**Result:** `20/20 CTI sources successfully tested` · `Storage: MinIO` · `Mode: Multi-Source CTI`
+**Validation Result:** `20/20 CTI Collectors Successful` · `Storage Backend: MinIO` · `Mode: Multi-Source CTI`
 
 <br>
 
