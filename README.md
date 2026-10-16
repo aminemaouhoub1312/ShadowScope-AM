@@ -45,7 +45,7 @@
 
 The platform connects several traditionally separated cybersecurity domains into one intelligence-driven architecture:
 
-> **Global Threat Intelligence → Threat Correlation → Knowledge Graphs → Semantic Intelligence → Multi-Context RAG → LLM Reasoning → AI Agents → Investigation → Detection Engineering**
+> **Global Threat Intelligence >> Threat Correlation >> Knowledge Graphs >> Semantic Intelligence >> Multi-Context RAG >> LLM Reasoning >> AI Agents >> Investigation >> Detection Engineering**
 
 ShadowScope AM is not designed to be another IOC repository.
 
