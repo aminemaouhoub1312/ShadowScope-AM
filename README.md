@@ -1031,6 +1031,36 @@ Based on the available contextual intelligence and multiple supporting sources, 
 **Validation Result:** `Status: Suspicious` · `Malicious Likelihood: 60%` · `Legitimacy Score: 40` · `Explainable Validation Reason`
 
 
+### Capture 03 - Threat Risk Scoring & Prioritization
+
+After enrichment and validation, CTI entities are processed by the ShadowScope AM threat scoring engine to determine their operational security priority.
+
+The scoring process combines multiple contextual signals, including:
+
+- intelligence confidence,
+- validation results,
+- malicious likelihood,
+- severity,
+- threat type,
+- malware associations,
+- related vulnerabilities,
+- source intelligence,
+- and contextual risk indicators.
+
+The resulting threat score is converted into an operational risk level and analyst priority, providing an explainable mechanism for identifying intelligence that requires immediate attention.
+
+The example below shows the network indicator `211.102.140.0/22`, associated with malicious infrastructure, the **PlugX** malware family and **CVE-2010-0249**.
+
+The intelligence object received a **Threat Score of 100/100**, resulting in a **Critical** risk classification and **P1** analyst priority.
+
+<p align="center">
+  <img src="demo02-03-threat-risk-scoring.png"
+       alt="ShadowScope AM Threat Risk Scoring and Prioritization"
+       width="100%">
+</p>
+
+**Scoring Result:** `Threat Score: 100/100` · `Risk: Critical` · `Priority: P1` · `Action: Investigate Immediately`
+
 
 #  What Makes ShadowScope AM Different?
 
