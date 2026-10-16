@@ -32,7 +32,7 @@
 
 ---
 
-# 🌐 Executive Overview
+#  Executive Overview
 
 **ShadowScope AM** is an advanced **Agentic AI-Powered Cyber Threat Intelligence & Autonomous Defense Platform** designed to transform large volumes of fragmented threat data into:
 
@@ -118,7 +118,7 @@ flowchart LR
     H --> J[" Threat Hunting"]
     H --> K[" Detection Engineering"]
 
-    I --> L["📄 Investigation Report"]
+    I --> L[" Investigation Report"]
     K --> M["Sigma / Splunk / Wazuh / Suricata"]
 
     M --> N[" Continuous Defense Loop"]
@@ -134,7 +134,7 @@ The complete ShadowScope AM workflow can be represented as:
 ```mermaid
 flowchart TD
 
-    A[" External Threat Intelligence"] --> B["📥 Acquisition"]
+    A[" External Threat Intelligence"] --> B[" Acquisition"]
 
     B --> C[" Parsing"]
     C --> D[" Normalization"]
@@ -551,7 +551,7 @@ Possible targets include:
 
 ---
 
-# 🔐 Private / Local Cybersecurity LLM
+#  Private / Local Cybersecurity LLM
 
 ShadowScope AM can use locally hosted Large Language Models to keep sensitive investigation context within infrastructure controlled by the organization.
 
