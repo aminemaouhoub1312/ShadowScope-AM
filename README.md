@@ -845,6 +845,24 @@ Real demonstrations will progressively be published.
 <tr>
 <td width="50%">
 
+
+<br>
+
+#### Capture 01 — Multi-Source CTI Acquisition
+
+Validation of the global CTI acquisition layer across multiple intelligence sources.  
+20 CTI collectors were successfully tested, with raw intelligence stored in MinIO for downstream processing.
+
+<p align="center">
+  <img src="demo01-01-multi-source-cti-acquisition.png"
+       alt="ShadowScope AM Multi-Source CTI Acquisition"
+       width="100%">
+</p>
+
+**Result:** `20/20 CTI sources successfully tested` · `Storage: MinIO` · `Mode: Multi-Source CTI`
+
+<br>
+
 ###  Demo 01
 ### Global CTI Pipeline
 
