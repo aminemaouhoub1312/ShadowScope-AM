@@ -59,7 +59,7 @@ The platform follows a continuous security intelligence lifecycle:
 
 ---
 
-# 🎯 The Security Problem
+# The Security Problem
 
 Modern security teams already have access to an enormous amount of external intelligence.
 
@@ -67,14 +67,14 @@ Threat information may exist across:
 
 | Intelligence Domain | Examples |
 |---|---|
-| 🦠 Malware Intelligence | malware families, samples, hashes, behavior |
-| 🛡️ Vulnerability Intelligence | CVEs, exploited vulnerabilities, security advisories |
-| 🌐 Infrastructure Intelligence | IPs, domains, ASNs, hosting infrastructure |
-| 🎣 Phishing Intelligence | malicious URLs, phishing infrastructure, fraudulent domains |
-| 🕵️ Threat Actors | APT groups, cybercrime actors, campaigns |
-| 🎯 Attack Techniques | MITRE ATT&CK tactics and techniques |
-| 🔎 Reputation Intelligence | malicious IP/domain reputation |
-| 📡 External CTI Feeds | APIs, feeds, STIX/TAXII, JSON, CSV, XML |
+|  Malware Intelligence | malware families, samples, hashes, behavior |
+|  Vulnerability Intelligence | CVEs, exploited vulnerabilities, security advisories |
+|  Infrastructure Intelligence | IPs, domains, ASNs, hosting infrastructure |
+|  Phishing Intelligence | malicious URLs, phishing infrastructure, fraudulent domains |
+|  Threat Actors | APT groups, cybercrime actors, campaigns |
+|  Attack Techniques | MITRE ATT&CK tactics and techniques |
+|  Reputation Intelligence | malicious IP/domain reputation |
+|  External CTI Feeds | APIs, feeds, STIX/TAXII, JSON, CSV, XML |
 
 The challenge is therefore no longer simply:
 
@@ -88,7 +88,7 @@ ShadowScope AM was designed around this problem.
 
 ---
 
-# 🏗 Platform Architecture
+#  Platform Architecture
 
 <p align="center">
   <img src="shadowscope-am-architecture.png"
@@ -101,76 +101,76 @@ The architecture is composed of multiple interconnected intelligence layers.
 ```mermaid
 flowchart LR
 
-    A["🌍 Global Threat Intelligence"] --> B["⚙️ CTI Processing"]
-    B --> C["🔎 Unified CTI Index"]
-    C --> D["🔗 Threat Correlation"]
+    A[" Global Threat Intelligence"] --> B[" CTI Processing"]
+    B --> C[" Unified CTI Index"]
+    C --> D[" Threat Correlation"]
 
-    D --> E["🧠 Knowledge Graph"]
-    D --> F["🧬 Vector Intelligence"]
+    D --> E[" Knowledge Graph"]
+    D --> F[" Vector Intelligence"]
 
-    E --> G["🤖 Multi-Context RAG"]
+    E --> G[" Multi-Context RAG"]
     F --> G
     C --> G
 
-    G --> H["🧠 Agentic AI Security Orchestrator"]
+    G --> H[" Agentic AI Security Orchestrator"]
 
-    H --> I["🔍 AI Investigation"]
-    H --> J["🎯 Threat Hunting"]
-    H --> K["🛡 Detection Engineering"]
+    H --> I[" AI Investigation"]
+    H --> J[" Threat Hunting"]
+    H --> K[" Detection Engineering"]
 
     I --> L["📄 Investigation Report"]
     K --> M["Sigma / Splunk / Wazuh / Suricata"]
 
-    M --> N["🔁 Continuous Defense Loop"]
+    M --> N[" Continuous Defense Loop"]
     N --> C
 ```
 
 ---
 
-# 🔄 End-to-End Intelligence Flow
+#  End-to-End Intelligence Flow
 
 The complete ShadowScope AM workflow can be represented as:
 
 ```mermaid
 flowchart TD
 
-    A["🌎 External Threat Intelligence"] --> B["📥 Acquisition"]
+    A[" External Threat Intelligence"] --> B["📥 Acquisition"]
 
-    B --> C["🧹 Parsing"]
-    C --> D["📐 Normalization"]
-    D --> E["✅ Validation"]
-    E --> F["✨ Enrichment"]
-    F --> G["🧩 Deduplication"]
-    G --> H["📊 Scoring"]
-    H --> I["🔎 Indexing"]
+    B --> C[" Parsing"]
+    C --> D[" Normalization"]
+    D --> E[" Validation"]
+    E --> F[" Enrichment"]
+    F --> G[" Deduplication"]
+    G --> H[" Scoring"]
+    H --> I[" Indexing"]
 
-    I --> J["🔗 Threat Correlation"]
+    I --> J[" Threat Correlation"]
 
-    J --> K["🧠 Knowledge Graph"]
-    J --> L["🧬 Vector Intelligence"]
+    J --> K[" Knowledge Graph"]
+    J --> L[" Vector Intelligence"]
 
-    K --> M["🔍 Context Retrieval"]
+    K --> M[" Context Retrieval"]
     L --> M
     I --> M
 
-    M --> N["📚 Multi-Context RAG"]
-    N --> O["🤖 Agentic AI Orchestrator"]
+    M --> N[" Multi-Context RAG"]
+    N --> O[" Agentic AI Orchestrator"]
 
-    O --> P["🔎 Investigation"]
-    O --> Q["🎯 Threat Hunting"]
-    O --> R["🛡 Detection Engineering"]
+    O --> P[" Investigation"]
+    O --> Q[" Threat Hunting"]
+    O --> R[" Detection Engineering"]
 
-    P --> S["📄 Investigation Report"]
-    R --> T["⚡ Detection Rules"]
+    P --> S[" Investigation Report"]
+    R --> T[" Detection Rules"]
 
-    T --> U["🏢 Enterprise Security Monitoring"]
-    U --> V["🔁 New Incident Context"]
+    T --> U[" Enterprise Security Monitoring"]
+    U --> V["New Incident Context"]
     V --> J
 ```
 
 ---
 
-# 🔥 Core Capabilities
+#  Core Capabilities
 
 ## 01 — Continuous Global Threat Intelligence Acquisition
 
@@ -205,7 +205,7 @@ Python collectors periodically retrieve and store new intelligence for downstrea
 
 ---
 
-# ⚙️ 02 — Automated CTI Processing Pipeline
+#  02 — Automated CTI Processing Pipeline
 
 Raw threat intelligence cannot be consumed directly.
 
@@ -223,21 +223,21 @@ ShadowScope AM therefore introduces an automated processing pipeline:
 ```mermaid
 flowchart LR
 
-A["📥 Acquisition"] -->
-B["🧹 Parsing"] -->
-C["📐 Normalization"] -->
-D["✅ Validation"] -->
-E["✨ Enrichment"] -->
-F["🧩 Deduplication"] -->
-G["📊 Scoring"] -->
-H["🔎 Indexing"]
+A[" Acquisition"] -->
+B[" Parsing"] -->
+C[" Normalization"] -->
+D[" Validation"] -->
+E[" Enrichment"] -->
+F[" Deduplication"] -->
+G[" Scoring"] -->
+H[" Indexing"]
 ```
 
 The objective is to transform heterogeneous threat feeds into a **unified intelligence model**.
 
 ---
 
-# 🗄️ 03 — Unified Global CTI Knowledge Base
+#  03 — Unified Global CTI Knowledge Base
 
 The normalized data is indexed and analyzed using **OpenSearch**.
 
@@ -268,7 +268,7 @@ OpenSearch provides:
 
 ---
 
-# 🔗 04 — Threat Correlation Engine
+#  04 — Threat Correlation Engine
 
 An IOC alone provides limited intelligence.
 
@@ -277,24 +277,24 @@ ShadowScope AM attempts to reconstruct the broader ecosystem surrounding the ind
 ```mermaid
 graph TD
 
-IOC["🔴 Indicator / IOC"]
+IOC[" Indicator / IOC"]
 
-IOC --> INFRA["🌐 Infrastructure"]
-IOC --> MAL["🦠 Malware"]
-IOC --> CVE["🛡 CVE"]
-IOC --> CAM["🎯 Campaign"]
-IOC --> ACTOR["🕵 Threat Actor"]
-IOC --> TYPE["⚠️ Threat Type"]
-IOC --> CLUSTER["🧩 Cluster"]
+IOC --> INFRA[" Infrastructure"]
+IOC --> MAL["Malware"]
+IOC --> CVE[" CVE"]
+IOC --> CAM[" Campaign"]
+IOC --> ACTOR[" Threat Actor"]
+IOC --> TYPE[" Threat Type"]
+IOC --> CLUSTER["Cluster"]
 
-INFRA --> ASN["📡 ASN"]
-ASN --> COUNTRY["🌍 Country"]
+INFRA --> ASN[" ASN"]
+ASN --> COUNTRY[" Country"]
 
 MAL --> CAM
 CAM --> ACTOR
-ACTOR --> TTP["🎯 MITRE ATT&CK TTP"]
+ACTOR --> TTP[" MITRE ATT&CK TTP"]
 
-CLUSTER --> RELATED["🔗 Related Indicators"]
+CLUSTER --> RELATED[" Related Indicators"]
 ```
 
 Correlation can consider multiple factors:
@@ -320,7 +320,7 @@ to:
 
 ---
 
-# 🧠 05 — Cyber Threat Knowledge Graph
+#  05 — Cyber Threat Knowledge Graph
 
 ShadowScope AM uses **Neo4j** to build a Cyber Threat Knowledge Graph.
 
@@ -370,7 +370,7 @@ This provides a significantly richer view than traditional flat IOC databases.
 
 ---
 
-# 🧬 06 — Vector Intelligence
+#  06 — Vector Intelligence
 
 ShadowScope AM adds a second intelligence representation based on embeddings.
 
@@ -391,7 +391,7 @@ This creates a semantic intelligence layer capable of retrieving content based o
 
 ---
 
-# 🔍 07 — AI-Powered Semantic Threat Hunting
+#  07 — AI-Powered Semantic Threat Hunting
 
 Traditional Threat Intelligence searches often rely on exact indicators.
 
@@ -412,12 +412,12 @@ The semantic hunting workflow:
 ```mermaid
 flowchart LR
 
-A["👤 Analyst Query"] -->
-B["🧬 Query Embedding"] -->
-C["🗄 Qdrant"] -->
-D["📐 Cosine Similarity"] -->
-E["🎯 Top Contexts"] -->
-F["🔍 Semantic Threat Results"]
+A[" Analyst Query"] -->
+B[" Query Embedding"] -->
+C[" Qdrant"] -->
+D[" Cosine Similarity"] -->
+E[" Top Contexts"] -->
+F[" Semantic Threat Results"]
 ```
 
 The objective is to move from:
@@ -431,7 +431,7 @@ The objective is to move from:
 
 ---
 
-# 📚 08 — Multi-Context RAG Architecture
+#  08 — Multi-Context RAG Architecture
 
 ShadowScope AM integrates a cybersecurity-oriented Retrieval-Augmented Generation architecture.
 
@@ -442,29 +442,29 @@ Instead, the platform retrieves relevant context from several intelligence layer
 ```mermaid
 flowchart TD
 
-A["👤 Analyst Query"]
+A[" Analyst Query"]
 
-A --> B["🔎 OpenSearch CTI Context"]
-A --> C["🧠 Neo4j Graph Context"]
-A --> D["🧬 Qdrant Semantic Context"]
-A --> E["🚨 Incident Context"]
-A --> F["🛡 Detection Context"]
+A --> B[" OpenSearch CTI Context"]
+A --> C[" Neo4j Graph Context"]
+A --> D[" Qdrant Semantic Context"]
+A --> E[" Incident Context"]
+A --> F[" Detection Context"]
 
-B --> G["🧩 Context Fusion"]
+B --> G[" Context Fusion"]
 C --> G
 D --> G
 E --> G
 F --> G
 
-G --> H["🤖 LLM Reasoning"]
-H --> I["📄 Cybersecurity Response"]
+G --> H[" LLM Reasoning"]
+H --> I["  Cybersecurity Response"]
 ```
 
 This architecture allows the AI layer to reason using the information available inside the security platform.
 
 ---
 
-# 🤖 Agentic AI Security Orchestration
+#  Agentic AI Security Orchestration
 
 At the center of ShadowScope AM is an:
 
@@ -490,7 +490,7 @@ The architecture can coordinate several specialized capabilities.
 
 ---
 
-### 🌍 CTI Intelligence Agent
+###  CTI Intelligence Agent
 
 Responsible for:
 
@@ -502,7 +502,7 @@ Responsible for:
 
 ---
 
-### 🔗 Threat Correlation Agent
+###  Threat Correlation Agent
 
 Responsible for:
 
@@ -515,7 +515,7 @@ Responsible for:
 
 ---
 
-### 🔎 Semantic Hunting Agent
+###  Semantic Hunting Agent
 
 Responsible for:
 
@@ -526,7 +526,7 @@ Responsible for:
 
 ---
 
-### 🧠 Investigation Agent
+###  Investigation Agent
 
 Responsible for:
 
@@ -583,22 +583,22 @@ This enables exploration of privacy-conscious AI architectures for cybersecurity
 
 ---
 
-# 🔎 AI-Assisted Threat Investigation
+#  AI-Assisted Threat Investigation
 
 One of the core workflows in ShadowScope AM is automated investigation enrichment.
 
 ```mermaid
 flowchart TD
 
-A["🚨 Enterprise Security Alert"] -->
-B["🔍 Entity / IOC Extraction"] -->
-C["🌍 Global CTI Search"] -->
-D["🔗 Threat Correlation"] -->
-E["🧠 Knowledge Graph Analysis"] -->
-F["🧬 Semantic Similarity Search"] -->
-G["📚 AI Context Fusion"] -->
-H["⚠️ Threat Assessment"] -->
-I["✅ Recommended Actions"]
+A[" Enterprise Security Alert"] -->
+B[" Entity / IOC Extraction"] -->
+C[" Global CTI Search"] -->
+D[" Threat Correlation"] -->
+E[" Knowledge Graph Analysis"] -->
+F[" Semantic Similarity Search"] -->
+G[" AI Context Fusion"] -->
+H[" Threat Assessment"] -->
+I[" Recommended Actions"]
 ```
 
 The investigation engine can help determine whether:
@@ -614,7 +614,7 @@ The investigation engine can help determine whether:
 
 ---
 
-# 📄 Autonomous Investigation Report
+#  Autonomous Investigation Report
 
 The context gathered during investigation can be transformed into a structured security report.
 
@@ -669,7 +669,7 @@ Possible analyst actions including:
 
 ---
 
-# 🎯 AI Threat Classification Engine
+#  AI Threat Classification Engine
 
 Large CTI ecosystems generate significant analyst noise.
 
@@ -706,11 +706,11 @@ Relevant intelligence can become **Detection Intelligence**.
 ```mermaid
 flowchart LR
 
-A["🌍 Threat Intelligence"] -->
-B["🧠 Threat Context"] -->
-C["🤖 AI Analysis"] -->
-D["🛡 Detection Logic"] -->
-E["📡 Security Monitoring"]
+A[" Threat Intelligence"] -->
+B[" Threat Context"] -->
+C[" AI Analysis"] -->
+D[" Detection Logic"] -->
+E[" Security Monitoring"]
 ```
 
 Supported detection-oriented outputs may include:
@@ -724,23 +724,23 @@ Supported detection-oriented outputs may include:
 
 ---
 
-# 🔁 Continuous Cyber Defense Loop
+#  Continuous Cyber Defense Loop
 
 ShadowScope AM is designed around a feedback-driven security model.
 
 ```mermaid
 flowchart TD
 
-A["🌍 Global Threat Intelligence"] -->
-B["📐 Normalization"] -->
-C["✨ Enrichment"] -->
-D["🔗 Correlation"] -->
-E["🧬 Semantic Intelligence"] -->
-F["🤖 AI Investigation"] -->
-G["🛡 Detection Engineering"] -->
-H["🏢 Enterprise Detection"] -->
-I["🚨 New Incident Context"] -->
-J["🌍 CTI Enrichment"]
+A[" Global Threat Intelligence"] -->
+B[" Normalization"] -->
+C[" Enrichment"] -->
+D[" Correlation"] -->
+E[" Semantic Intelligence"] -->
+F[" AI Investigation"] -->
+G[" Detection Engineering"] -->
+H[" Enterprise Detection"] -->
+I[" New Incident Context"] -->
+J[" CTI Enrichment"]
 
 J --> D
 ```
@@ -755,34 +755,34 @@ and:
 
 ---
 
-# 👥 Designed for Security Operations
+#  Designed for Security Operations
 
 ShadowScope AM is designed to support several security functions.
 
 | Role | Potential Value |
 |---|---|
-| 👨‍💻 SOC Analyst | Rapid alert enrichment and external threat context |
-| 🌍 CTI Analyst | Multi-source intelligence centralization and correlation |
-| 🎯 Threat Hunter | Semantic and relationship-based threat discovery |
-| 🚨 Incident Responder | Faster IOC and infrastructure pivoting |
-| 🛡 Detection Engineer | Intelligence-driven detection creation |
-| ⚙️ Security Engineer | Automation across CTI → Investigation → Detection |
-| 🧠 Security Architect | Unified intelligence architecture |
-| 👔 Security Manager | Reduced investigation overhead and improved context |
+|  SOC Analyst | Rapid alert enrichment and external threat context |
+|  CTI Analyst | Multi-source intelligence centralization and correlation |
+|  Threat Hunter | Semantic and relationship-based threat discovery |
+|  Incident Responder | Faster IOC and infrastructure pivoting |
+|  Detection Engineer | Intelligence-driven detection creation |
+|  Security Engineer | Automation across CTI → Investigation → Detection |
+|  Security Architect | Unified intelligence architecture |
+|  Security Manager | Reduced investigation overhead and improved context |
 
 ---
 
-# 💼 Security Operations Value
+#  Security Operations Value
 
-## ⏱ Reduce Investigation Time
+##  Reduce Investigation Time
 
 Reduce repetitive manual intelligence collection across multiple platforms.
 
-## 🧠 Improve Threat Context
+##  Improve Threat Context
 
 Move from isolated IOC information toward relationship-aware intelligence.
 
-## 🤖 Reduce Analyst Workload
+## Reduce Analyst Workload
 
 Automate repetitive:
 
@@ -792,7 +792,7 @@ Automate repetitive:
 - context retrieval,
 - report preparation.
 
-## 🔎 Accelerate Threat Hunting
+##  Accelerate Threat Hunting
 
 Enable analysts to search by:
 
@@ -801,11 +801,11 @@ Enable analysts to search by:
 - similarity,
 - relationships.
 
-## 🛡 Improve Detection Coverage
+##  Improve Detection Coverage
 
 Turn new Threat Intelligence into new detection opportunities.
 
-## 👤 Preserve Analyst Control
+## Preserve Analyst Control
 
 AI can:
 
@@ -819,25 +819,25 @@ Critical security decisions can remain under human supervision.
 
 ---
 
-# 🧩 Technology Architecture
+#  Technology Architecture
 
 | Architecture Layer | Technology |
 |---|---|
-| 🐍 Data Engineering | Python |
-| 🌍 CTI Acquisition | REST, GraphQL, Feeds, JSON, CSV, XML, STIX/TAXII |
-| 🔎 Search & Analytics | OpenSearch |
-| 🧠 Knowledge Graph | Neo4j |
-| 🧬 Vector Intelligence | Qdrant |
-| 🔢 Embeddings | all-MiniLM-L6-v2 |
-| 🤖 Local LLM Runtime | Ollama |
-| 🧠 Local LLM | Phi-3 Mini |
-| 🎯 Threat Modeling | MITRE ATT&CK |
-| 🛡 Detection | Sigma, Splunk, Wazuh, Suricata |
-| ⚙️ Security Orchestration | Python AI Assistant / API |
+|  Data Engineering | Python |
+|  CTI Acquisition | REST, GraphQL, Feeds, JSON, CSV, XML, STIX/TAXII |
+|  Search & Analytics | OpenSearch |
+|  Knowledge Graph | Neo4j |
+|  Vector Intelligence | Qdrant |
+|  Embeddings | all-MiniLM-L6-v2 |
+|  Local LLM Runtime | Ollama |
+|  Local LLM | Phi-3 Mini |
+|  Threat Modeling | MITRE ATT&CK |
+|  Detection | Sigma, Splunk, Wazuh, Suricata |
+|  Security Orchestration | Python AI Assistant / API |
 
 ---
 
-# 🎥 Technical Demonstrations
+#  Technical Demonstrations
 
 Real demonstrations will progressively be published.
 
@@ -845,7 +845,7 @@ Real demonstrations will progressively be published.
 <tr>
 <td width="50%">
 
-### 🌍 Demo 01
+###  Demo 01
 ### Global CTI Pipeline
 
 Multi-source ingestion, normalization, enrichment and indexing.
@@ -854,7 +854,7 @@ Multi-source ingestion, normalization, enrichment and indexing.
 
 <td width="50%">
 
-### 🔗 Demo 02
+###  Demo 02
 ### Threat Correlation
 
 From a single IOC to related threat entities.
@@ -874,7 +874,7 @@ Interactive Neo4j graph-based investigation.
 
 <td>
 
-### 🔎 Demo 04
+###  Demo 04
 ### Semantic Threat Hunting
 
 Natural-language threat hunting using Qdrant.
@@ -885,7 +885,7 @@ Natural-language threat hunting using Qdrant.
 <tr>
 <td>
 
-### 📚 Demo 05
+###  Demo 05
 ### Multi-Context RAG
 
 CTI + Graph + Semantic intelligence fusion.
@@ -894,7 +894,7 @@ CTI + Graph + Semantic intelligence fusion.
 
 <td>
 
-### 🤖 Demo 06
+###  Demo 06
 ### Agentic AI Investigation
 
 Specialized AI security capabilities working together.
@@ -905,7 +905,7 @@ Specialized AI security capabilities working together.
 <tr>
 <td>
 
-### 🛡 Demo 07
+###  Demo 07
 ### Detection Engineering
 
 Threat Intelligence transformed into detection logic.
@@ -914,7 +914,7 @@ Threat Intelligence transformed into detection logic.
 
 <td>
 
-### 🚀 Demo 08
+###  Demo 08
 ### End-to-End Investigation
 
 From suspicious signal to investigation and detection.
@@ -923,11 +923,11 @@ From suspicious signal to investigation and detection.
 </tr>
 </table>
 
-> 🎬 Video demonstrations and interface screenshots will be progressively added.
+>  Video demonstrations and interface screenshots will be progressively added.
 
 ---
 
-# ⭐ What Makes ShadowScope AM Different?
+#  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
 
@@ -935,7 +935,7 @@ ShadowScope AM explores the convergence of several areas that are often separate
 <tr>
 <td align="center">
 
-### 🌍 CTI
+###  CTI
 
 Global Threat Intelligence
 
@@ -943,7 +943,7 @@ Global Threat Intelligence
 
 <td align="center">
 
-### 🔗 Correlation
+###  Correlation
 
 Connected threat context
 
@@ -951,7 +951,7 @@ Connected threat context
 
 <td align="center">
 
-### 🧠 Graph Intelligence
+###  Graph Intelligence
 
 Relationship discovery
 
@@ -961,7 +961,7 @@ Relationship discovery
 <tr>
 <td align="center">
 
-### 🧬 Vector Intelligence
+###  Vector Intelligence
 
 Semantic similarity
 
@@ -969,7 +969,7 @@ Semantic similarity
 
 <td align="center">
 
-### 📚 RAG
+###  RAG
 
 Grounded AI context
 
@@ -977,7 +977,7 @@ Grounded AI context
 
 <td align="center">
 
-### 🤖 Agentic AI
+###  Agentic AI
 
 Security orchestration
 
@@ -987,7 +987,7 @@ Security orchestration
 <tr>
 <td align="center">
 
-### 🔎 Investigation
+###  Investigation
 
 Threat analysis
 
@@ -995,7 +995,7 @@ Threat analysis
 
 <td align="center">
 
-### 🛡 Detection
+###  Detection
 
 Detection Engineering
 
@@ -1003,7 +1003,7 @@ Detection Engineering
 
 <td align="center">
 
-### ⚙️ Automation
+###  Automation
 
 Continuous security workflows
 
@@ -1017,7 +1017,7 @@ The objective is to create a unified security intelligence layer capable of conn
 
 ---
 
-# 🧭 Platform Vision
+#  Platform Vision
 
 ShadowScope AM explores the progression from:
 
@@ -1046,7 +1046,7 @@ while maintaining appropriate analyst oversight.
 
 ---
 
-# 🗺 Roadmap
+#  Roadmap
 
 ### Intelligence
 
@@ -1098,7 +1098,7 @@ while maintaining appropriate analyst oversight.
 
 ---
 
-# 📚 Documentation
+#  Documentation
 
 Detailed technical documentation will be progressively available in:
 
@@ -1122,7 +1122,7 @@ docs/
 
 ---
 
-# 📌 Project Status
+#  Project Status
 
 ![Status](https://img.shields.io/badge/Status-Active%20Development-orange?style=for-the-badge)
 
@@ -1136,7 +1136,7 @@ Additional capabilities, integrations and demonstrations will continue to be add
 
 ---
 
-# 🔐 Security & Responsible Automation
+#  Security & Responsible Automation
 
 ShadowScope AM follows a **human-in-the-loop security philosophy**.
 
@@ -1154,13 +1154,13 @@ High-impact security decisions should remain reviewable and controllable by secu
 
 ---
 
-# 👤 Project Author
+#  Project Author
 
 <div align="center">
 
 ## Amine Maouhoub
 
-### Cybersecurity Engineer
+### Cybersecurity Engineer & M2 Cybersecurity Manager 
 
 **Cyber Threat Intelligence · AI Security · Threat Hunting · Detection Engineering · Security Automation**
 
