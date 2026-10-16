@@ -837,12 +837,11 @@ Critical security decisions can remain under human supervision.
 
 ---
 
-#  Technical Demonstrations
 # Technical Demonstrations
 
 The following technical demonstrations provide practical validation of the main capabilities implemented within **ShadowScope AM**.
 
-Each demo focuses on a specific layer of the platform and progressively demonstrates the complete security intelligence lifecycle — from multi-source threat intelligence acquisition to correlation, investigation, semantic intelligence, AI-assisted analysis and detection engineering.
+Each demo focuses on a specific layer of the platform and progressively demonstrates the complete security intelligence lifecycle - from multi-source threat intelligence acquisition to correlation, investigation, semantic intelligence, AI-assisted analysis and detection engineering.
 
 The objective is to demonstrate the platform through real execution results, system outputs and operational workflows rather than architecture diagrams alone.
 
@@ -856,13 +855,13 @@ Its objective is to collect heterogeneous Cyber Threat Intelligence from multipl
 
 The complete workflow covers:
 
-**Multi-Source Acquisition → Raw CTI Storage → Normalization → Enrichment → Deduplication → Scoring → Indexing**
+**Multi-Source Acquisition > Raw CTI Storage > Normalization > Enrichment > Deduplication > Scoring > Indexing**
 
 This pipeline establishes the intelligence foundation used by the correlation, knowledge graph, semantic search and AI investigation layers of the platform.
 
 <br>
 
-### Capture 01 — Multi-Source CTI Acquisition
+### Capture 01 - Multi-Source CTI Acquisition
 
 The first stage validates the global CTI acquisition layer across multiple intelligence providers and intelligence domains.
 
