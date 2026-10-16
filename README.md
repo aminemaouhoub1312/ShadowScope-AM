@@ -1003,6 +1003,35 @@ The example below shows an enriched network intelligence object directly indexed
 **Validation Result:** `Infrastructure Context Added` · `RDAP / ASN Enrichment` · `Network Classification` · `False-Positive Context` · `Enrichment Completed`
 
 
+### Capture 02 — Rule-Based Threat Validation
+
+After contextual enrichment, CTI objects are evaluated by the ShadowScope AM validation engine.
+
+The validation layer combines multiple intelligence signals such as source diversity, confidence, threat classification, infrastructure context and false-positive indicators to estimate whether an entity is malicious, suspicious or potentially legitimate shared infrastructure.
+
+The validation process produces an explainable assessment including:
+
+- validation status,
+- validation reason,
+- legitimacy score,
+- malicious likelihood,
+- validation timestamp,
+- validation engine version.
+
+The example below shows the validation of the network indicator `211.102.140.0/22`.
+
+Based on the available contextual intelligence and multiple supporting sources, the indicator is classified as **Suspicious**, with a **Malicious Likelihood of 60%** and a **Legitimacy Score of 40%**.
+
+<p align="center">
+  <img src="demo02-02-rule-based-threat-validation.png"
+       alt="ShadowScope AM Rule-Based Threat Validation"
+       width="100%">
+</p>
+
+**Validation Result:** `Status: Suspicious` · `Malicious Likelihood: 60%` · `Legitimacy Score: 40` · `Explainable Validation Reason`
+
+
+
 #  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
