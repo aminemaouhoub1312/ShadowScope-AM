@@ -896,6 +896,24 @@ At the time of validation, the raw CTI storage contained **85 objects representi
 
 **Validation Result:** `Multi-Source Raw CTI Stored` · `85 Objects` · `436.8 MiB` · `Backend: MinIO`
 
+### Capture 03 - Multi-Source CTI Normalization
+
+Threat intelligence collected from heterogeneous sources is automatically processed by the normalization layer before being used by downstream intelligence components.
+
+Each supported CTI source is transformed from its original provider-specific format into a structured representation adapted to the ShadowScope AM intelligence pipeline.
+
+Normalization standardizes key information such as source identification, entity type, timestamps, indicators, metadata and source-specific intelligence attributes while preserving provenance.
+
+The example below shows the normalization of an **RSS security intelligence feed**, where raw feed entries are transformed into structured security-news objects.
+
+<p align="center">
+  <img src="demo01-03-cti-normalization-example.png"
+       alt="ShadowScope AM CTI Normalization Example"
+       width="100%">
+</p>
+
+**Example:** `Source: RSS` · `Type: Security News` · `437 Records Normalized` · `Structured CTI Output`
+
 
 #  What Makes ShadowScope AM Different?
 
