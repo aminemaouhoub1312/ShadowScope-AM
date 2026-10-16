@@ -172,7 +172,7 @@ flowchart TD
 
 #  Core Capabilities
 
-## 01 — Continuous Global Threat Intelligence Acquisition
+## 01-Continuous Global Threat Intelligence Acquisition
 
 ShadowScope AM continuously builds a global Cyber Threat Intelligence knowledge base from multiple intelligence categories.
 
