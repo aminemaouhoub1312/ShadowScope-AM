@@ -1127,7 +1127,7 @@ The investigation dashboard enables analysts to rapidly identify:
 - recommended investigation actions,
 - and threat activity evolution over time.
 
-**Demo Result:** `Global CTI >> Risk-Based Selection >> Dedicated IR Index >> Analyst Investigation Queue`
+**Demo Result:** `Global CTI • Risk-Based Selection • Dedicated IR Index • Analyst Investigation Queue`
 
 
 #  What Makes ShadowScope AM Different?
@@ -1216,7 +1216,7 @@ Continuous security workflows
 
 The objective is to create a unified security intelligence layer capable of connecting the entire lifecycle:
 
-> **Threat Intelligence → Understanding → Investigation → Detection**
+> **Threat Intelligence • Understanding • Investigation • Detection**
 
 ---
 
