@@ -859,25 +859,23 @@ The complete workflow covers:
 
 This pipeline establishes the intelligence foundation used by the correlation, knowledge graph, semantic search and AI investigation layers of the platform.
 
-<br>
+### Capture 01 — Multi-Source CTI Acquisition
 
-### Capture 01 - Multi-Source CTI Acquisition
+The first stage validates the automated global CTI acquisition layer across multiple intelligence providers and intelligence domains.
 
-The first stage validates the global CTI acquisition layer across multiple intelligence providers and intelligence domains.
+20 CTI collectors were successfully tested, covering vulnerability intelligence, malware intelligence, phishing intelligence, infrastructure reputation, threat knowledge and external security feeds.
 
-20 CTI collectors were successfully tested, demonstrating simultaneous acquisition capabilities across vulnerability intelligence, malware intelligence, phishing intelligence, infrastructure reputation, threat knowledge and external security feeds.
+The collection process is **automated and executed on a daily schedule**, continuously refreshing the platform with newly available threat intelligence. Sources providing frequently updated feeds or APIs can be ingested as soon as the scheduled collection cycle runs.
 
 Raw intelligence is stored in **MinIO** before being processed by the downstream CTI pipeline.
 
 <p align="center">
-  <img src="demo01-01-multi-source-cti-acquisition.png.png"
+  <img src="demo01-01-multi-source-cti-acquisition.png"
        alt="ShadowScope AM Multi-Source CTI Acquisition"
        width="100%">
 </p>
 
-**Validation Result:** `20/20 CTI Collectors Successful` · `Storage Backend: MinIO` · `Mode: Multi-Source CTI`
-
-<br>
+**Validation Result:** `20/20 CTI Collectors Successful` · `Automated Daily Acquisition` · `Storage Backend: MinIO` · `Mode: Multi-Source CTI`
 
 
 #  What Makes ShadowScope AM Different?
