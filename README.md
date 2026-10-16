@@ -1064,7 +1064,7 @@ The intelligence object received a **Threat Score of 100/100**, resulting in a *
 
 
 
-## Demo 03 — Risk-Based CTI Investigation Queue
+## Demo 03 - Risk-Based CTI Investigation Queue
 
 The third demonstration shows how ShadowScope AM transforms the global CTI knowledge base into a dedicated **Incident Response and Investigation intelligence layer**.
 
@@ -1076,7 +1076,7 @@ Only intelligence meeting defined security criteria is promoted to the dedicated
 
 The IR selection engine evaluates intelligence that has already passed through:
 
-**Collection → Normalization → Unification → Enrichment → Validation → Threat Scoring**
+**Collection • Normalization • Unification • Enrichment • Validation • Threat Scoring**
 
 An intelligence object becomes an IR candidate when it satisfies the investigation criteria:
 
@@ -1098,7 +1098,7 @@ The IR layer then assigns an operational investigation state:
 
 Each selected intelligence object receives additional IR metadata including:
 
-`ir_selected` · `ir_selected_at` · `ir_status` · `ir_case_priority` · `ir_action` · `ir_index_version`
+`ir_selected` • `ir_selected_at` • `ir_status` • `ir_case_priority` • `ir_action` • `ir_index_version`
 
 ---
 
@@ -1127,7 +1127,7 @@ The investigation dashboard enables analysts to rapidly identify:
 - recommended investigation actions,
 - and threat activity evolution over time.
 
-**Demo Result:** `Global CTI → Risk-Based Selection → Dedicated IR Index → Analyst Investigation Queue`
+**Demo Result:** `Global CTI >> Risk-Based Selection >> Dedicated IR Index >> Analyst Investigation Queue`
 
 
 #  What Makes ShadowScope AM Different?
