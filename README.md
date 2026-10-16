@@ -973,6 +973,36 @@ The enrichment layer adds infrastructure and network context, the validation eng
 This layer helps reduce false positives while ensuring that high-confidence and high-impact threats receive appropriate analyst attention.
 
 
+
+### Capture 01 — Threat Context Enrichment
+
+The enrichment layer adds network and infrastructure context to unified CTI entities before threat validation and scoring.
+
+For supported indicators, ShadowScope AM enriches intelligence with information such as:
+
+- resolved IP address,
+- reverse DNS,
+- ASN and ASN organization,
+- network ownership,
+- geographic context,
+- public DNS identification,
+- cloud provider detection,
+- CDN detection,
+- infrastructure classification,
+- false-positive risk,
+- enrichment status and timestamp.
+
+The example below shows an enriched network intelligence object directly indexed and searchable within OpenSearch.
+
+<p align="center">
+  <img src="demo02-01-threat-context-enrichment.png"
+       alt="ShadowScope AM Threat Context Enrichment"
+       width="100%">
+</p>
+
+**Validation Result:** `Infrastructure Context Added` · `RDAP / ASN Enrichment` · `Network Classification` · `False-Positive Context` · `Enrichment Completed`
+
+
 #  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
