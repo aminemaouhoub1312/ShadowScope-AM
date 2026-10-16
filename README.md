@@ -958,6 +958,21 @@ In this example, **CVE-2010-0249** is represented as a unified vulnerability ent
 
 
 
+
+
+## Demo 02 - Threat Enrichment, Validation & Risk Scoring
+
+The second demonstration focuses on transforming unified threat intelligence into contextualized and prioritized security intelligence.
+
+After normalization and unification, eligible CTI entities are processed through three successive analytical stages:
+
+**Context Enrichment >> Threat Validation >> Risk Scoring & Prioritization**
+
+The enrichment layer adds infrastructure and network context, the validation engine evaluates the likelihood that an intelligence object represents a real threat, and the scoring engine assigns a final risk score, severity level, analyst priority and recommended action.
+
+This layer helps reduce false positives while ensuring that high-confidence and high-impact threats receive appropriate analyst attention.
+
+
 #  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
