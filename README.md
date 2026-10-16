@@ -1062,6 +1062,74 @@ The intelligence object received a **Threat Score of 100/100**, resulting in a *
 **Scoring Result:** `Threat Score: 100/100` · `Risk: Critical` · `Priority: P1` · `Action: Investigate Immediately`
 
 
+
+
+## Demo 03 — Risk-Based CTI Investigation Queue
+
+The third demonstration shows how ShadowScope AM transforms the global CTI knowledge base into a dedicated **Incident Response and Investigation intelligence layer**.
+
+Rather than sending every collected intelligence object to analysts, the platform automatically selects high-value investigation candidates from the global `cti-global` index.
+
+Only intelligence meeting defined security criteria is promoted to the dedicated `cti-ir` investigation index.
+
+### Investigation Candidate Selection
+
+The IR selection engine evaluates intelligence that has already passed through:
+
+**Collection → Normalization → Unification → Enrichment → Validation → Threat Scoring**
+
+An intelligence object becomes an IR candidate when it satisfies the investigation criteria:
+
+- threat scoring has been completed,
+- validation status is `malicious` or `suspicious`,
+- risk score is greater than or equal to `70`,
+- operational priority is `P1` or `P2`,
+- intelligence classified as benign shared infrastructure is excluded,
+- high false-positive-risk objects are excluded.
+
+Selected entities are copied into the dedicated **`cti-ir` investigation index**, while the original intelligence remains available inside the global CTI knowledge base.
+
+The IR layer then assigns an operational investigation state:
+
+| Risk Score | IR Priority | Investigation Action |
+|---|---|---|
+| 90–100 | Critical | Immediate Investigation |
+| 70–89 | High | Investigate |
+
+Each selected intelligence object receives additional IR metadata including:
+
+`ir_selected` · `ir_selected_at` · `ir_status` · `ir_case_priority` · `ir_action` · `ir_index_version`
+
+---
+
+### Investigation & Response Dashboard
+
+The dashboard below provides an operational view of the intelligence currently selected for investigation.
+
+It consolidates critical indicators, P1/P2 priorities, validation status, threat entities, malware intelligence, vulnerabilities, campaigns, ransomware activity and analyst actions into a single investigation-oriented interface.
+
+<p align="center">
+  <img src="demo03-01-ir-investigation-dashboard.png"
+       alt="ShadowScope AM Risk-Based CTI Investigation Dashboard"
+       width="100%">
+</p>
+
+The investigation dashboard enables analysts to rapidly identify:
+
+- critical P1 intelligence requiring immediate investigation,
+- high-risk P2 intelligence requiring analyst review,
+- malicious and suspicious validated entities,
+- critical IOCs and vulnerabilities,
+- malware families and threat entities,
+- APT and campaign context,
+- ransomware-related intelligence,
+- risk and priority distributions,
+- recommended investigation actions,
+- and threat activity evolution over time.
+
+**Demo Result:** `Global CTI → Risk-Based Selection → Dedicated IR Index → Analyst Investigation Queue`
+
+
 #  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
