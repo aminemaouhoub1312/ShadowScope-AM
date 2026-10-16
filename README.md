@@ -870,7 +870,7 @@ The collection process is **automated and executed on a daily schedule**, contin
 Raw intelligence is stored in **MinIO** before being processed by the downstream CTI pipeline.
 
 <p align="center">
-  <img src="demo01-01-multi-source-cti-acquisition.png"
+  <img src="demo01-01-multi-source-cti-acquisition.png.png"
        alt="ShadowScope AM Multi-Source CTI Acquisition"
        width="100%">
 </p>
