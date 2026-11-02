@@ -1400,6 +1400,355 @@ The Knowledge Graph provides a structured intelligence layer that can also suppo
 
 
 
+## Demo 05 - AI Context Engineering, Text Embeddings & Vector Intelligence
+
+The fifth demonstration focuses on the **AI Context Engineering and Vector Intelligence layers** of ShadowScope AM.
+
+After CTI collection, normalization, enrichment, risk scoring and threat correlation, the platform prepares structured threat intelligence for AI-assisted analysis.
+
+The objective is to transform security intelligence records into meaningful textual representations that can be converted into semantic embeddings and retrieved using vector similarity search.
+
+Rather than relying exclusively on exact IOC matching or keyword-based searches, ShadowScope AM introduces a semantic intelligence layer capable of supporting context-aware threat discovery and downstream LLM-assisted investigations.
+
+The processing workflow follows:
+
+**Structured CTI >> AI Context Generation >> Text Embeddings >> Qdrant Vector Storage >> Semantic Retrieval >> LLM Context Augmentation**
+
+This demonstration validates the AI context preparation and vectorization stages implemented in the current ShadowScope AM pipeline.
+
+---
+
+### 01 - AI Context Engineering: Structured CTI to Natural Language
+
+The first stage transforms structured cybersecurity intelligence into contextualized, machine-readable natural language.
+
+The AI Context Builder processes intelligence from two OpenSearch indices:
+
+| Source Index | Intelligence Type |
+|---|---|
+| `cti-ir` | High-risk indicators selected for investigation |
+| `cti-correlations` | Automatically generated threat correlations and clusters |
+
+The processing engine is implemented in:
+
+`06_AI_Assistant/ai_context_builder.py`
+
+It extracts relevant intelligence attributes and constructs descriptive textual contexts designed for embedding generation and downstream AI retrieval.
+
+**Indicator Context Attributes:**
+
+- Indicator value and entity type
+- Threat risk score and severity
+- Operational investigation priority
+- Validation status and confidence
+- Malware family associations
+- Campaign and APT intelligence
+- Related vulnerability references
+- ASN and geographic infrastructure context
+- Intelligence source provenance
+- Threat correlations and cluster identifiers
+- Additional threat description
+
+**Correlation Context Attributes:**
+
+- Correlation identifier and type
+- Shared correlation characteristic
+- Associated cluster identifier
+- Number of correlated entities
+- Maximum and average risk scores
+- Correlation severity and confidence
+- Related indicator references
+- Explainable correlation reason
+
+The contextualization process preserves the relationship between the generated AI context and its originating security intelligence record.
+
+### Structured CTI Transformation Example
+
+A structured CTI record can contain:
+
+```json
+{
+  "indicator": "suspicious.example",
+  "entity_type": "indicator",
+  "risk_score": 95,
+  "risk_level": "critical",
+  "priority": "P1",
+  "validation_status": "malicious",
+  "threat_types": ["phishing"],
+  "sources": ["threat-intelligence-feed"]
+}
+```
+
+The AI Context Builder transforms the structured attributes into a descriptive textual representation:
+
+> Indicator suspicious.example is an indicator with risk score 95, risk level critical, priority P1 and validation status malicious. Threat types: phishing. Reported by sources: threat-intelligence-feed.
+
+*This is an illustrative transformation demonstrating the text-generation mechanism.*
+
+The actual generated text may additionally include malware intelligence, infrastructure information, campaigns, vulnerabilities, correlation identifiers and threat descriptions when those attributes are available.
+
+### AI Context Storage
+
+Generated contexts are indexed in OpenSearch:
+
+**Index:** `cti-ai-context`
+
+Each record contains:
+
+| Field | Purpose |
+|---|---|
+| `context_id` | Unique AI context identifier |
+| `context_type` | Indicator or correlation context |
+| `source_index` | Original intelligence index |
+| `source_doc_id` | Original OpenSearch document ID |
+| `title` | Human-readable context title |
+| `text` | Full generated intelligence context |
+| `summary` | Concise intelligence summary |
+| `risk_score` | Threat risk score |
+| `priority` | Investigation priority |
+| `embedding_status` | Vectorization processing state |
+
+The context builder generates stable identifiers and records processing metadata for downstream embedding operations.
+
+**Validation Objective:** `Structured CTI Transformation` · `Contextualized Threat Intelligence` · `AI-Ready Text` · `Source Traceability`
+
+---
+
+### 02 - Semantic Embedding Generation
+
+After the AI contexts are created, ShadowScope AM transforms the generated intelligence text into numerical vector representations.
+
+The embedding process is implemented in:
+
+`06_AI_Assistant/embedding_engine.py`
+
+**Embedding Model:**
+
+`sentence-transformers/all-MiniLM-L6-v2`
+
+**Embedding Configuration:**
+
+| Parameter | Configuration |
+|---|---|
+| Model | all-MiniLM-L6-v2 |
+| Framework | Sentence Transformers |
+| Vector Dimension | 384 |
+| Vector Normalization | Enabled |
+| Vector Database | Qdrant |
+| Collection | `cti_ai_vectors` |
+| Similarity Metric | Cosine |
+
+The embedding model converts each AI context into a 384-dimensional vector representation.
+
+The process follows:
+
+```mermaid
+flowchart TD
+    A["OpenSearch: cti-ai-context"]
+    B["AI Context Text"]
+    C["Sentence Transformer"]
+    D["384-Dimensional Embedding"]
+    E["Vector Normalization"]
+    F["Qdrant Vector Database"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+```
+
+The embedding process supports the representation of contextual similarity between threat intelligence descriptions in a numerical vector space.
+
+Unlike exact keyword matching, vector-based retrieval can identify records with semantically related descriptions, even when they do not contain identical search terms.
+
+**Validation Objective:** `Threat Intelligence Embedding` · `384-Dimensional Vectors` · `Normalized Embeddings` · `Semantic Representation`
+
+---
+
+### 03 - Vector Intelligence Storage in Qdrant
+
+The generated embeddings are stored in the Qdrant vector database.
+
+**Collection:** `cti_ai_vectors`
+
+The collection uses cosine similarity and stores the associated intelligence metadata alongside each vector.
+
+Each vector point includes its numerical embedding and a metadata payload connecting it to the original CTI context.
+
+### Capture 01 - Qdrant Vector Intelligence
+
+The following capture shows an indexed threat intelligence vector inside the Qdrant collection.
+
+<p align="center">
+  <img src="demo05-01-qdrant-vector-intelligence.png"
+       alt="ShadowScope AM Qdrant Threat Intelligence Vector Storage"
+       width="100%">
+</p>
+
+**Observed Vector Point:**
+
+The displayed point represents a contextualized phishing URL indicator processed through the AI embedding pipeline.
+
+| Attribute | Observed Value |
+|---|---|
+| Collection | `cti_ai_vectors` |
+| Context Type | `indicator_context` |
+| Source Index | `cti-ir` |
+| Entity Type | `indicator` |
+| Risk Score | 100 |
+| Risk Level | Critical |
+| Investigation Priority | P1 |
+| Validation Status | Malicious |
+| Threat Tags | phishing-url, phishtank |
+| Embedding Dimension | 384 (model configuration) |
+
+The Qdrant payload preserves contextual attributes such as indicator identity, source document references, risk classification, investigation priority, tags and embedding timestamps.
+
+The displayed point has no assigned correlation or cluster identifier.
+
+This demonstrates the storage of threat intelligence embeddings together with metadata that can be used for downstream retrieval and investigation.
+
+**Validation Result:** `AI Context Vector Stored` · `Qdrant Collection: cti_ai_vectors` · `Critical P1 Indicator` · `Threat Metadata Preserved`
+
+---
+
+### 04 - Semantic Threat Intelligence Retrieval
+
+The stored vector representations establish the foundation for semantic threat intelligence search.
+
+Traditional CTI searches typically depend on exact indicator values, keywords or structured filters.
+
+A semantic search system instead converts the analyst's natural-language query into a vector using the same embedding model.
+
+The query vector can then be compared against the stored intelligence vectors using cosine similarity.
+
+### Semantic Search Architecture
+
+```mermaid
+flowchart TD
+    A["Analyst Natural-Language Query"]
+    B["Query Embedding"]
+    C["Qdrant Vector Similarity Search"]
+    D["Relevant CTI Context IDs"]
+    E["OpenSearch Full Context Retrieval"]
+    F["Contextualized Threat Intelligence Results"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+```
+
+**Example Threat Hunting Query:**
+
+> Find high-risk phishing infrastructure associated with malicious URLs and related threat intelligence.
+
+The semantic search layer is designed to retrieve conceptually relevant CTI contexts without requiring the analyst to provide an exact IOC.
+
+Additional structured filters can narrow results by attributes such as:
+
+- Risk score
+- Investigation priority
+- Validation status
+- Entity type
+- Context type
+- Threat classification
+
+Semantic similarity represents contextual relevance rather than independent proof of malicious activity.
+
+The AI assistant can use retrieved context identifiers to recover full intelligence descriptions from OpenSearch.
+
+**Integration Purpose:** `Natural-Language CTI Search` · `Vector Similarity` · `Context Retrieval` · `Threat Hunting Support`
+
+---
+
+### 05 - Foundation for LLM-Assisted Threat Investigation
+
+The Vector Intelligence layer provides a retrieval foundation for the ShadowScope AM AI Assistant.
+
+The broader architecture is designed to combine different intelligence sources:
+
+- OpenSearch for structured CTI records and generated textual contexts
+- Neo4j for explicit threat relationships and correlation graphs
+- Qdrant for semantic vector similarity
+- A locally hosted LLM for contextual analysis and response generation
+
+### Multi-Context Intelligence Retrieval
+
+```mermaid
+flowchart TD
+    A["Security Analyst Query"]
+
+    A --> B["OpenSearch CTI Context"]
+    A --> C["Qdrant Semantic Context"]
+    A --> D["Neo4j Knowledge Graph"]
+
+    B --> E["Context Aggregation"]
+    C --> E
+    D --> E
+
+    E --> F["LLM Context Augmentation"]
+    F --> G["AI-Assisted Threat Assessment"]
+    G --> H["Analyst Investigation Support"]
+```
+
+The intended AI investigation workflow follows:
+
+**Analyst Query >> Context Retrieval >> Evidence Aggregation >> LLM Analysis >> Security Response**
+
+The LLM can receive relevant intelligence context rather than depending solely on its internal knowledge.
+
+This architecture provides a foundation for retrieval-augmented threat analysis, contextual investigation and explainable AI-assisted security workflows.
+
+The Qdrant screenshot validates vector storage; semantic retrieval quality and end-to-end LLM responses require separate execution tests.
+
+---
+
+### Technical Implementation
+
+| Component | Technology | Responsibility |
+|---|---|---|
+| AI Context Builder | Python | Convert structured CTI into descriptive text |
+| Investigation Index | OpenSearch `cti-ir` | Supply prioritized threat intelligence |
+| Correlation Index | OpenSearch `cti-correlations` | Supply threat relationship intelligence |
+| AI Context Index | OpenSearch `cti-ai-context` | Store generated textual contexts |
+| Embedding Engine | Sentence Transformers | Generate 384-dimensional vectors |
+| Vector Database | Qdrant | Persist embeddings and metadata |
+| Semantic Retrieval | Vector similarity search | Retrieve relevant threat contexts |
+| LLM Layer | Local LLM architecture | Consume retrieved intelligence for analysis |
+
+### Security Operations Value
+
+The AI Context and Vector Intelligence layers support the transition from structured threat data toward semantic intelligence retrieval.
+
+They provide the foundation for:
+
+- **Semantic Threat Hunting:** Search intelligence using natural-language descriptions.
+- **Contextual Retrieval:** Find threat records related by meaning rather than exact keywords alone.
+- **Incident Investigation:** Retrieve relevant security context from previously indexed intelligence.
+- **AI-Assisted Analysis:** Supply structured and textual evidence to downstream LLM workflows.
+- **Threat Intelligence Discovery:** Explore conceptually related indicators and threat descriptions.
+- **Multi-Context RAG:** Combine structured CTI, graph relationships and vector-based retrieval.
+
+### Demo 05 - Final Validation
+
+**Demonstrated:** `AI Context Engineering` · `Structured CTI to Text` · `Sentence Transformer Embeddings` · `384-Dimensional Vectors` · `Qdrant Vector Storage` · `Threat Metadata Preservation`
+
+**Downstream Integration:** `Semantic Threat Search` · `Multi-Context Retrieval` · `LLM-Assisted Investigation`
+
+> **From Structured Cyber Threat Intelligence to Semantic Intelligence.**
+>
+> ShadowScope AM transforms prioritized threat data and correlation records into contextualized textual intelligence and numerical embeddings, establishing a foundation for semantic threat hunting and AI-assisted cybersecurity investigation.
+
+---
+
+
+
+
+
+
 
 
 #  What Makes ShadowScope AM Different?
