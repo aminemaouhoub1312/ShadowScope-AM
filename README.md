@@ -1130,6 +1130,276 @@ The investigation dashboard enables analysts to rapidly identify:
 **Demo Result:** `Global CTI • Risk-Based Selection • Dedicated IR Index • Analyst Investigation Queue`
 
 
+
+## Demo 04 - Automated Threat Correlation & Cyber Threat Knowledge Graph
+
+The fourth demonstration focuses on the **Threat Correlation and Knowledge Graph Intelligence layers** of ShadowScope AM.
+
+After collecting, normalizing, enriching, validating and prioritizing Cyber Threat Intelligence, the platform correlates high-risk indicators to discover shared threat characteristics and reconstruct relationships between security entities.
+
+Rather than investigating isolated Indicators of Compromise (IOCs), ShadowScope AM uses a graph-based approach to reveal connections between indicators, malware families, infrastructure, threat classifications, intelligence sources and automatically generated correlation clusters.
+
+The complete workflow follows:
+
+**Risk-Based CTI Selection >> Automated Threat Correlation >> Cluster Generation >> Neo4j Knowledge Graph >> Relationship-Based Threat Investigation**
+
+This demonstration uses real intelligence entities indexed in OpenSearch and represented within the Neo4j Knowledge Graph.
+
+### Threat Correlation & Knowledge Graph Architecture
+
+ShadowScope AM integrates two complementary intelligence components:
+
+**1. Automated Threat Correlation Engine**
+
+The correlation engine analyzes high-risk intelligence from the `cti-ir` OpenSearch index and identifies shared characteristics across multiple indicators.
+
+Supported correlation dimensions include:
+
+- Shared ASN and network organization
+- Shared geographic context
+- Shared malware families
+- Shared threat classifications
+- Shared campaigns
+- Shared APT groups
+- Shared CVE references
+- Shared intelligence sources and tags
+
+Correlations containing at least two entities are stored in the dedicated `cti-correlations` index.
+
+Each correlation includes metadata such as the correlation type, shared value, associated indicators, cluster identifier, entity count, risk statistics, severity and confidence.
+
+**2. Neo4j Cyber Threat Knowledge Graph**
+
+The graph ingestion layer transforms prioritized CTI entities and correlation results into interconnected Neo4j nodes and relationships.
+
+The graph represents:
+
+`Indicator` · `Malware` · `ThreatType` · `ASN` · `Country` · `Source` · `Campaign` · `APT` · `CVE` · `Correlation` · `Cluster`
+
+Relationships such as `ASSOCIATED_WITH_MALWARE`, `HAS_CORRELATION`, `MEMBER_OF_CLUSTER`, `BELONGS_TO_CLUSTER`, `USES_ASN` and `REPORTED_BY` enable graph-based intelligence exploration.
+
+The following three demonstrations validate these capabilities using the existing ShadowScope AM CTI Knowledge Graph.
+
+---
+
+### Capture 01 - IOC-Centric Threat Relationship Discovery
+
+The first investigation demonstrates how ShadowScope AM reconstructs the threat intelligence context surrounding an individual indicator.
+
+**Investigation Target:** `node828765.dwservice.net`
+
+Instead of treating the domain as an isolated IOC, the analyst queries the Neo4j Knowledge Graph to discover its directly connected intelligence entities.
+
+**Neo4j Cypher Query:**
+
+```cypher
+MATCH (i:Indicator {value:"node828765.dwservice.net"})-[r]-(n)
+RETURN i,r,n
+```
+
+<p align="center">
+  <img src="demo04-01-ioc-relationship-discovery.png"
+       alt="ShadowScope AM IOC-Centric Threat Relationship Discovery"
+       width="100%">
+</p>
+
+**Observed Graph Results:**
+
+| Graph Entity | Count |
+|---|---:|
+| Total Nodes | 107 |
+| Total Relationships | 106 |
+| Indicator | 1 |
+| Malware | 16 |
+| Correlation | 43 |
+| Cluster | 43 |
+| ASN | 1 |
+| Country | 1 |
+| Source | 1 |
+| Threat Type | 1 |
+
+This investigation demonstrates how a single indicator can expose a broader network of threat intelligence relationships.
+
+The graph reveals malware associations, correlation records, cluster memberships, infrastructure information and intelligence provenance connected to the selected domain.
+
+The analyst can inspect these connections and identify additional intelligence entities requiring investigation.
+
+**Validation Result:** `1 IOC Investigated` · `107 Graph Nodes` · `106 Relationships` · `16 Malware Associations` · `43 Correlations` · `43 Clusters`
+
+---
+
+### Capture 02 - Automated Threat Correlation & Cluster Discovery
+
+The second demonstration validates the automatic correlation and clustering capabilities implemented in ShadowScope AM.
+
+The correlation engine identifies indicators sharing characteristics such as malware families, network infrastructure, threat classifications, campaigns, vulnerabilities and intelligence sources.
+
+Each qualifying correlation is represented by a dedicated `Correlation` node connected to its associated `Indicator` nodes and corresponding `Cluster`.
+
+**Neo4j Cypher Query:**
+
+```cypher
+MATCH (cl:Cluster)<-[:BELONGS_TO_CLUSTER]-(c:Correlation)
+MATCH (i:Indicator)-[:HAS_CORRELATION]->(c)
+RETURN cl,c,i
+LIMIT 100
+```
+
+<p align="center">
+  <img src="demo04-02-automated-correlation-clusters.png"
+       alt="ShadowScope AM Automated Threat Correlation and Cluster Discovery"
+       width="100%">
+</p>
+
+**Observed Graph Results:**
+
+| Graph Entity | Count |
+|---|---:|
+| Total Nodes | 119 |
+| Total Relationships | 93 |
+| Indicators | 100 |
+| Correlations | 7 |
+| Clusters | 7 |
+| Countries | 2 |
+| ASN | 1 |
+| Source | 1 |
+| Threat Type | 1 |
+
+The graph illustrates how multiple intelligence indicators can be connected through shared correlation records and organized into identifiable clusters.
+
+This approach helps analysts move beyond individual IOC investigation toward the exploration of groups of potentially related threats.
+
+A correlation represents a shared characteristic recorded by the engine. Additional investigation is required before concluding that indicators belong to the same malicious operation or threat actor.
+
+**Validation Result:** `Automated CTI Correlation` · `100 Indicator Nodes Displayed` · `7 Correlations` · `7 Clusters` · `Relationship-Based Threat Discovery`
+
+---
+
+### Capture 03 - Malware-Centric Intelligence Investigation: FlowerStorm
+
+The third demonstration focuses on malware intelligence and its associated indicators.
+
+Instead of beginning an investigation with a domain or IP address, the analyst starts with a known malware family and retrieves the related indicators stored in the Knowledge Graph.
+
+**Investigation Target:** `FlowerStorm`
+
+**Neo4j Cypher Query:**
+
+```cypher
+MATCH (m:Malware {name:"FlowerStorm"})<-[r:ASSOCIATED_WITH_MALWARE]-(i:Indicator)
+RETURN m,r,i
+```
+
+<p align="center">
+  <img src="demo04-03-flowerstorm-malware-indicators.png"
+       alt="ShadowScope AM FlowerStorm Malware and Associated Indicators"
+       width="100%">
+</p>
+
+**Observed Graph Results:**
+
+| Graph Entity | Count |
+|---|---:|
+| Malware | 1 |
+| Associated Indicators | 23 |
+| Total Nodes | 24 |
+| Malware Relationships | 23 |
+
+The graph identifies 23 indicators associated with FlowerStorm within the current CTI dataset.
+
+These relationships allow a security analyst to retrieve malware-associated observables and examine additional indicators during threat hunting or incident investigation.
+
+**Extended Malware Relationship Exploration**
+
+The investigation can be extended beyond direct malware associations to reveal additional correlation, cluster and infrastructure relationships connected to the associated indicators.
+
+The following captured graph represents an expanded exploration of the FlowerStorm intelligence context.
+
+<p align="center">
+  <img src="demo04-04-flowerstorm-expanded-knowledge-graph.png"
+       alt="ShadowScope AM FlowerStorm Expanded Threat Intelligence Knowledge Graph"
+       width="100%">
+</p>
+
+**Observed Extended Graph Results:**
+
+| Graph Entity | Count |
+|---|---:|
+| Total Nodes | 61 |
+| Total Relationships | 113 |
+| Malware | 1 |
+| Indicators | 23 |
+| Correlations | 16 |
+| Clusters | 16 |
+| ASN | 2 |
+| Country | 1 |
+| Source | 1 |
+| Threat Type | 1 |
+
+The extended graph demonstrates how malware-associated indicators connect with the broader ShadowScope AM intelligence ecosystem.
+
+The analyst can explore associated correlation groups, infrastructure context and additional threat intelligence relationships to support further investigation.
+
+**Validation Result:** `FlowerStorm Malware Investigation` · `23 Associated Indicators` · `61 Extended Graph Nodes` · `113 Relationships` · `Malware-Centric Threat Intelligence Exploration`
+
+---
+
+### Technical Implementation & Intelligence Processing
+
+The demonstrated correlation and graph capabilities are implemented using two primary Python components.
+
+| Component | Technology | Responsibility |
+|---|---|---|
+| Correlation Engine | Python / OpenSearch | Identify shared attributes and generate correlation records |
+| Correlation Storage | OpenSearch `cti-correlations` | Persist correlation metadata and cluster identifiers |
+| Investigation Intelligence | OpenSearch `cti-ir` | Supply high-risk CTI entities |
+| Knowledge Graph Loader | Python / Neo4j Driver | Transform CTI entities into graph nodes and relationships |
+| Graph Database | Neo4j | Store and query interconnected threat intelligence |
+| Investigation Interface | Neo4j Browser / Cypher | Visualize and investigate relationships |
+
+The correlation engine processes prioritized CTI entities with a risk score of at least 70 and requires a minimum of two entities to generate a correlation.
+
+Graph construction uses Cypher `MERGE` operations to create or update intelligence entities and relationships.
+
+The system connects indicators with contextual entities and correlation clusters, enabling structured exploration of their relationships.
+
+---
+
+### Security Operations Value
+
+These demonstrations illustrate three complementary investigation approaches.
+
+| Investigation Approach | Starting Point | Operational Objective |
+|---|---|---|
+| IOC-Centric Investigation | Suspicious domain or indicator | Discover directly connected threat intelligence |
+| Correlation & Cluster Discovery | Shared characteristics across indicators | Identify groups of potentially related threats |
+| Malware-Centric Investigation | Known malware family | Retrieve associated indicators and investigate their broader context |
+
+Together, these capabilities support:
+
+- **SOC Investigation:** Enrich alerts with related threat intelligence.
+- **Threat Hunting:** Discover additional IOCs connected through common characteristics.
+- **Incident Response:** Investigate malware associations and infrastructure context.
+- **CTI Analysis:** Explore clusters and shared relationships across intelligence entities.
+- **Detection Engineering:** Identify relevant indicators that may inform detection development.
+
+The Knowledge Graph provides a structured intelligence layer that can also support future integration with multi-context RAG and AI-assisted security investigation.
+
+### Demo 04 - Final Validation
+
+**Demo Result:** `Automated Threat Correlation` · `OpenSearch CTI Intelligence` · `Neo4j Knowledge Graph` · `IOC Relationship Discovery` · `Malware Investigation` · `Threat Cluster Exploration`
+
+> **From Isolated Indicators to Connected Threat Intelligence.**
+>
+> ShadowScope AM transforms prioritized CTI data into a graph of interconnected security entities, enabling analysts to investigate not only individual threats but also their relationships, shared infrastructure, malware associations and correlation clusters.
+
+---
+
+
+
+
+
+
 #  What Makes ShadowScope AM Different?
 
 ShadowScope AM explores the convergence of several areas that are often separated in traditional security architectures.
