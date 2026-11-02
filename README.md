@@ -1746,6 +1746,227 @@ They provide the foundation for:
 ---
 
 
+## Demo 06 - AI-Powered Semantic Threat Search
+
+The sixth demonstration validates the **Semantic Threat Search** capability of ShadowScope AM.
+
+After transforming CTI intelligence into AI-ready textual contexts and generating embeddings, the platform enables analysts to search cybersecurity intelligence using **natural-language queries** rather than exact IOC matching alone.
+
+This semantic layer allows analysts to discover relevant threat intelligence contexts based on **meaning**, **context**, and **similarity**, using vector search over embedded CTI records stored in Qdrant.
+
+The workflow follows:
+
+**Analyst Query >> Query Embedding >> Vector Similarity Search >> Ranked CTI Context Retrieval >> Threat Investigation**
+
+---
+
+### Semantic Search Architecture
+
+ShadowScope AM combines the following components for semantic retrieval:
+
+- **OpenSearch** for structured CTI records and contextualized AI text
+- **Sentence Transformers** for natural-language query embeddings
+- **Qdrant** for vector storage and similarity search
+- **Cosine Similarity** for ranking semantically related CTI contexts
+- **Risk Metadata** for prioritization and analyst interpretation
+
+```mermaid
+flowchart TD
+    A["Analyst Natural-Language Query"]
+    B["Sentence Transformer"]
+    C["Query Embedding"]
+    D["Qdrant Vector Search"]
+    E["Top-K Similar Contexts"]
+    F["Retrieved CTI Metadata"]
+    G["Semantic Threat Search Results"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+```
+
+---
+
+### Demonstration Scenario - Infrastructure & Correlation Search
+
+This demonstration shows how a security analyst can retrieve semantically similar CTI contexts related to **shared infrastructure** and **threat correlation clusters**.
+
+**Example Query:**
+
+`Find high-risk indicators sharing ASN infrastructure or threat correlation clusters.`
+
+**Search Parameters Used:**
+
+| Parameter | Value |
+|---|---|
+| Top K | 10 |
+| Minimum Similarity Score | 0.30 |
+| Query Type | Natural-Language Semantic Search |
+
+The returned results are primarily **correlation contexts** associated with shared ASN-based threat relationships.
+
+---
+
+### Capture 01 - Semantic Search Query & Top Results
+
+The first screenshot shows the analyst query, the search parameters, and the top semantic search results returned by the interface.
+
+<p align="center">
+  <img src="demo06-01-semantic-search-top-results.png"
+       alt="ShadowScope AM Semantic Threat Search - Query and Top Results"
+       width="100%">
+</p>
+
+**Observed Characteristics from the Returned Results:**
+
+- Results are ranked by **similarity score**
+- Returned contexts are mostly **correlation_context**
+- Similarity scores are approximately between **0.64 and 0.67**
+- Returned records are associated with:
+  - **Risk Score = 100**
+  - **Priority = P1**
+  - **Correlation Type = shared_asn_org**
+  - **Critical severity**
+- The output includes:
+  - correlation identifier
+  - cluster identifier
+  - summary
+  - threat tags
+  - ASN-related shared value
+
+This confirms that the semantic search engine can retrieve **high-risk correlation contexts** related to infrastructure similarity and shared network organizations.
+
+**Validation Result:** `Natural-Language Query Executed` · `Top-K Semantic Retrieval` · `Correlation Contexts Returned` · `Risk-Aware Threat Search`
+
+---
+
+### Capture 02 - Extended Semantic Search Results
+
+The second screenshot shows the continuation of the semantic search results and confirms that multiple related **shared ASN correlation contexts** are retrieved with strong similarity scores.
+
+<p align="center">
+  <img src="demo06-02-semantic-search-extended-results.png"
+       alt="ShadowScope AM Semantic Threat Search - Extended Correlation Results"
+       width="100%">
+</p>
+
+**Observed Additional Results:**
+
+The extended result set includes multiple correlation contexts involving:
+
+- shared ASN organizations
+- critical risk contexts
+- high-priority P1 intelligence
+- multiple correlation IDs
+- associated cluster IDs
+- infrastructure-related CTI summaries
+
+Examples of retrieved shared ASN contexts in the captured results include organizations such as:
+
+- **VNET a.s., SK**
+- **TIMENET SPA, IT**
+- **Metronet, US**
+- **FranTech Solutions, US**
+- **Baxet Group Inc., US**
+- **Awarenes Software Limited, GB**
+- **SECURED SERVERS LLC, US**
+
+These results demonstrate that semantic search is capable of retrieving related CTI correlation descriptions even when the analyst query is expressed in natural language.
+
+**Validation Result:** `Extended Semantic Correlation Retrieval` · `Critical Shared ASN Intelligence` · `Contextual Similarity-Based Discovery`
+
+---
+
+### Technical Interpretation
+
+The results shown in this demonstration indicate that the semantic search layer is successfully retrieving CTI contexts related to **infrastructure-based correlation intelligence**.
+
+In this case, the retrieved records are not isolated IOC documents, but **correlation summaries** describing shared ASN relationships across high-risk entities.
+
+This is valuable because it enables analysts to search for concepts such as:
+
+- shared malicious infrastructure
+- clustered threat relationships
+- correlation-based groupings
+- high-risk contextual patterns
+
+without necessarily knowing the exact indicator value in advance.
+
+Semantic similarity should be interpreted as a **retrieval relevance signal**, not as direct proof of maliciousness.
+
+---
+
+### Technical Implementation
+
+| Component | Technology | Responsibility |
+|---|---|---|
+| Semantic Search UI | HTML / JavaScript | Query input and result visualization |
+| Semantic Search API | Python | Query processing and vector retrieval |
+| Embedding Model | all-MiniLM-L6-v2 | Convert analyst query into embedding |
+| Vector Database | Qdrant | Store and retrieve CTI vectors |
+| Vector Collection | `cti_ai_vectors` | Indexed semantic intelligence contexts |
+| Source Context Index | OpenSearch `cti-ai-context` | Context text and metadata storage |
+| Threat Intelligence Index | OpenSearch `cti-ir` | High-risk CTI records |
+| Correlation Index | OpenSearch `cti-correlations` | Correlation and cluster intelligence |
+
+---
+
+### Security Operations Value
+
+The Semantic Threat Search layer supports:
+
+- **Natural-Language Threat Hunting**
+- **Semantic Retrieval of CTI Contexts**
+- **Correlation Discovery Support**
+- **Infrastructure-Oriented Investigation**
+- **Risk-Aware Intelligence Exploration**
+- **Downstream LLM Context Retrieval**
+
+This allows analysts to move from simple IOC lookups toward **context-driven cybersecurity investigation**.
+
+---
+
+### Video Demonstration Scenarios
+
+The following three recorded video demonstrations will be added to extend the Semantic Threat Search validation.
+
+#### Video Scenario 01 - Phishing Intelligence Search
+**Example Query:**  
+`Find high-risk phishing URLs reported by PhishTank.`
+
+**Demo Placeholder:**  
+_To be added as recorded video demonstration._
+
+#### Video Scenario 02 - Malware Intelligence Search
+**Example Query:**  
+`Find threat intelligence related to FlowerStorm malware and associated indicators.`
+
+**Demo Placeholder:**  
+_To be added as recorded video demonstration._
+
+#### Video Scenario 03 - Infrastructure & Correlation Search
+**Example Query:**  
+`Find high-risk indicators sharing ASN infrastructure or threat correlation clusters.`
+
+**Demo Placeholder:**  
+_To be added as recorded video demonstration._
+
+---
+
+### Demo 06 - Final Validation
+
+**Demonstrated:** `Natural-Language CTI Search` · `Qdrant Vector Similarity` · `Correlation Context Retrieval` · `Infrastructure-Oriented Semantic Search` · `Critical P1 Context Discovery`
+
+> **From Exact IOC Matching to Contextual Threat Retrieval.**
+>
+> ShadowScope AM enables analysts to retrieve relevant CTI contexts through semantic similarity search, supporting more flexible and context-aware threat hunting across structured intelligence and correlation data.
+
+---
+
+
 
 
 
