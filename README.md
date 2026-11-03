@@ -1968,6 +1968,265 @@ _To be added as recorded video demonstration._
 ---
 
 
+## Demo 07 - CTI LLM Assistant & AI-Assisted Threat Investigation
+
+The seventh demonstration introduces the **LLM-Assisted Cyber Threat Investigation** capability of ShadowScope AM.
+
+Building on the previous intelligence layers, the CTI LLM Assistant is designed to combine natural-language reasoning with contextual threat intelligence retrieved from the platform.
+
+The objective is to enable security analysts to ask cybersecurity questions in natural language and receive structured responses supported by available CTI evidence.
+
+The investigation architecture brings together:
+
+- **OpenSearch:** Structured CTI and investigation intelligence.
+- **Qdrant:** Semantic similarity search and vector-based context retrieval.
+- **Neo4j:** Threat relationships and Knowledge Graph intelligence.
+- **Local LLM:** Contextual analysis and natural-language response generation.
+- **FastAPI:** API-based investigation orchestration.
+
+The workflow follows:
+
+**Analyst Question >> Semantic Context Retrieval >> Graph Context Retrieval >> LLM Context Assembly >> AI-Generated Investigation Response**
+
+### LLM-Assisted Investigation Architecture
+
+```mermaid
+flowchart TD
+    A["Analyst Security Question"]
+    B["FastAPI - CTI LLM Assistant"]
+    C["Qdrant Semantic Retrieval"]
+    D["Neo4j Knowledge Graph"]
+    E["Retrieved CTI Evidence"]
+    F["LLM Context Assembly"]
+    G["Local LLM Inference"]
+    H["AI-Generated Security Assessment"]
+
+    A --> B
+    B --> C
+    B --> D
+    C --> E
+    D -.-> E
+    E --> F
+    F --> G
+    G --> H
+```
+
+The architecture is designed to support multi-context retrieval and retrieval-augmented generation (RAG).
+
+The demonstration below evaluates the current implementation through a real API execution.
+
+---
+
+### Capture 01 - Natural-Language CTI Investigation Request
+
+The first screenshot demonstrates the CTI LLM Assistant API, exposed through the FastAPI Swagger interface.
+
+An analyst submits a security investigation question through the `/ask` endpoint.
+
+**Investigation Question:**
+
+`What is the risk associated with node828765.dwservice.net?`
+
+**API Endpoint:**
+
+`POST /ask`
+
+**Request Body:**
+
+```json
+{
+  "question": "What is the risk associated with node828765.dwservice.net?",
+  "top_k": 3
+}
+```
+
+<p align="center">
+  <img src="demo07-01-llm-investigation-request.png"
+       alt="ShadowScope AM CTI LLM Assistant - Natural Language Investigation Request"
+       width="100%">
+</p>
+
+The request instructs the assistant to investigate the specified domain using up to three retrieved semantic contexts.
+
+This demonstrates the natural-language entry point for AI-assisted CTI investigation.
+
+**Validation Result:** `FastAPI Interface` · `POST /ask` · `Natural-Language Security Question` · `Top-K Context Retrieval`
+
+---
+
+### Capture 02 - Semantic Intelligence Retrieval
+
+After submitting the investigation request, the assistant retrieves potentially relevant threat intelligence contexts.
+
+The API returns HTTP status `200`, indicating that the request was processed successfully at the HTTP level.
+
+<p align="center">
+  <img src="demo07-02-llm-semantic-context-retrieval.png"
+       alt="ShadowScope AM CTI LLM Assistant - Semantic Intelligence Retrieval"
+       width="100%">
+</p>
+
+**Observed Semantic Retrieval Results:**
+
+| Retrieved Indicator | Similarity Score | Risk Score | Priority | CTI Source |
+|---|---:|---:|---|---|
+| `66.232.15.73` | 0.4626 | 90 | P1 | AbuseIPDB |
+| `40.127.67.83` | 0.4612 | 78 | P2 | AbuseIPDB |
+| `31.14.32.7` | 0.4588 | 90 | P1 | AbuseIPDB |
+
+The retrieved contexts contain structured intelligence metadata such as:
+
+- Semantic similarity score
+- Indicator value
+- Threat risk score
+- Investigation priority
+- Threat classification
+- Source provenance
+- Correlation and cluster references, when available
+
+The retrieved results are classified as malicious-IP intelligence contexts.
+
+These results demonstrate that the semantic retrieval component is functioning and returning contextual intelligence to the assistant.
+
+However, the retrieved records do not independently establish a relationship with the queried domain.
+
+**Validation Result:** `HTTP 200` · `3 Semantic Contexts Retrieved` · `Qdrant Context Retrieval` · `Risk Metadata Available`
+
+---
+
+### Capture 03 - Knowledge Graph Context Integration
+
+The assistant architecture also includes a Knowledge Graph retrieval component intended to provide explicit relationships between cybersecurity entities.
+
+Neo4j can provide contextual information involving:
+
+- Related indicators
+- Malware associations
+- Infrastructure relationships
+- Correlation clusters
+- Threat classifications
+- Intelligence provenance
+
+In the captured execution, the graph retrieval component reported a connection failure.
+
+<p align="center">
+  <img src="demo07-03-llm-knowledge-graph-context.png"
+       alt="ShadowScope AM CTI LLM Assistant - Knowledge Graph Retrieval Status"
+       width="100%">
+</p>
+
+**Observed Integration Status:**
+
+| Component | Status |
+|---|---|
+| Semantic Context Retrieval | Successful |
+| Qdrant Intelligence Context | Available |
+| Neo4j Connection | Unavailable during execution |
+| Graph Relationship Retrieval | Not completed |
+| LLM API Execution | HTTP 200 |
+
+The graph integration was not successfully completed during this test.
+
+This represents an outstanding integration issue rather than a validated graph-enriched investigation.
+
+The intended architecture remains designed to combine semantic retrieval with explicit Knowledge Graph relationships.
+
+**Validation Status:** `Semantic Retrieval Operational` · `Neo4j Integration Requires Recovery`
+
+---
+
+### Capture 04 - AI-Generated Threat Assessment
+
+The final screenshot shows the natural-language response generated by the CTI LLM Assistant.
+
+<p align="center">
+  <img src="demo07-04-llm-threat-assessment.png"
+       alt="ShadowScope AM CTI LLM Assistant - AI Generated Threat Assessment"
+       width="100%">
+</p>
+
+The generated response is organized into investigation-oriented sections, including:
+
+**1. Executive Summary**
+
+A high-level interpretation of the requested security investigation.
+
+**2. Threat Classification**
+
+A description of threat classifications identified in the retrieved CTI context.
+
+**3. Risk Explanation**
+
+An interpretation of risk scores, investigation priorities and available threat metadata.
+
+**4. Related Intelligence**
+
+A discussion of additional indicators retrieved during semantic context search.
+
+The output demonstrates the LLM's ability to transform retrieved threat intelligence into a structured, analyst-readable response.
+
+**Important Validation Note:**
+
+The generated answer associated the queried domain with high-risk malicious IPs, but the retrieved semantic contexts alone do not prove those relationships.
+
+Furthermore, Neo4j graph retrieval failed during execution.
+
+The response therefore demonstrates LLM-based synthesis, not a fully validated threat attribution. The inferred associations require verification against exact IOC matches, source evidence and Knowledge Graph relationships.
+
+**Validation Result:** `LLM Response Generated` · `Structured Security Assessment` · `Semantic Context Consumption` · `Analyst Review Required`
+
+---
+
+### Technical Implementation
+
+| Component | Technology | Responsibility |
+|---|---|---|
+| Investigation API | FastAPI | Natural-language question processing |
+| LLM Assistant API | Python | Context retrieval and LLM orchestration |
+| Semantic Retrieval | Qdrant | Retrieve relevant CTI intelligence |
+| Embedding Model | all-MiniLM-L6-v2 | Semantic query vectorization |
+| Vector Collection | `cti_ai_vectors` | Vectorized intelligence contexts |
+| AI Context Store | OpenSearch `cti-ai-context` | Contextualized threat descriptions |
+| Knowledge Graph | Neo4j | Explicit entity relationship retrieval |
+| LLM Inference | Local LLM | Generate investigation-oriented responses |
+| API Documentation | Swagger / OpenAPI | Interactive testing and validation |
+
+### Security Operations Applications
+
+The CTI LLM Assistant is designed to support:
+
+- **Natural-Language CTI Investigation:** Investigate threats through security questions.
+- **Semantic Intelligence Retrieval:** Find potentially relevant CTI contexts.
+- **Contextual Threat Assessment:** Interpret retrieved security intelligence.
+- **Knowledge Graph Integration:** Incorporate explicit threat relationships when available.
+- **AI-Assisted Reporting:** Produce structured investigation summaries.
+- **Human-in-the-Loop Validation:** Allow analysts to verify evidence and conclusions before security decisions.
+
+### Current Validation Status
+
+| Capability | Demonstration Status |
+|---|---|
+| FastAPI Investigation Endpoint | Validated |
+| Natural-Language Question Submission | Validated |
+| Qdrant Semantic Context Retrieval | Validated |
+| CTI Metadata Retrieval | Validated |
+| LLM Response Generation | Observed |
+| Neo4j Context Retrieval | Connection failure observed |
+| Evidence-Grounded IOC Attribution | Requires further validation |
+| Autonomous Multi-Agent Investigation | Not established by this test |
+
+### Demo 07 - Final Assessment
+
+**Demonstrated:** `CTI LLM Assistant` · `Natural-Language Investigation` · `Semantic Context Retrieval` · `LLM Response Generation` · `FastAPI Integration`
+
+**Further Validation:** `Neo4j Connectivity` · `Exact IOC Verification` · `Evidence-Grounded Responses` · `Multi-Context RAG Reliability`
+
+> **From Semantic Threat Intelligence to AI-Assisted Security Investigation.**
+>
+> ShadowScope AM demonstrates an LLM-assisted investigation workflow that retrieves contextual cybersecurity intelligence and transforms it into structured analytical responses. Further integration and evidence-validation work will strengthen the reliability of graph-enriched threat assessments.
+
+---
+
 
 
 
