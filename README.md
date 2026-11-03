@@ -1,280 +1,404 @@
 
 <div align="center">
 
-# SHADOWSCOPE AM
+# 🛡️ SHADOWSCOPE AM
 
-### Cyber Threat Intelligence, Engineered for Investigation and Detection
+### Cyber Threat Intelligence · Graph Intelligence · Semantic Threat Hunting · Detection Engineering
 
-**An intelligence-driven cybersecurity platform combining large-scale CTI processing, graph analytics, semantic search, local LLM investigation and detection engineering.**
+**An intelligence-driven cybersecurity platform built to connect fragmented threat data with practical security investigations and detection workflows.**
 
-<br>
+<p>
+  <img src="https://img.shields.io/badge/PROJECT-ShadowScope%20AM-0B5CAD?style=for-the-badge" alt="Project ShadowScope AM" />
+  <img src="https://img.shields.io/badge/STATUS-Active%20Development-F59E0B?style=for-the-badge" alt="Active development" />
+  <img src="https://img.shields.io/badge/FOCUS-Cyber%20Threat%20Intelligence-2563EB?style=for-the-badge" alt="Cyber Threat Intelligence" />
+</p>
+<p>
+  <img src="https://img.shields.io/badge/OpenSearch-Search%20%26%20Analytics-005EB8?style=flat-square" alt="OpenSearch" />
+  <img src="https://img.shields.io/badge/Neo4j-Knowledge%20Graph-008CC1?style=flat-square" alt="Neo4j" />
+  <img src="https://img.shields.io/badge/Qdrant-Vector%20Intelligence-DC244C?style=flat-square" alt="Qdrant" />
+  <img src="https://img.shields.io/badge/Python-Data%20%26%20Security%20Automation-3776AB?style=flat-square" alt="Python" />
+  <img src="https://img.shields.io/badge/LLM-Local%20Investigation-7C3AED?style=flat-square" alt="Local LLM" />
+</p>
 
-![CTI](https://img.shields.io/badge/THREAT_INTELLIGENCE-0F172A?style=for-the-badge&logo=shield&logoColor=white)
-![Knowledge Graph](https://img.shields.io/badge/KNOWLEDGE_GRAPH-0369A1?style=for-the-badge)
-![Semantic Search](https://img.shields.io/badge/SEMANTIC_SEARCH-6D28D9?style=for-the-badge)
-![Detection](https://img.shields.io/badge/DETECTION_ENGINEERING-0F766E?style=for-the-badge)
+**Global Intelligence · Connected Threats · Contextual Investigation · Proactive Detection**
 
-<br>
-
-**COLLECT** &nbsp;→&nbsp; **NORMALIZE** &nbsp;→&nbsp; **ENRICH** &nbsp;→&nbsp; **CORRELATE** &nbsp;→&nbsp; **INVESTIGATE** &nbsp;→&nbsp; **DETECT**
-
-<br>
-
-[**Overview**](#01--executive-overview) · [**Architecture**](#02--platform-architecture) · [**Engineering**](#03--inside-the-engineering-pipeline) · [**Demonstrations**](#04--technical-demonstrations) · [**Use Cases**](#05--security-operations-use-cases) · [**Roadmap**](#07--engineering-roadmap)
-
-<br>
-
-<img src="shadowscope-am-architecture.png" alt="ShadowScope AM — complete cybersecurity intelligence platform architecture" width="100%">
-
-<sub>ShadowScope AM · Platform architecture</sub>
+[Overview](#overview) · [Architecture](#architecture) · [Capabilities](#core-capabilities) · [Technical Demos](#technical-demonstrations) · [Technology](#technology-stack) · [Roadmap](#roadmap) · [Conclusion](#conclusion)
 
 </div>
 
 ---
 
-## 01 — Executive Overview
+## Overview
 
-### From isolated indicators to actionable security intelligence
+Cyber Threat Intelligence is abundant, but operational context is often fragmented. Security teams work across different feeds, formats, tools and consoles, while the relationships between indicators, infrastructure, malware and campaigns remain difficult to reconstruct.
 
-Threat intelligence is everywhere. Context is not.
+I developed **ShadowScope AM** to bring those intelligence layers into a single technical workflow: collect external threat data, normalize and enrich it, select relevant investigation candidates, uncover shared relationships, retrieve contextual intelligence and prepare detection content.
 
-An IP address may appear in a reputation feed. A related domain may appear in a phishing dataset. A vulnerability may be flagged by a national CERT. A malware family may be documented in a separate report. An analyst still has to connect the evidence, identify relevant relationships, prioritize an investigation and decide what can actually be detected.
+The project connects **OpenSearch, Neo4j, Qdrant, Python and local language-model components** to explore a practical question:
 
-**ShadowScope AM was built to connect those steps.** Rather than treating CTI as a collection of independent indicators, the platform develops a consistent chain from raw external feeds to contextualized records, correlated entities, graph relationships, meaning-based retrieval, investigation support and draft detection rules.
+> **How can global threat intelligence become connected, searchable and actionable for security operations?**
 
-> **Core design principle:** threat intelligence should end in an informed analyst decision or a verifiable detection opportunity—not another disconnected dashboard.
+The platform currently demonstrates working components for multi-source collection, CTI processing, risk-based investigation selection, correlation graphs, semantic vector retrieval, an LLM-assisted API and generation of detection content in four formats. Some advanced integrations, notably evidence-verified LLM conclusions and production detection deployment, remain under development.
 
-### Platform snapshot
-
-| Acquisition | Investigation | Intelligence modeling | Detection |
-|:--:|:--:|:--:|:--:|
-| **20/20** collectors successful | **P1 / P2** prioritized CTI | **384-D** semantic vectors | **4** output formats |
-| Scheduled collection | Risk-based `cti-ir` queue | OpenSearch + Neo4j + Qdrant | Sigma · Splunk · Wazuh · Suricata |
-
-<sub>Values reflect the captured technical demonstrations, not live production metrics.</sub>
-
-### The platform in four layers
-
-<table>
-<tr>
-<td width="25%" valign="top"><strong>01 · Intelligence Foundation</strong><br><br>CTI acquisition, raw retention, normalization, source provenance, enrichment, validation and risk scoring.</td>
-<td width="25%" valign="top"><strong>02 · Connected Intelligence</strong><br><br>Threat correlation, entity clusters, infrastructure links and Neo4j knowledge graph exploration.</td>
-<td width="25%" valign="top"><strong>03 · Contextual Investigation</strong><br><br>Structured and semantic retrieval, Qdrant vectors, local LLM assistance and planned multi-context agent coordination.</td>
-<td width="25%" valign="top"><strong>04 · Detection Engineering</strong><br><br>Detection candidate preparation, multi-format rule generation, export and review before operational integration.</td>
-</tr>
-</table>
-
-### What has been demonstrated
-
-- **Collection and data engineering:** 20 CTI collectors in the recorded run; 85 raw MinIO objects (~436.8 MiB); unified CTI records.
-- **Risk-based operations:** enrichment, explainable heuristic validation, risk scores and a dedicated high-priority investigation index.
-- **Graph intelligence:** direct IOC investigation, automatic correlation groups and FlowerStorm malware-centric graph exploration.
-- **Semantic intelligence:** contextual text generation, 384-dimensional embeddings, Qdrant indexing and natural-language threat search.
-- **Investigation assistance:** a FastAPI `/ask` workflow returning semantic contexts and a locally generated assessment, with a known Neo4j connection issue in the captured test.
-- **Detection engineering:** generated Sigma, Splunk SPL, Wazuh and Suricata content, indexed with supporting intelligence metadata.
-
-> [!IMPORTANT]
-> ShadowScope AM is an **active engineering project**, not a claim of fully autonomous, production-certified cyber defense. The eight demos distinguish observed results from integration work and future capabilities.
-
----
-
-## 02 — Platform Architecture
-
-### 2.1 End-to-end data flow
-
-```mermaid
-flowchart TB
-  subgraph S["EXTERNAL INTELLIGENCE"]
-    S1["CTI APIs · Feeds · Advisories · Reputation"]
-  end
-  subgraph I["DATA FOUNDATION"]
-    C["Python CTI Collectors"] --> RAW["MinIO · Raw Source Evidence"]
-    RAW --> PIPE["Parse · Normalize · Enrich · Validate · Score"]
-    PIPE --> GLOBAL["OpenSearch · cti-global"]
-  end
-  subgraph R["INVESTIGATION & CORRELATION"]
-    GLOBAL --> SELECT["Risk-Based Investigation Selection"]
-    SELECT --> IR["OpenSearch · cti-ir"]
-    IR --> COR["Correlation Engine"]
-    COR --> CORIDX["OpenSearch · cti-correlations"]
-    CORIDX --> GRAPH["Neo4j · Threat Knowledge Graph"]
-  end
-  subgraph A["SEMANTIC & LLM CONTEXT"]
-    IR --> TEXT["Context Builder"]
-    CORIDX --> TEXT
-    TEXT --> CTX["OpenSearch · cti-ai-context"]
-    CTX --> EMB["MiniLM · 384-D Embeddings"]
-    EMB --> VEC["Qdrant · cti_ai_vectors"]
-    VEC --> API["FastAPI · Investigation Assistant"]
-    IR --> API
-    GRAPH -. "Graph integration · test incomplete" .-> API
-    API --> LLM["Ollama · Local LLM"]
-  end
-  subgraph D["DETECTION & REVIEW"]
-    IR --> RULES["Detection Engineering"]
-    LLM -. "Analyst-reviewed insights" .-> RULES
-    RULES --> FMT["Sigma · Splunk · Wazuh · Suricata"]
-    RULES --> DQ["Qdrant · cti_detection_vectors"]
-    FMT --> REVIEW["Validation · Testing · Analyst Approval"]
-  end
-  S1 --> C
-  classDef source fill:#DBEAFE,stroke:#2563EB,color:#10213D;
-  classDef graph fill:#EDE9FE,stroke:#7C3AED,color:#241245;
-  classDef action fill:#CCFBF1,stroke:#0F766E,color:#073D37;
-  class GLOBAL,IR,CORIDX,RAW,CTX source;
-  class GRAPH,EMB,VEC,API,LLM graph;
-  class RULES,FMT,DQ,REVIEW action;
-```
-
-**Why three intelligence representations?** They answer different questions:
-
-| Representation | System | Primary question | Typical operation |
-|---|---|---|---|
-| **Structured records** | OpenSearch | *What do we know about this entity?* | IOC lookup, filters, aggregations, risk selection |
-| **Explicit relationships** | Neo4j | *How are these entities connected in the data?* | Graph traversal, malware/infrastructure pivots, clusters |
-| **Semantic context** | Qdrant | *What other records describe a similar threat concept?* | Natural-language and vector-similarity retrieval |
-
-The LLM-facing layer is designed to consume relevant evidence from these representations rather than depend solely on general model knowledge.
-
-### 2.2 Data stores and responsibilities
-
-| Component | Index / Collection | Stored information |
-|---|---|---|
-| **MinIO** | `cti/raw/` | Unmodified source payloads and provenance |
-| **OpenSearch** | `cti-global` | Unified CTI records |
-| **OpenSearch** | `cti-ir` | Risk-selected records and analyst-priority metadata |
-| **OpenSearch** | `cti-correlations` | Shared-attribute correlations and cluster IDs |
-| **OpenSearch** | `cti-ai-context` | Context text, summaries and original document references |
-| **Neo4j** | Threat knowledge graph | Indicator, malware, campaign, ASN, source and cluster relationships |
-| **Qdrant** | `cti_ai_vectors` | 384-D vectors and source-linked semantic payloads |
-| **Qdrant** | `cti_detection_vectors` | Generated detection records and associated metadata |
-
-### 2.3 Technology stack
-
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![OpenSearch](https://img.shields.io/badge/OpenSearch-005EB8?style=flat-square)
-![MinIO](https://img.shields.io/badge/MinIO-C72C48?style=flat-square)
-![Neo4j](https://img.shields.io/badge/Neo4j-008CC1?style=flat-square&logo=neo4j&logoColor=white)
-![Qdrant](https://img.shields.io/badge/Qdrant-DC244C?style=flat-square)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-24292F?style=flat-square)
-![MITRE ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-9B1C31?style=flat-square)
-
-</div>
+### Project at a glance
 
 | Area | Implementation |
 |---|---|
-| Collectors and pipelines | Python, REST/GraphQL, JSON, CSV, XML, feeds and STIX/TAXII as applicable |
-| Enrichment | DNS, reverse DNS, ASN, RDAP, geographic/network context, cloud/CDN identification |
-| Search and investigation | OpenSearch indices, structured risk scoring and investigation selection |
-| Graph analysis | Neo4j and Cypher |
-| Semantic search | Sentence Transformers (`all-MiniLM-L6-v2`), normalized 384-D embeddings, Qdrant cosine similarity |
-| Local inference | Ollama and Phi-3 Mini |
-| Detection content | Sigma, Splunk SPL, Wazuh XML and Suricata signatures |
+| Intelligence acquisition | 20 collectors tested across multiple CTI categories |
+| Raw data layer | MinIO object storage |
+| Search and investigation | OpenSearch: `cti-global`, `cti-ir`, `cti-correlations`, `cti-ai-context` |
+| Threat relationships | Neo4j Knowledge Graph |
+| Semantic intelligence | Qdrant + `all-MiniLM-L6-v2` embeddings |
+| Investigation interface | Semantic Search UI and FastAPI CTI LLM Assistant |
+| Detection content | Sigma, Splunk SPL, Wazuh and Suricata |
+| Operating approach | Risk-based prioritization and analyst-controlled validation |
 
 ---
 
-## 03 — Inside the Engineering Pipeline
+## Architecture
 
-### 3.1 Acquisition → normalization → source-traceable CTI
+<p align="center">
+  <img src="shadowscope-am-architecture.png" alt="ShadowScope AM system architecture" width="100%" />
+</p>
 
-The collector layer handles heterogeneous feeds while preserving the original record. Processing then standardizes relevant attributes: value, entity type, source, confidence, severity, first/last-seen timestamps, malware, threat actors, campaign references, CVEs, infrastructure, tags, descriptions and raw-source references.
+The architecture separates raw intelligence, normalized search records, correlation relationships and vectorized context. This allows each component to serve a distinct investigative purpose without forcing every query through a single storage or processing model.
 
 ```mermaid
 flowchart LR
-  A["Acquire"] --> B["Parse"] --> C["Normalize"] --> D["Validate"] --> E["Enrich"] --> F["Deduplicate"] --> G["Score"] --> H["Index"]
-  classDef phase fill:#E0F2FE,stroke:#0284C7,color:#082F49;
-  class A,B,C,D,E,F,G,H phase;
+    A["External CTI Feeds"] --> B["Collection & Parsing"]
+    B --> C["MinIO · Raw Intelligence"]
+    C --> D["Normalization · Enrichment · Scoring"]
+    D --> E["OpenSearch · Global CTI"]
+    E --> F["Risk-Based IR Selection"]
+    F --> G["Correlation Engine"]
+    G --> H["Neo4j · Knowledge Graph"]
+    F --> I["AI Context Builder"]
+    G --> I
+    I --> J["Embeddings · Qdrant"]
+    J --> K["Semantic Search"]
+    J --> L["LLM Investigation API"]
+    H -. "Graph context, when available" .-> L
+    F --> M["Detection Engine"]
+    M --> N["Sigma · Splunk · Wazuh · Suricata"]
+    classDef source fill:#DBEAFE,stroke:#2563EB,color:#172554;
+    classDef storage fill:#D1FAE5,stroke:#059669,color:#064E3B;
+    classDef intelligence fill:#EDE9FE,stroke:#7C3AED,color:#3B0764;
+    classDef output fill:#FCE7F3,stroke:#DB2777,color:#831843;
+    class A,B source;
+    class C,E,F storage;
+    class G,H,I,J intelligence;
+    class K,L,M,N output;
 ```
 
-**Unified CTI example** — simplified, illustrative structure based on the project's documented fields:
+### Intelligence lifecycle
 
-```json
-{
-  "indicator": "suspicious.example",
-  "entity_type": "indicator",
-  "risk_score": 95,
-  "risk_level": "critical",
-  "priority": "P1",
-  "validation_status": "malicious",
-  "threat_types": ["phishing"],
-  "sources": ["threat-intelligence-feed"]
-}
+**Collect → Normalize → Enrich → Validate → Score → Investigate → Correlate → Retrieve → Detect**
+
+The system is designed around a feedback loop in which threat intelligence informs investigation and detection, while future security observations can enrich subsequent investigations. Operationally closing that loop is part of the continuing roadmap.
+
+---
+
+## Core Capabilities
+
+### 01 · Multi-source CTI acquisition
+
+Python collectors ingest vulnerability data, malicious infrastructure intelligence, malware and phishing feeds, reputation information and other security sources. Original records are preserved in MinIO so they can be inspected or reprocessed independently of downstream schemas.
+
+### 02 · Unified processing and enrichment
+
+Incoming records are parsed, normalized and indexed using a common CTI representation. Where available, the enrichment layer adds DNS, RDAP, ASN, network organization, country and infrastructure classification details while retaining source provenance.
+
+### 03 · Validation, scoring and investigation selection
+
+A rule-based validation stage evaluates threat-related attributes and potential false-positive context. Risk scoring assigns an operational score and priority. High-priority investigation candidates are copied into `cti-ir`, separating analyst-focused intelligence from the full global dataset.
+
+### 04 · Correlation and Knowledge Graph
+
+The correlation engine groups records by shared attributes including ASN, malware family, campaigns, APT references, CVEs, sources and other relevant context. Neo4j records explicit connections among indicators, malware, infrastructure, correlation entities and clusters. Shared attributes are **investigative leads**, not proof of common threat-actor ownership.
+
+### 05 · Vector intelligence and semantic retrieval
+
+Structured investigation and correlation records are transformed into descriptive text, embedded with a 384-dimensional Sentence Transformer and stored in Qdrant. Analysts can search by intent or context instead of relying exclusively on exact IOC values.
+
+### 06 · LLM-assisted investigation
+
+The FastAPI assistant retrieves CTI context and produces structured natural-language assessments using a local model. Semantic retrieval has been demonstrated; complete graph-enriched reasoning and evidence-grounded attribution still require further validation.
+
+### 07 · Detection engineering
+
+A detection engine generates Sigma, Splunk SPL, Wazuh and Suricata content based on selected threat indicators. Generated records are exported and indexed for subsequent review. Rule generation is distinct from syntax validation, false-positive testing and live deployment.
+
+---
+
+## Repository Components
+
+The main processing modules are organized by their role in the CTI lifecycle:
+
+```text
+Source_Code/
+├── 01_Data_Collection/
+├── 02_Data_Normalization/
+├── 03_Indexing_Search/
+├── 04_Threat_Enrichment/
+├── 05_Correlation_Knowledge_Graph/
+│   ├── correlation_engine.py
+│   └── graph_loader.py
+├── 06_AI_Assistant/
+│   ├── ai_context_builder.py
+│   ├── embedding_engine.py
+│   ├── semantic_search_api.py
+│   ├── llm_assistant_api.py
+│   ├── ai_classification_engine.py
+│   └── detection_engine.py
+└── 07_Documentation/
 ```
 
-Fields are populated according to the information available from each source. A missing field does not imply that a particular relationship or threat characteristic has been established.
+The repository may also contain service configurations, interfaces, deployment files and experimental components associated with these modules. Credentials and environment-specific configuration must be kept outside the public source tree.
 
-### 3.2 Threat validation and prioritization
+---
 
-The enrichment/validation layers evaluate multiple signals—including source confidence, malicious or suspicious classifications, infrastructure characteristics and potential false-positive conditions—to produce explainable internal risk indicators.
+## Technical Demonstrations
 
-**Promotion to the investigation queue (`cti-ir`):**
+The following eight demonstrations trace the implemented intelligence workflow, with screenshots captured from the running components and their interfaces. Counts and scores are snapshots from the recorded executions, not fixed system-wide benchmarks.
 
-| Policy | Condition |
-|---|---|
-| Validation | `malicious` or `suspicious` |
-| Risk | Score **≥ 70** |
-| Priority | **P1** or **P2** |
-| Exclusions | Benign shared infrastructure and high false-positive-risk records |
-| Persistence | Promoted to `cti-ir`; original remains in `cti-global` |
-
-| Risk score | IR tier | Suggested next step |
+| Demo | Focus | Evidence |
 |---|---|---|
-| **90–100** | Critical / P1 | Immediate investigation |
-| **70–89** | High / P2 | Investigation |
+| [01](#demo-01--global-cti-pipeline) | Collection and normalization | Collectors, MinIO, normalized records, CTI schema |
+| [02](#demo-02--threat-enrichment-validation--risk-scoring) | Context and prioritization | Enrichment, validation, scoring |
+| [03](#demo-03--risk-based-cti-investigation-queue) | Investigation selection | IR dashboard |
+| [04](#demo-04--threat-correlation--knowledge-graph) | Graph-based intelligence | IOC, clusters, FlowerStorm |
+| [05](#demo-05--ai-contexts--vector-intelligence) | Text and embeddings | Qdrant vector payload |
+| [06](#demo-06--semantic-threat-search) | Natural-language search | Ranked correlation contexts |
+| [07](#demo-07--cti-llm-assistant) | LLM-assisted investigation | FastAPI request and response |
+| [08](#demo-08--automated-detection-engineering) | Detection generation | Four rule formats indexed in Qdrant |
 
-The scoring engine produces project-specific assessments. A `100/100` score or a 60% malicious-likelihood estimate should not be confused with a statistically calibrated probability of real-world maliciousness.
+### Demo 01 · Global CTI Pipeline
 
-### 3.3 Correlation → clusters → knowledge graph
+The collection pipeline transforms heterogeneous external intelligence into structured records suitable for downstream analysis. In the recorded run, **20 out of 20 CTI collectors completed their tests successfully**, and the MinIO raw layer contained **85 objects totaling approximately 436.8 MiB**.
 
-Rather than declaring that all similar IOCs are part of the same operation, the correlation engine stores the **specific shared property** that links them: malware family, threat type, ASN, hosting organization, campaign, source, country, CVE or other available attribute.
+#### Capture 01 — Multi-source acquisition
 
-A correlation record can include the shared value, entity count, cluster identifier, severity, confidence and risk statistics. Neo4j then exposes those relationships for analysts to inspect.
+<p align="center"><img src="demo01-01-multi-source-cti-acquisition.png.png" alt="CTI collectors execution" width="100%" /></p>
+
+The collectors cover multiple intelligence domains, including vulnerabilities, phishing, malware and infrastructure information. Collection is configured for scheduled execution; each run feeds the raw intelligence layer.
+
+**Observed:** `20/20 collectors successful` · `Scheduled acquisition` · `Raw data preserved`
+
+#### Capture 02 — Raw intelligence storage
+
+<p align="center"><img src="demo01-02-raw-cti-storage-minio.png" alt="MinIO CTI raw intelligence storage" width="100%" /></p>
+
+The source-specific objects remain available for traceability and future reprocessing.
+
+**Observed:** `85 objects` · `~436.8 MiB` · `MinIO`
+
+#### Capture 03 — Record normalization
+
+<p align="center"><img src="demo01-03-cti-normalization-example.png" alt="Normalized CTI source records" width="100%" /></p>
+
+A recorded RSS normalization run produced **437 structured security-news records**, illustrating the conversion of feed-specific content into a consistent format.
+
+#### Capture 04 — Unified CTI schema
+
+<p align="center"><img src="demo01-04-unified-cti-schema.png" alt="Unified CTI record example" width="100%" /></p>
+
+The example uses `CVE-2010-0249` to show common fields for identity, source provenance, risk, related entities and references. The same approach supports the search, enrichment and investigation layers.
+
+**Outcome:** One processing foundation for multiple CTI sources and data types.
+
+---
+
+### Demo 02 · Threat Enrichment, Validation & Risk Scoring
+
+This stage adds context to normalized intelligence, evaluates the available evidence and assigns an operational priority before investigation selection.
+
+#### Capture 01 — Infrastructure enrichment
+
+<p align="center"><img src="demo02-01-threat-context-enrichment.png" alt="Threat enrichment fields in OpenSearch" width="100%" /></p>
+
+The enrichment output includes supported DNS, ASN, RDAP and network-classification attributes. These details are important when distinguishing malicious indicators from shared, legitimate or otherwise ambiguous infrastructure.
+
+#### Capture 02 — Rule-based validation
+
+<p align="center"><img src="demo02-02-rule-based-threat-validation.png" alt="Rule-based CTI validation result" width="100%" /></p>
+
+The record `211.102.140.0/22` is classified **Suspicious**, with a reported **60% malicious likelihood** and **40 legitimacy score** under the platform's rule-based assessment. These are model outputs, not independently measured probabilities.
+
+#### Capture 03 — Risk scoring and priority
+
+<p align="center"><img src="demo02-03-threat-risk-scoring.png" alt="Threat risk scoring result" width="100%" /></p>
+
+The captured intelligence record is associated with PlugX and `CVE-2010-0249`, and receives a **100/100 risk score**, **Critical** severity and **P1** investigation priority in the recorded execution.
+
+**Outcome:** Enriched intelligence with an explainable score and an actionable investigation priority.
+
+---
+
+### Demo 03 · Risk-Based CTI Investigation Queue
+
+Only a subset of globally collected intelligence should require analyst attention. The investigation selection stage promotes eligible high-risk records to `cti-ir`, leaving the global CTI index available for broader searching and analytics.
+
+The selection criteria documented for the IR workflow include completed scoring, suspicious or malicious validation, **risk score ≥ 70**, P1/P2 priority and exclusion of known benign or high false-positive-risk shared infrastructure.
+
+| Score | Operational level | Next step |
+|---|---|---|
+| 90–100 | Critical / P1 | Immediate investigation |
+| 70–89 | High / P2 | Analyst investigation |
+
+#### Capture 01 — Investigation dashboard
+
+<p align="center"><img src="demo03-01-ir-investigation-dashboard.png" alt="Risk-based CTI incident response dashboard" width="100%" /></p>
+
+The dashboard consolidates severity, priority, investigation candidates, validation results, malware, vulnerabilities and threat classifications. It is designed to give a SOC or CTI analyst a focused queue rather than an undifferentiated feed of indicators.
+
+**Outcome:** `cti-global` → selected `cti-ir` investigation candidates.
+
+---
+
+### Demo 04 · Threat Correlation & Knowledge Graph
+
+The correlation engine operates on prioritized CTI, identifying groups of records sharing attributes such as ASN organization, malware families, threat categories, campaign references and source context. Neo4j then exposes their relationships through graph queries.
+
+**Data model:** `Indicator` · `Malware` · `ASN` · `Country` · `Source` · `ThreatType` · `Correlation` · `Cluster` · `Campaign` · `APT` · `CVE`
+
+#### Capture 01 — IOC relationship investigation
+
+**Target:** `node828765.dwservice.net`
+
+```cypher
+MATCH (i:Indicator {value: "node828765.dwservice.net"})-[r]-(n)
+RETURN i, r, n;
+```
+
+<p align="center"><img src="demo04-01-ioc-relationship-discovery.png" alt="Neo4j investigation of a domain and connected CTI entities" width="100%" /></p>
+
+| Captured graph | Result |
+|---|---:|
+| Nodes / relationships | 107 / 106 |
+| Malware nodes | 16 |
+| Correlation nodes | 43 |
+| Cluster nodes | 43 |
+
+An IOC-centric query reveals explicit records connected to one domain. The graph is a navigable intelligence map, not automatic proof that every connected record is part of the same intrusion.
+
+#### Capture 02 — Correlation and cluster exploration
+
+```cypher
+MATCH (cl:Cluster)<-[:BELONGS_TO_CLUSTER]-(c:Correlation)
+MATCH (i:Indicator)-[:HAS_CORRELATION]->(c)
+RETURN cl, c, i
+LIMIT 100;
+```
+
+<p align="center"><img src="demo04-02-automated-correlation-clusters.png" alt="Neo4j correlation clusters and indicator graph" width="100%" /></p>
+
+The captured result contains **119 nodes**, including **100 indicators, 7 correlations and 7 clusters**, and **93 displayed relationships**. Graph visualization can also show disconnected nodes when the result or browser expansion includes other contextual entities.
+
+#### Capture 03 — FlowerStorm malware associations
+
+```cypher
+MATCH (m:Malware {name: "FlowerStorm"})<-[r:ASSOCIATED_WITH_MALWARE]-(i:Indicator)
+RETURN m, r, i;
+```
+
+<p align="center"><img src="demo04-03-flowerstorm-malware-indicators.png" alt="FlowerStorm and associated indicators in Neo4j" width="100%" /></p>
+
+**Observed:** `1 FlowerStorm node` · `23 indicators` · `23 associations`
+
+#### Capture 04 — Expanded FlowerStorm context
+
+<p align="center"><img src="demo04-04-flowerstorm-expanded-knowledge-graph.png" alt="Expanded FlowerStorm relationship graph" width="100%" /></p>
+
+The extended graph displays **61 nodes** and **113 relationships**, including indicator, correlation, cluster and infrastructure context. This deeper view supports multi-step pivots from a malware family to associated observables.
+
+**Outcome:** Connected CTI records supporting IOC pivoting, malware investigation and correlation-led threat hunting.
+
+---
+
+### Demo 05 · AI Contexts & Vector Intelligence
+
+The AI context builder constructs descriptive text from `cti-ir` indicators and `cti-correlations` records, combining attributes such as risk, classification, sources, malware, infrastructure and correlation references.
+
+The text is embedded using **`sentence-transformers/all-MiniLM-L6-v2`**, producing **384-dimensional normalized vectors** for Qdrant cosine similarity search.
 
 ```mermaid
 flowchart LR
-  IOC["Indicator"] --> M["Malware"]
-  IOC --> ASN["ASN / Infrastructure"]
-  IOC --> C["Correlation"]
-  C --> CL["Cluster"]
-  IOC --> SRC["Source"]
-  IOC --> CVE["CVE"]
-  M --> CAMP["Campaign"]
-  CAMP --> ACTOR["Threat Actor"]
-  classDef entity fill:#EDE9FE,stroke:#7C3AED,color:#301454;
-  class IOC,M,ASN,C,CL,SRC,CVE,CAMP,ACTOR entity;
+    A["OpenSearch · CTI and Correlations"] --> B["AI Context Builder"]
+    B --> C["Textual Threat Context"]
+    C --> D["all-MiniLM-L6-v2"]
+    D --> E["384D Embedding"]
+    E --> F["Qdrant · cti_ai_vectors"]
+    classDef data fill:#DBEAFE,stroke:#2563EB,color:#172554;
+    classDef vector fill:#FCE7F3,stroke:#DB2777,color:#831843;
+    class A,B,C data;
+    class D,E,F vector;
 ```
 
-**Operational distinction:** *linked by an observed attribute* is not equivalent to *proven to be controlled by the same adversary*.
+#### Capture 01 — Qdrant CTI vector payload
 
-### 3.4 Context engineering → embeddings → semantic search
+<p align="center"><img src="demo05-01-qdrant-vector-intelligence.png" alt="Qdrant vector and CTI metadata payload" width="100%" /></p>
 
-`06_AI_Assistant/ai_context_builder.py` transforms high-priority intelligence and correlation records into readable textual contexts in `cti-ai-context`. Each text record retains references to its original OpenSearch document.
+The displayed `cti_ai_vectors` point describes a **PhishTank phishing-URL context**, with **risk score 100**, **Critical** severity, **P1** priority and source metadata. Its `cluster_id` and `correlation_id` fields are null in this captured record.
 
-`06_AI_Assistant/embedding_engine.py` generates **384-dimensional**, normalized sentence embeddings using `sentence-transformers/all-MiniLM-L6-v2` and stores them in Qdrant's `cti_ai_vectors` collection, configured for **cosine similarity**.
+| Configuration | Value |
+|---|---|
+| Embedding model | `all-MiniLM-L6-v2` |
+| Vector size | 384 |
+| Similarity metric | Cosine |
+| Collection | `cti_ai_vectors` |
+| Context store | OpenSearch `cti-ai-context` |
 
-```mermaid
-flowchart LR
-  A["cti-ir / cti-correlations"] --> B["AI Context Builder"]
-  B --> C["cti-ai-context"]
-  C --> D["MiniLM Embeddings"]
-  D --> E["Qdrant · cti_ai_vectors"]
-  F["Analyst Query"] --> G["Query Embedding"]
-  G --> E
-  E --> H["Ranked Contexts + Metadata"]
-  classDef vector fill:#F3E8FF,stroke:#9333EA,color:#3B0764;
-  class B,D,E,G,H vector;
+**Outcome:** Threat intelligence represented as searchable vectors with references back to its structured context.
+
+---
+
+### Demo 06 · Semantic Threat Search
+
+The Semantic Search interface embeds an analyst's natural-language query and retrieves the most similar contexts from Qdrant. Results include similarity scores alongside the source CTI metadata, such as risk, priority, correlation type and cluster identifiers.
+
+**Recorded query:**
+
+```text
+Find high-risk indicators sharing ASN infrastructure or threat correlation clusters.
 ```
 
-A query can describe phishing infrastructure, malware characteristics, or shared network organizations in natural language. Ranking identifies **semantic relevance**; security judgment still depends on the underlying evidence.
+**Parameters:** `Top K: 10` · `Minimum similarity: 0.30`
 
-### 3.5 Investigation API and local LLM
+#### Capture 01 — Query and highest-ranked results
 
-The documented assistant exposes a FastAPI `/ask` endpoint. It can retrieve relevant semantic CTI contexts and generate a structured analytical answer using a local LLM. The architecture also provides for Neo4j graph retrieval and richer multi-context RAG.
+<p align="center"><img src="demo06-01-semantic-search-top-results.png" alt="Semantic search query and top correlation results" width="100%" /></p>
 
-**Investigation request used in Demo 07:**
+The captured results include `correlation_context` records with `shared_asn_org` types, **P1** priority and **100/100** risk in their source metadata. The highest observed similarity is **0.6715**.
+
+#### Capture 02 — Additional correlation contexts
+
+<p align="center"><img src="demo06-02-semantic-search-extended-results.png" alt="Extended semantic search results showing ASN correlation contexts" width="100%" /></p>
+
+The additional results include shared ASN organization contexts for network operators in Europe and North America, with captured similarity values down to approximately **0.6360** among the displayed top ten.
+
+**Interpretation:** Similarity is a retrieval relevance score, not a maliciousness probability or a verified relationship between every retrieved indicator. The explicit correlation details must still be checked in OpenSearch or Neo4j.
+
+#### Video demonstrations
+
+Three walkthroughs are planned for the Semantic Search interface. Each will include its query, retrieval settings, result interpretation and the underlying CTI context.
+
+| Scenario | Analyst query | Video |
+|---|---|---|
+| 01 · Phishing | `Find high-risk phishing URLs reported by PhishTank.` | *Recording to be added* |
+| 02 · Malware | `Find threat intelligence related to FlowerStorm malware and associated indicators.` | *Recording to be added* |
+| 03 · Correlation | `Find high-risk indicators sharing ASN infrastructure or threat correlation clusters.` | *Recording to be added* |
+
+**Outcome:** Natural-language retrieval over both indicator and correlation context, with analyst-visible similarity and risk metadata.
+
+---
+
+### Demo 07 · CTI LLM Assistant
+
+A FastAPI endpoint exposes natural-language CTI investigation. The assistant retrieves semantic context and attempts graph enrichment before assembling context for the locally hosted LLM.
+
+The recorded test demonstrates an API response and generated assessment, while also revealing the importance of exact IOC matching and graph connectivity for reliable conclusions.
+
+#### Capture 01 — Investigation request
 
 ```http
 POST /ask
@@ -288,461 +412,172 @@ Content-Type: application/json
 }
 ```
 
-The example test returned three semantic records and a generated assessment, but **Neo4j graph retrieval failed during that execution**. Accordingly, the result demonstrates API execution and response synthesis, not validated graph-grounded attribution. This is part of the engineering work described in the roadmap.
+<p align="center"><img src="demo07-01-llm-investigation-request.png" alt="FastAPI CTI LLM Assistant ask endpoint" width="100%" /></p>
 
-### 3.6 Intelligence → detection engineering
+#### Capture 02 — Retrieved semantic context
 
-The detection engine converts available IOC and risk metadata into draft content for four different monitoring technologies.
+<p align="center"><img src="demo07-02-llm-semantic-context-retrieval.png" alt="FastAPI response containing Qdrant semantic contexts" width="100%" /></p>
 
-| Format | Payload field | Intended use | Required validation |
-|---|---|---|---|
-| **Sigma** | `sigma_rule` | Portable SIEM detection logic | Schema, log source, backend conversion |
-| **Splunk** | `splunk_query` | SPL searches / threat hunting | Source types, field mappings, search behavior |
-| **Wazuh** | `wazuh_rule` | XML-based event detection | XML syntax, decoder and rule compatibility |
-| **Suricata** | `suricata_rule` | Network IDS/IPS signature | Protocol visibility, syntax and false positives |
+The endpoint returned **HTTP 200** and three semantic context records:
 
-Generated records can be exported to `/opt/cti-detections` and indexed as detection intelligence in `cti_detection_vectors` with IOC references, risk, severity, priority and deployment status.
+| Indicator | Similarity | Risk | Priority |
+|---|---:|---:|---|
+| `66.232.15.73` | 0.4626 | 90 | P1 |
+| `40.127.67.83` | 0.4612 | 78 | P2 |
+| `31.14.32.7` | 0.4588 | 90 | P1 |
 
-> **Engineering boundary:** a generated rule is an artifact for review. Its existence is not proof that it will detect an attack correctly in a live SIEM, EDR or IDS deployment.
+These IPs were retrieved as semantically relevant contexts; the response does **not** establish that they are infrastructure controlled by, or directly connected to, the domain in the question.
 
----
+#### Capture 03 — Graph retrieval status
 
-## 04 — Technical Demonstrations
+<p align="center"><img src="demo07-03-llm-knowledge-graph-context.png" alt="Graph context retrieval status in the LLM response" width="100%" /></p>
 
-Eight technical demonstrations document the implementation step by step. The full screenshots are deliberately retained below, with exact original filenames, so that readers can inspect the underlying evidence rather than rely on architecture claims alone.
+The Neo4j connection was unavailable during this particular API test, so graph relationships were not included in the retrieved evidence. The service still returned a response based on available semantic context.
 
-| Demo | Focus | What the captures establish |
-|:--:|---|---|
-| **01** | Global CTI pipeline | Collection, MinIO storage, normalization and unified schema |
-| **02** | Enrichment & risk | Network context, rule-based validation, risk scoring |
-| **03** | Investigation queue | Prioritized CTI in a dedicated IR index and dashboard |
-| **04** | Correlation & graph | IOC pivots, cluster discovery, malware-centric relationships |
-| **05** | Context & vectors | AI-ready CTI text and Qdrant embeddings |
-| **06** | Semantic threat search | Natural-language retrieval and ranked correlation contexts |
-| **07** | LLM investigation | API request, semantic results, graph integration status and generated answer |
-| **08** | Detection engineering | Four rule formats and associated detection record |
+#### Capture 04 — Generated security assessment
 
-### DEMO 01 / Global CTI Acquisition & Unified Data
+<p align="center"><img src="demo07-04-llm-threat-assessment.png" alt="CTI LLM Assistant generated investigation response" width="100%" /></p>
 
-**Goal:** build a reusable intelligence foundation from heterogeneous external sources.
+The assistant generated an executive summary, threat classification, risk explanation and related-indicator discussion. Because the graph lookup failed and the retrieved IPs were not exact evidence for the requested domain, the generated associations require analyst verification.
 
-#### 01.1 — Multi-source CTI collection
-
-<p align="center"><img src="demo01-01-multi-source-cti-acquisition.png.png" alt="Successful execution of twenty CTI collectors" width="100%"></p>
-
-**Captured result:** **20/20 collectors successful.** The documented configuration schedules daily collection across vulnerability, malware, phishing, infrastructure/reputation and additional threat-intelligence sources, with raw outputs sent to MinIO.
-
-#### 01.2 — Raw intelligence preservation
-
-<p align="center"><img src="demo01-02-raw-cti-storage-minio.png" alt="Raw multi-source intelligence organized in MinIO" width="100%"></p>
-
-**Captured result:** **85 objects**, approximately **436.8 MiB**, organized by source in `cti/raw/`. Raw retention supports provenance and potential reprocessing.
-
-#### 01.3 — Source normalization
-
-<p align="center"><img src="demo01-03-cti-normalization-example.png" alt="Structured output after RSS security intelligence feed normalization" width="100%"></p>
-
-**Captured result:** **437 normalized RSS security-news records**, converted from feed-specific input to structured CTI objects.
-
-#### 01.4 — Unified CTI schema
-
-<p align="center"><img src="demo01-04-unified-cti-schema.png" alt="Unified CVE-2010-0249 intelligence record" width="100%"></p>
-
-**Captured example:** **CVE-2010-0249** consolidated with references to intelligence from **CISA KEV** and **NVD**, using standardized severity, confidence, context, source and relationship fields.
-
-**What this demo proves:** acquisition, raw storage and normalization provide a common basis for the later graph, semantic and investigation layers.
-
----
-
-### DEMO 02 / Context Enrichment, Validation & Scoring
-
-**Goal:** move from normalized IOC records to explainable analyst priorities.
-
-#### 02.1 — Infrastructure enrichment
-
-<p align="center"><img src="demo02-01-threat-context-enrichment.png" alt="Infrastructure enrichment attributes in OpenSearch" width="100%"></p>
-
-The enriched record demonstrates ASN and organization context, DNS/RDAP, geographic/network classifications, cloud/CDN signals, false-positive context and processing timestamps.
-
-#### 02.2 — Rule-based threat validation
-
-<p align="center"><img src="demo02-02-rule-based-threat-validation.png" alt="Suspicious network indicator with malicious likelihood and legitimacy score" width="100%"></p>
-
-**Captured assessment:** `211.102.140.0/22` → **Suspicious** · **60% heuristic malicious likelihood** · **40 legitimacy score**. The record also includes a validation explanation.
-
-#### 02.3 — Prioritization output
-
-<p align="center"><img src="demo02-03-threat-risk-scoring.png" alt="Critical risk score and P1 investigation priority" width="100%"></p>
-
-**Captured assessment:** the same network indicator, with available **PlugX** and **CVE-2010-0249** associations, received **100/100**, **Critical**, **P1** and **Investigate Immediately**.
-
-**What this demo proves:** a contextual intelligence record can carry its own explainable validation and prioritization metadata. These values remain subject to evidence review.
-
----
-
-### DEMO 03 / Risk-Based Investigation Queue
-
-**Goal:** route high-value CTI to investigation rather than present every collected indicator as an urgent case.
-
-<p align="center"><img src="demo03-01-ir-investigation-dashboard.png" alt="Risk-based investigation dashboard with critical and high-priority intelligence" width="100%"></p>
-
-Records satisfying selection rules are copied from `cti-global` to `cti-ir`. The dashboard exposes P1/P2 intelligence, validation status, risk distribution, malicious/suspicious indicators, related malware/CVE/campaign context and recommended analyst actions.
-
-**What this demo proves:** separation between a broad intelligence knowledge base and a smaller, risk-focused investigation layer.
-
----
-
-### DEMO 04 / Threat Correlation & Neo4j Knowledge Graph
-
-**Goal:** investigate related security entities through explicit graph relationships and automatically created correlation groups.
-
-#### 04.1 — IOC-centered investigation
-
-**Target:** `node828765.dwservice.net`
-
-```cypher
-MATCH (i:Indicator {value: "node828765.dwservice.net"})-[r]-(n)
-RETURN i, r, n;
-```
-
-<p align="center"><img src="demo04-01-ioc-relationship-discovery.png" alt="Neo4j indicator relationship graph for node828765.dwservice.net" width="100%"></p>
-
-| Captured entities | Count |
-|---|---:|
-| Nodes / relationships | **107 / 106** |
-| Indicators | 1 |
-| Malware entities | 16 |
-| Correlation nodes | 43 |
-| Cluster nodes | 43 |
-| ASN, country, source, threat type | 1 each |
-
-A single starting indicator exposed a broad set of connected CTI records for analyst pivoting.
-
-#### 04.2 — Automated correlation clusters
-
-```cypher
-MATCH (cl:Cluster)<-[:BELONGS_TO_CLUSTER]-(c:Correlation)
-MATCH (i:Indicator)-[:HAS_CORRELATION]->(c)
-RETURN cl, c, i
-LIMIT 100;
-```
-
-<p align="center"><img src="demo04-02-automated-correlation-clusters.png" alt="Graph of correlated indicators, correlation nodes and clusters" width="100%"></p>
-
-**Captured graph:** **119 nodes**, **93 relationships**, **100 indicators**, **7 correlations** and **7 clusters**. Related attributes also include countries, ASN, source and threat type.
-
-#### 04.3 — Malware-centric pivot: FlowerStorm
-
-```cypher
-MATCH (m:Malware {name: "FlowerStorm"})<-[r:ASSOCIATED_WITH_MALWARE]-(i:Indicator)
-RETURN m, r, i;
-```
-
-<p align="center"><img src="demo04-03-flowerstorm-malware-indicators.png" alt="FlowerStorm with twenty-three associated indicators" width="100%"></p>
-
-**Captured graph:** **1 malware entity**, **23 associated indicators**, **24 total nodes** and **23 relationships**.
-
-#### 04.4 — Expanded FlowerStorm relationships
-
-<p align="center"><img src="demo04-04-flowerstorm-expanded-knowledge-graph.png" alt="Expanded FlowerStorm graph including clusters and infrastructure" width="100%"></p>
-
-| Captured extended graph | Count |
-|---|---:|
-| Total nodes | **61** |
-| Relationships | **113** |
-| Indicators | 23 |
-| Correlations / clusters | 16 / 16 |
-| ASNs | 2 |
-
-**What this demo proves:** Neo4j can support IOC-centric, correlation-centric and malware-centric investigations. A shared attribute or graph association is an investigation lead, not definitive adversary attribution.
-
----
-
-### DEMO 05 / Context Engineering & Vector Intelligence
-
-**Goal:** prepare the CTI and correlation layers for semantic analysis and downstream LLM context retrieval.
-
-The **AI Context Builder** processes `cti-ir` and `cti-correlations`, generating source-linked text in `cti-ai-context`. The **Embedding Engine** converts this text using `all-MiniLM-L6-v2` (384 dimensions, normalized vectors) and stores the results in `cti_ai_vectors` using cosine similarity.
-
-#### 05.1 — Qdrant vectorized CTI record
-
-<p align="center"><img src="demo05-01-qdrant-vector-intelligence.png" alt="Qdrant vector point and original CTI metadata" width="100%"></p>
-
-The screenshot shows a phishing-URL `indicator_context` from `cti-ir` with **100 risk score**, **Critical**, **P1**, **Malicious** validation and `phishing-url` / `phishtank` tags. Source references and processing metadata remain available with the vector payload.
-
-**What this demo proves:** source-linked intelligence can be stored as semantic vectors. This capture validates vector persistence, not semantic retrieval quality on its own.
-
----
-
-### DEMO 06 / AI-Powered Semantic Threat Search
-
-**Goal:** retrieve conceptually related CTI context without requiring analysts to know exact indicators.
-
-**Query executed:**
-
-```text
-Find high-risk indicators sharing ASN infrastructure or threat correlation clusters.
-```
-
-| Search setting | Value |
+| Function | Recorded status |
 |---|---|
-| Top K | **10** |
-| Minimum similarity | **0.30** |
-| Search type | Natural-language embedding + Qdrant cosine similarity |
+| API request and HTTP response | Working |
+| Semantic context retrieval | Working |
+| Generated investigation narrative | Observed |
+| Neo4j enrichment in this test | Connection failed |
+| Verified attribution for the queried domain | Not established |
 
-#### 06.1 — Query and ranked results
-
-<p align="center"><img src="demo06-01-semantic-search-top-results.png" alt="Analyst search input and top semantic results" width="100%"></p>
-
-The retrieved records are primarily `correlation_context` entries for `shared_asn_org`. Displayed similarity values are approximately **0.64–0.67**, with **Critical**, **P1**, **100 risk score** and associated correlation/cluster metadata.
-
-#### 06.2 — Extended result set
-
-<p align="center"><img src="demo06-02-semantic-search-extended-results.png" alt="Extended high-risk ASN correlation contexts returned by semantic search" width="100%"></p>
-
-Returned descriptions reference organizations including VNET a.s., TIMENET SPA, Metronet, FranTech Solutions, Baxet Group Inc., Awarenes Software Limited and SECURED SERVERS LLC. These are values appearing in the retrieved dataset: their appearance does **not** establish wrongdoing or malicious control by the organizations.
-
-#### Video scenario slots
-
-The following three walkthroughs are reserved for future video publication. Links are intentionally not invented.
-
-| Scenario | Search prompt | Recording |
-|---|---|---|
-| **Phishing intelligence** | `Find high-risk phishing URLs reported by PhishTank.` | To be added |
-| **Malware intelligence** | `Find threat intelligence related to FlowerStorm malware and associated indicators.` | To be added |
-| **Infrastructure & correlation** | `Find high-risk indicators sharing ASN infrastructure or threat correlation clusters.` | To be added |
-
-**What this demo proves:** the deployed semantic search path returned relevant risk-aware CTI correlation contexts to a natural-language question. Similarity alone does not establish causality.
+**Outcome:** An operational investigation API prototype and a clear path toward evidence-grounded, graph-enriched assessments.
 
 ---
 
-### DEMO 07 / CTI LLM Assistant & Threat Investigation
+### Demo 08 · Automated Detection Engineering
 
-**Goal:** use locally generated language-model output to summarize retrieved intelligence in an analyst-friendly investigation format.
+The detection engine converts selected threat intelligence into draft detection content across **Sigma, Splunk SPL, Wazuh and Suricata**, retaining the source indicator and relevant investigation metadata.
 
-#### 07.1 — Investigation request through FastAPI
-
-```json
-{
-  "question": "What is the risk associated with node828765.dwservice.net?",
-  "top_k": 3
-}
-```
-
-<p align="center"><img src="demo07-01-llm-investigation-request.png" alt="FastAPI CTI LLM investigation request" width="100%"></p>
-
-The analyst submitted the question to `POST /ask` using the Swagger/OpenAPI interface.
-
-#### 07.2 — Semantic contexts returned
-
-<p align="center"><img src="demo07-02-llm-semantic-context-retrieval.png" alt="CTI LLM Assistant Qdrant semantic retrieval results" width="100%"></p>
-
-**HTTP 200** was returned, along with the following semantic search results:
-
-| Retrieved IOC | Similarity | Risk | Priority | Source |
-|---|---:|---:|---|---|
-| `66.232.15.73` | 0.4626 | 90 | P1 | AbuseIPDB |
-| `40.127.67.83` | 0.4612 | 78 | P2 | AbuseIPDB |
-| `31.14.32.7` | 0.4588 | 90 | P1 | AbuseIPDB |
-
-The returned IP contexts were relevant to the vector search, but **did not independently prove a relationship to the domain under investigation**.
-
-#### 07.3 — Knowledge graph retrieval status
-
-<p align="center"><img src="demo07-03-llm-knowledge-graph-context.png" alt="Neo4j retrieval failure observed during the LLM demonstration" width="100%"></p>
-
-The Neo4j connection failed in the captured execution. Semantic retrieval succeeded, but the graph context was unavailable. This means the test does **not** establish end-to-end graph-augmented RAG.
-
-#### 07.4 — Generated threat assessment
-
-<p align="center"><img src="demo07-04-llm-threat-assessment.png" alt="Structured locally generated CTI investigation assessment" width="100%"></p>
-
-The assistant produced an executive summary, threat classification, risk explanation and related-intelligence discussion. Some associations expressed in the generated text require checking against direct IOC matches and the original source evidence.
-
-| Component | Captured status |
-|---|---|
-| `POST /ask` API | **Operational — HTTP 200** |
-| Qdrant semantic retrieval | **Operational** |
-| CTI context and risk metadata | **Returned** |
-| Local LLM synthesis | **Generated** |
-| Neo4j retrieval in this API run | **Connection failed** |
-| Evidence-grounded attribution | **Not validated** |
-| Autonomous multi-agent investigation | **Not established** |
-
-**What this demo proves:** an analyst can submit a question, retrieve semantic intelligence and receive a structured local LLM response. Stronger evidence checks and restored graph integration are necessary before relying on the output for operational attribution.
-
----
-
-### DEMO 08 / Automated Multi-Format Detection Engineering
-
-**Goal:** prepare detection content directly from prioritized CTI rather than stop the workflow at investigation.
+The process separates content generation, export and indexing from the later stages of testing and deployment.
 
 ```mermaid
 flowchart LR
-  A["High-Risk CTI"] --> B["Detection Context"] --> C["Rule Generator"]
-  C --> S["Sigma"]
-  C --> P["Splunk SPL"]
-  C --> W["Wazuh XML"]
-  C --> N["Suricata"]
-  S --> D["Export / Qdrant Metadata"]
-  P --> D
-  W --> D
-  N --> D
-  D --> R["Human Review + Testing"]
-  classDef output fill:#CCFBF1,stroke:#0F766E,color:#064E3B;
-  class S,P,W,N output;
+    A["Prioritized CTI"] --> B["Detection Engine"]
+    B --> C["Sigma"]
+    B --> D["Splunk SPL"]
+    B --> E["Wazuh"]
+    B --> F["Suricata"]
+    C --> G["Rule Export & Metadata"]
+    D --> G
+    E --> G
+    F --> G
+    G --> H["Qdrant · cti_detection_vectors"]
+    G -. "Review and test" .-> I["Security Monitoring Platforms"]
+    classDef input fill:#DBEAFE,stroke:#2563EB,color:#172554;
+    classDef rule fill:#D1FAE5,stroke:#059669,color:#064E3B;
+    classDef output fill:#FCE7F3,stroke:#DB2777,color:#831843;
+    class A,B input;
+    class C,D,E,F rule;
+    class G,H,I output;
 ```
 
-#### 08.1 — Generated detection intelligence record
+#### Capture 01 — Four-format detection record
 
-<p align="center"><img src="demo08-01-automated-detection-engineering.png" alt="Four generated detection rule formats stored as a Qdrant detection record" width="100%"></p>
+<p align="center"><img src="demo08-01-automated-detection-engineering.png" alt="Qdrant detection record with four rule formats" width="100%" /></p>
 
-| Captured attribute | Value |
+The captured record in **`cti_detection_vectors`** concerns a URL indicator, with **100/100** risk score, **Critical** severity, **P1** priority, action `investigate` and deployment status `generated`. Its payload contains all four output fields:
+
+| Output | Field | Target |
+|---|---|---|
+| Sigma | `sigma_rule` | Portable SIEM detection logic |
+| Splunk | `splunk_query` | SPL investigation and hunting queries |
+| Wazuh | `wazuh_rule` | XML-based event detection |
+| Suricata | `suricata_rule` | IDS/IPS network signatures |
+
+The record also stores rule identification, source indicator, timestamps and export-path metadata. The screenshot confirms generation and indexing; it does not demonstrate that the rules were tested against event data or deployed to a production sensor or SIEM.
+
+**Outcome:** A repeatable starting point for analyst-reviewed, multi-platform detection engineering.
+
+---
+
+## Technology Stack
+
+| Layer | Technology | Role |
+|---|---|---|
+| Collection and processing | Python, REST APIs, JSON, CSV, XML, feeds, STIX/TAXII | Acquisition and normalization |
+| Raw storage | MinIO | Preservation of original source data |
+| Search and analytics | OpenSearch | Unified CTI, investigation and correlation records |
+| Graph intelligence | Neo4j | Explicit entity relationships and graph queries |
+| Embeddings | Sentence Transformers, `all-MiniLM-L6-v2` | 384D semantic representations |
+| Vector intelligence | Qdrant | Semantic CTI and detection-record storage |
+| Investigation services | Python, FastAPI | Semantic search and investigation API |
+| Local inference | Ollama, Phi-3 Mini | LLM-based context interpretation |
+| Detection engineering | Sigma, Splunk SPL, Wazuh, Suricata | Multi-format rule generation |
+
+---
+
+## Validation & Engineering Notes
+
+ShadowScope AM is an engineering project in active development. The eight demonstrations show individual components and integrations at specific moments in time; they are not claims of production readiness or independent detection effectiveness.
+
+| Capability | Evidence in this repository | Current interpretation |
+|---|---|---|
+| Multi-source CTI processing | Collector and storage screenshots | Successfully demonstrated |
+| Threat enrichment and scoring | OpenSearch record screenshots | Successfully demonstrated for the captured records |
+| IR investigation selection | Dashboard snapshot | Implemented investigation layer |
+| Correlation and Neo4j graph | Neo4j queries and graph screenshots | Graph-based relationships demonstrated |
+| Text-to-vector pipeline | Qdrant metadata | Vector creation and storage demonstrated |
+| Semantic retrieval | Search UI screenshots | Ranked context retrieval demonstrated |
+| LLM investigation | FastAPI response screenshots | Retrieval and response observed; grounding incomplete |
+| Detection generation | Qdrant detection payload | Four output formats generated; deployment unverified |
+
+**Interpretation principles:** A correlation is not an attribution. A semantic similarity score is not a threat probability. A generated LLM response is not evidence by itself. A generated detection rule is not an active detection until it has passed syntax, environment and behavioral validation.
+
+### Public repository security
+
+Public code and screenshots should not expose credentials, API tokens, private network details, personal data or unsafe clickable threat URLs. Environment-specific secrets should be stored outside version control. The Swagger screenshot showing a private service address should be redacted before publishing its PNG file; the Markdown image reference can remain unchanged.
+
+Do not deploy generated detection content without review. Validate rule syntax, field mappings, data-source coverage, expected matches and false-positive behavior using appropriate test data.
+
+---
+
+## Roadmap
+
+| Focus | Next engineering step |
 |---|---|
-| Collection | `cti_detection_vectors` |
-| Indicator type | URL |
-| Format | Multi |
-| Risk | **100/100** |
-| Severity / Priority | **Critical / P1** |
-| SOC action | Investigate |
-| Deployment state | **Generated** |
-| Export location | `/opt/cti-detections` |
-
-The record includes `sigma_rule`, `splunk_query`, `wazuh_rule` and `suricata_rule`, together with detection metadata, original indicator, timestamps and export path.
-
-**What this demo proves:** detection content is generated in four formats and stored with traceable intelligence metadata. Testing against target platforms, checking accuracy and false positives, and production deployment are separate steps.
+| CTI quality | Incremental ingestion, provenance controls, deduplication improvements and freshness handling |
+| Correlation | Stronger evidence weighting, temporal relationships and cluster explanations |
+| Knowledge Graph | Expanded graph pivots, relationship quality and resilient graph retrieval |
+| Semantic Search | Hybrid lexical/vector retrieval, filtering, ranking evaluation and result traceability |
+| LLM investigation | Exact IOC lookup, source citations, unavailable-source handling and grounded answer checks |
+| Detection Engineering | Syntax tests, replay validation, deduplication, coverage assessment and controlled deployment |
+| Operations | Metrics, error handling, observability and repeatable deployment |
+| Agentic workflows | Bounded task planning, tool permissions, approval checkpoints and auditable execution |
 
 ---
 
-## 05 — Security Operations Use Cases
+## Conclusion
 
-### A practical bridge between threat intelligence and defensive operations
+**ShadowScope AM started from a simple observation: collecting more threat indicators is not the same as understanding more threats.**
 
-| Team | Starting point | What the platform helps prepare |
-|---|---|---|
-| **SOC / Tier 1–2** | Alert with suspicious indicator | Prioritized CTI context, validation status, related records |
-| **CTI analyst** | Fragmented provider feeds | Unified records, source references, correlation groups |
-| **Threat hunter** | Behavior or infrastructure hypothesis | Natural-language search results and graph investigation paths |
-| **Incident responder** | IOC, malware family or suspicious infrastructure | Entity relationships, potential pivots and contextual evidence |
-| **Detection engineer** | High-risk CTI candidate | Draft Sigma/SPL/Wazuh/Suricata content for testing |
-| **Security architect** | Multiple disconnected tools | A reference architecture linking structured, graph and vector intelligence |
+A meaningful CTI platform needs to preserve where intelligence comes from, enrich what is known, connect related records and make that context usable in an analyst's workflow. This project follows that path—from multi-source collection and normalized records to investigation queues, correlation graphs, semantic retrieval, LLM-assisted interpretation and multi-format detection content.
 
-### Example: from suspicious domain to investigation context
+The technical demonstrations show the progress of that integration. They also identify the work that matters next: stronger evidence validation, more reliable graph-enriched investigation, measurable semantic retrieval quality and detection rules that can be tested before deployment.
 
-1. A domain arrives in one or more external CTI feeds and is preserved with source provenance.
-2. Normalization and enrichment add available threat, network and source context.
-3. Validation and risk-scoring logic determine whether the entity is selected for `cti-ir`.
-4. Correlation/Neo4j exposes recorded malware, infrastructure or cluster associations.
-5. Semantic search retrieves additional descriptions that may help contextualize the case.
-6. The analyst reviews original evidence, separates confirmed relationships from semantic suggestions, and decides whether detection content should be prepared.
-7. Generated rules undergo environment-specific review and testing before operational integration.
+The long-term direction is an **intelligence-driven security platform in which collection, investigation and detection reinforce each other**, with automation reducing repetitive work and security analysts retaining control over high-impact decisions.
 
-**Value proposition:** fewer disconnected investigation steps and a more consistent path from intelligence retrieval to analyst-reviewed detection preparation. Time savings and detection-quality improvements still require benchmark studies.
-
-### How an organization can evaluate the platform
-
-A useful technical evaluation should be based on a **defined CTI dataset, explicit success criteria and reviewable outputs**, rather than a polished demo alone.
-
-| Evaluation track | Questions to test | Evidence to collect |
-|---|---|---|
-| **Ingestion & provenance** | Which feeds complete? Can records be traced back to their source? | Collector logs, raw objects, normalized documents |
-| **Prioritization** | Why was a record marked P1/P2? How often are benign assets escalated? | Scoring explanations, labeled review samples |
-| **Correlation / Neo4j** | Are shared attributes real? Are inferred links clearly differentiated? | Cypher queries, source-backed entity relationships |
-| **Semantic search** | Are relevant CTI descriptions retrieved for analyst questions? | Test-query set, ranked results, relevance judgments |
-| **Investigation assistant** | Does each claim correspond to retrieved evidence? Does it handle missing graph context? | API traces, context IDs, audited reports |
-| **Detection engineering** | Are generated rules syntactically valid and useful on target telemetry? | Engine tests, sample events, false-positive analysis |
-
-This evaluation model also defines a realistic path toward pilot integrations: connect a limited data source, run repeatable investigations, review the evidence and validate selected detections in a controlled environment.
+> **The goal is not simply to know that a threat exists. It is to understand its context, investigate its connections and turn relevant intelligence into defensible security action.**
 
 ---
-
-## 06 — Validation & Technical Boundaries
-
-The platform is presented with a distinction between what has been **captured in technical execution** and what remains an **engineering objective**.
-
-| Capability | Evidence | Status |
-|---|---|---|
-| CTI acquisition, storage, normalization | Demo 01 screenshots | **Demonstrated** |
-| Enrichment, heuristic validation, risk scoring | Demo 02 screenshots | **Demonstrated** |
-| Investigation-index selection and dashboard | Demo 03 screenshot | **Demonstrated** |
-| Neo4j graph queries, correlations, malware associations | Demo 04 screenshots | **Demonstrated** |
-| CTI context embedding and vector persistence | Demo 05 screenshot | **Demonstrated** |
-| Natural-language semantic search | Demo 06 screenshots | **Demonstrated** |
-| FastAPI + semantic retrieval + LLM-generated answer | Demo 07 screenshots | **Demonstrated with limitations** |
-| Neo4j context inside captured LLM execution | Demo 07 connection error | **Not validated in this run** |
-| Four detection output formats, record storage | Demo 08 screenshot | **Demonstrated** |
-| Detection accuracy, production integration, autonomous response | No corresponding evidence in supplied demos | **Not established** |
-
-> [!NOTE]
-> The demonstrations are engineering snapshots. No claims are made here about independently measured SOC time reductions, production-scale ingestion throughput, confirmed attribution accuracy, or fully automated defense actions.
-
-### Responsible security operation
-
-- **Provenance:** retain original intelligence references so analysts can inspect the source behind each result.
-- **Evidence separation:** exact IOC matches, graph associations and semantic similarity represent different levels of evidence.
-- **Human approval:** generated assessments and detection rules remain subject to expert review.
-- **Local inference:** Ollama can keep LLM processing on controlled infrastructure, subject to proper access and system security controls.
-- **Reproducibility:** test runs, source availability, configuration and dataset state affect outputs; documented snapshots are not guaranteed future results.
-- **Public-release hygiene:** remove credentials, nonpublic API details, sensitive indicators and internal deployment information from code and screenshots before publication.
-
----
-
-## 07 — Engineering Roadmap
-
-| Priority area | Next steps | Desired outcome |
-|---|---|---|
-| **Intelligence quality** | More CTI sources, provenance checks, temporal enrichment, confidence calibration | More reliable entity records and prioritization |
-| **Threat graph** | Richer entity resolution, multi-hop exploration, time-aware infrastructure analysis | Stronger relationship investigations |
-| **Search & retrieval** | Hybrid search, reranking, retrieval benchmarks, improved query interpretation | Higher relevance and fewer misleading matches |
-| **LLM / RAG** | Restore Neo4j connectivity, exact IOC first, citation-backed answers, evidence checks | Safer and more defensible investigations |
-| **Agent orchestration** | Permissioned specialist tools, explicit workflows, audit trails, human approval gates | Controlled multi-step analyst assistance |
-| **Detection quality** | Syntax validation, log mapping, ATT&CK context, test datasets, false-positive analysis | Detection content suitable for platform-specific testing |
-| **Operational maturity** | CI tests, monitoring, configuration management, secrets handling, deployment documentation | More reproducible deployments and evaluations |
-
-### Long-term direction
-
-ShadowScope AM is designed to evolve toward a **continuous, feedback-driven defense engineering loop**: ingest external intelligence, identify relevant threats, investigate with structured and contextual evidence, prepare validated detections, and use confirmed results to refine future analysis. Agentic workflows are a direction for supervised automation—not a substitute for security controls and human accountability.
-
----
-
-## 08 — Repository Notes & Demonstration Assets
-
-The README uses standard GitHub Markdown, HTML image tags, Mermaid diagrams and Shields badges. No custom CSS, hosted application or proprietary GitHub theme is required.
-
-**All 21 original image references are preserved**, including the architecture diagram and screenshots for Demos 01–08. To render them, place those PNGs in the same directory as `README.md`, or adjust the relative paths after moving them. The original filename `demo01-01-multi-source-cti-acquisition.png.png` has deliberately been retained.
-
-This document describes the platform and recorded technical results. Public installation commands, deployment scripts, environment variables and source-code licensing should be documented according to the files actually published in the repository; they are not fabricated here.
-
----
-
-## 09 — Project Vision & Conclusion
-
-I built **ShadowScope AM** around a recurring cybersecurity problem: collecting threat intelligence is comparatively easy; making it consistent, explainable and useful during real investigations is much harder.
-
-The project now connects several engineering disciplines that are often treated separately: **data pipelines, CTI normalization, contextual enrichment, risk prioritization, correlation graphs, semantic embeddings, locally hosted language models and detection-rule generation**. The eight demonstrations show the path from external sources to practical outputs, as well as the integration work required to make those outputs more dependable.
-
-The next milestone is not simply adding more feeds or another model. It is strengthening the trustworthiness of the chain: accurate entity resolution, evidence-grounded investigation, reliable graph/context fusion, measurable retrieval quality and validated detections for specific security platforms.
-
-**The ambition is an intelligence-to-defense platform in which every retrieved indicator has context, every relationship can be examined, every recommendation can be checked, and every detection can be tested.**
 
 <div align="center">
 
----
+### Developed by Amine Maouhoub
 
-### SHADOWSCOPE AM
+**Cybersecurity Engineer · M2 Cybersecurity Manager**
 
-**GLOBAL INTELLIGENCE. CONNECTED THREATS. ACTIONABLE DEFENSE.**
+Cyber Threat Intelligence · Threat Hunting · Graph Intelligence · Security Automation · Detection Engineering
 
-*From fragmented threat data to evidence-driven investigation and detection.*
+**SHADOWSCOPE AM**
 
-<br>
-
-**Amine Maouhoub**  
-Cybersecurity Engineer · M2 Cybersecurity Management  
-Cyber Threat Intelligence · Knowledge Graphs · AI Security · Threat Hunting · Detection Engineering
-
-<br>
-
-![Development status](https://img.shields.io/badge/STATUS-ACTIVE_DEVELOPMENT-F59E0B?style=for-the-badge&labelColor=0F172A)
+*Global Intelligence. Connected Threats. Contextual Investigation. Proactive Defense.*
 
 </div>
