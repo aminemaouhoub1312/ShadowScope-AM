@@ -2228,6 +2228,266 @@ The CTI LLM Assistant is designed to support:
 ---
 
 
+## Demo 08 - Automated Detection Engineering & Multi-Format Rule Generation
+
+The eighth demonstration introduces the **Automated Detection Engineering** capability of ShadowScope AM.
+
+Building on the Cyber Threat Intelligence, threat correlation, risk scoring, semantic intelligence and AI-assisted investigation layers, the platform extends its capabilities toward actionable security detection.
+
+The objective is to transform prioritized CTI indicators into automatically generated detection rules that can be reviewed, validated and integrated into different security monitoring environments.
+
+Rather than limiting threat intelligence to passive IOC storage and investigation, ShadowScope AM implements a detection engineering pipeline capable of producing security detection content across multiple technologies.
+
+### From Threat Intelligence to Detection Engineering
+
+The automated detection workflow follows:
+
+**High-Risk CTI >> Threat Classification >> Detection Rule Generation >> Multi-Format Rule Export >> Detection Intelligence Storage >> Analyst Validation**
+
+The current detection generation engine supports four output formats:
+
+- **Sigma:** Generic detection rules for SIEM environments.
+- **Splunk SPL:** Search queries for threat hunting and security monitoring.
+- **Wazuh:** XML-based detection rules for Wazuh environments.
+- **Suricata:** Network intrusion detection signatures for IDS/IPS environments.
+
+The detection outputs are generated from threat intelligence attributes such as:
+
+- Indicator value and entity type
+- Risk score and severity
+- Investigation priority
+- Threat classification
+- Recommended SOC action
+- Available CTI context
+
+---
+
+### Automated Detection Engineering Architecture
+
+```mermaid
+flowchart TD
+    A["Global Cyber Threat Intelligence"]
+    B["CTI Enrichment & Risk Scoring"]
+    C["High-Priority Investigation Intelligence"]
+    D["Automated Detection Engineering"]
+
+    E["Sigma Rules"]
+    F["Splunk SPL Queries"]
+    G["Wazuh Detection Rules"]
+    H["Suricata IDS/IPS Signatures"]
+
+    I["Detection Rule Repository"]
+    J["Qdrant Detection Intelligence"]
+    K["Analyst Review & Rule Validation"]
+    L["Security Monitoring Integration"]
+
+    A --> B
+    B --> C
+    C --> D
+
+    D --> E
+    D --> F
+    D --> G
+    D --> H
+
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+
+    I --> J
+    I --> K
+    K --> L
+```
+
+The architecture separates automated detection content generation from operational rule deployment.
+
+Generated rules can be stored and indexed before being reviewed and tested for compatibility with the intended detection platform.
+
+---
+
+### Capture 01 - Automated Multi-Format Detection Rule Generation
+
+The following screenshot demonstrates a generated detection intelligence record stored within the Qdrant vector database.
+
+**Qdrant Collection:** `cti_detection_vectors`
+
+<p align="center">
+  <img src="demo08-01-automated-detection-engineering.png"
+       alt="ShadowScope AM Automated Detection Engineering - Sigma, Splunk, Wazuh and Suricata"
+       width="100%">
+</p>
+
+The selected record represents a detection generated from a URL-based CTI indicator.
+
+**Observed Detection Metadata:**
+
+| Attribute | Observed Value |
+|---|---|
+| Collection | `cti_detection_vectors` |
+| Detection Type | URL |
+| Rule Format | Multi |
+| Severity | Critical |
+| Risk Score | 100/100 |
+| Investigation Priority | P1 |
+| AI Category | Unknown |
+| SOC Action | Investigate |
+| Deployment Status | Generated |
+| Rule Export Directory | `/opt/cti-detections` |
+
+The generated detection record contains several security engineering outputs associated with the same CTI indicator.
+
+### Generated Detection Formats
+
+| Detection Format | Generated Content | Intended Application |
+|---|---|---|
+| Sigma | `sigma_rule` | Generic SIEM detection logic |
+| Splunk | `splunk_query` | SPL-based security search |
+| Wazuh | `wazuh_rule` | XML-based security detection |
+| Suricata | `suricata_rule` | Network intrusion detection signature |
+
+The Qdrant payload also preserves:
+
+- Detection identifier
+- Original CTI indicator
+- Detection type
+- Rule title and description
+- Risk score and severity
+- Investigation priority
+- Recommended SOC action
+- Generated detection content
+- Export location
+- Creation and update timestamps
+- Deployment status
+
+**Validation Result:** `Multi-Format Detection Content Generated` · `4 Detection Formats` · `Critical P1 CTI` · `Detection Metadata Indexed in Qdrant`
+
+---
+
+### Multi-Format Security Detection
+
+The generated detection intelligence can support different security monitoring and threat hunting technologies.
+
+#### 01 - Sigma Detection Rules
+
+Sigma provides a technology-independent representation of security detection logic.
+
+ShadowScope AM generates Sigma detection content based on the selected CTI indicator and its available security metadata.
+
+The generated rule can be reviewed and adapted to compatible SIEM detection backends.
+
+**Purpose:** Standardized and portable security detection logic.
+
+#### 02 - Splunk SPL Queries
+
+The platform also generates Splunk Search Processing Language (SPL) queries.
+
+These queries can support:
+
+- IOC searches
+- Security event investigation
+- Threat hunting
+- Detection development
+
+The generated SPL requires validation against the target Splunk environment, data sources and field mappings.
+
+**Purpose:** Query-based security investigation and monitoring.
+
+#### 03 - Wazuh Detection Rules
+
+ShadowScope AM generates Wazuh-compatible detection content intended for XML-based security rule configurations.
+
+These rules can be adapted for security monitoring and event analysis using Wazuh.
+
+Operational deployment requires appropriate decoders, event fields and rule syntax validation.
+
+**Purpose:** Host and security-event detection through Wazuh.
+
+#### 04 - Suricata IDS/IPS Signatures
+
+The detection engine also produces Suricata signatures intended to support network-based threat detection.
+
+Depending on the available CTI indicator and network visibility, the generated detection content may target observable network activity.
+
+Rules require inspection to ensure that the selected indicator can be reliably detected through the network protocols and fields available to Suricata.
+
+**Purpose:** Network intrusion detection and monitoring.
+
+---
+
+### Detection Intelligence Storage in Qdrant
+
+In addition to exporting detection content, ShadowScope AM stores detection intelligence within a dedicated Qdrant collection.
+
+**Collection:** `cti_detection_vectors`
+
+This enables the platform to maintain a vector-indexed representation of generated detection records and their associated metadata.
+
+The detection intelligence layer provides a foundation for future capabilities such as:
+
+- Semantic retrieval of detection content
+- Detection rule discovery
+- Similar rule identification
+- Detection coverage analysis
+- Threat intelligence to detection mapping
+- AI-assisted detection rule recommendations
+
+The demonstrated screenshot confirms that a generated detection record is present in the Qdrant collection.
+
+End-to-end semantic retrieval and detection quality evaluation require separate validation.
+
+---
+
+### Detection Engineering Workflow
+
+| Stage | Operation | Output |
+|---|---|---|
+| 01 | CTI Investigation Selection | High-risk security indicator |
+| 02 | Detection Context Preparation | Threat and risk metadata |
+| 03 | Automated Rule Generation | Sigma, Splunk, Wazuh, Suricata |
+| 04 | Detection Export | Generated rule files |
+| 05 | Detection Intelligence Indexing | Qdrant detection record |
+| 06 | Analyst Validation | Reviewed detection logic |
+| 07 | Security Monitoring Integration | Platform-specific deployment |
+
+The current demonstration validates the generation and storage of multi-format detection content.
+
+Rule testing, false-positive assessment and production deployment remain separate operational stages.
+
+---
+
+### Security Operations Value
+
+The Automated Detection Engineering layer is designed to support:
+
+- **SOC Analysts:** Accelerate investigation and detection preparation.
+- **Detection Engineers:** Reduce repetitive rule-authoring work.
+- **Threat Hunters:** Convert threat indicators into reusable search logic.
+- **Incident Responders:** Prepare detection content for newly identified threats.
+- **CTI Analysts:** Connect threat intelligence findings with security monitoring.
+- **Security Operations Teams:** Support consistent detection content generation across multiple technologies.
+
+The architecture establishes a bridge between threat intelligence analysis and security detection development.
+
+---
+
+### Demo 08 - Final Validation
+
+**Demonstrated:** `Automated Detection Generation` · `Sigma` · `Splunk SPL` · `Wazuh` · `Suricata` · `Multi-Format Output` · `Qdrant Detection Intelligence Storage`
+
+**Further Validation:** `Rule Syntax Testing` · `Detection Accuracy` · `False-Positive Analysis` · `SIEM/IDS Integration` · `Deployment Verification`
+
+> **From Cyber Threat Intelligence to Actionable Detection Engineering.**
+>
+> ShadowScope AM extends its CTI investigation capabilities into automated multi-format detection rule generation, connecting prioritized threat intelligence with security monitoring technologies.
+>
+> The objective is to accelerate the transition from threat discovery to validated security detection while maintaining analyst oversight.
+
+---
+
+
+
+
 
 
 
