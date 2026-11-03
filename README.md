@@ -37,22 +37,6 @@ ShadowScope AM approaches these questions through distinct but connected process
 
 > **The goal is not to accumulate indicators. It is to make threat intelligence explainable, connected and operationally useful.**
 
-### Engineering snapshot
-
-| Measured or implemented capability | Project evidence |
-|:---|:---|
-| CTI acquisition | **20/20** collectors completed the captured validation run |
-| Raw intelligence | **85 objects / ~436.8 MiB** observed in MinIO |
-| Normalization | **437 RSS entries** normalized in the demonstrated example |
-| Risk-based investigation | P1/P2 selection into `cti-ir`, with **risk ≥ 70** |
-| IOC graph exploration | **107 nodes / 106 relationships** for one selected indicator |
-| Malware graph exploration | **23 FlowerStorm-associated indicators** in the captured graph |
-| AI context embeddings | `all-MiniLM-L6-v2`, **384 dimensions**, cosine similarity |
-| Semantic search | Ranked CTI and correlation contexts returned from Qdrant |
-| LLM investigation | Working FastAPI `/ask` response; graph integration still being hardened |
-| Detection outputs | **Sigma, Splunk SPL, Wazuh and Suricata** content generated |
-
-<sub>Figures above describe the captured demonstration datasets and executions. They are not performance benchmarks, uptime guarantees or production certifications.</sub>
 
 ---
 
