@@ -681,6 +681,27 @@ The work is continuing toward stronger grounding, resilient graph integration, m
 
 ---
 
+
+---
+
+## Contact & Collaboration
+
+For technical discussions, cybersecurity research, potential collaborations or professional opportunities related to ShadowScope AM, feel free to get in touch.
+
+<div align="center">
+
+<a href="mailto:maouhoub.amine.pro@gmail.com">
+  <img src="https://img.shields.io/badge/EMAIL-GET_IN_TOUCH-1565C0?style=for-the-badge&logo=gmail&logoColor=white" alt="Contact Amine Maouhoub by email" />
+</a>
+
+**Amine Maouhoub**  
+Cybersecurity Engineer · M2 Cybersecurity Manager  
+**[maouhoub.amine.pro@gmail.com](mailto:maouhoub.amine.pro@gmail.com)**
+
+</div>
+
+---
+
 <div align="center">
 
 ### SHADOWSCOPE AM
@@ -688,8 +709,10 @@ The work is continuing toward stronger grounding, resilient graph integration, m
 **Cyber Threat Intelligence × Knowledge Graphs × Semantic Search × Security Automation**
 
 **Designed and developed by Amine Maouhoub**  
-*Cybersecurity Engineer · M2 Cybersecurity Manager*
+*Cybersecurity Engineer · M2 Cybersecurity Manager*  
+[**Contact**](mailto:maouhoub.amine.pro@gmail.com)
 
 **Global Intelligence. Connected Threats. Contextual Investigation. Proactive Defense.**
 
 </div>
+
