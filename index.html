@@ -1,0 +1,1608 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ShadowScope AM | Cyber Threat Intelligence Platform</title>
+
+  <meta name="description"
+        content="ShadowScope AM — Cyber Threat Intelligence, Knowledge Graphs, Semantic Search, LLM Investigation and Detection Engineering.">
+
+  <meta name="theme-color" content="#08111f">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+  <!-- Markdown, HTML sanitization and syntax highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/lib/marked.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.7/dist/purify.min.js"></script>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+        id="syntax-theme">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #08111f;
+      --surface: #0e1b2d;
+      --surface-2: #14243a;
+      --text: #e8f1fc;
+      --muted: #97a9c2;
+      --line: #263a51;
+      --cyan: #35e2cc;
+      --blue: #66abff;
+      --purple: #a996ff;
+      --shadow: 0 25px 65px rgba(0,0,0,.25);
+    }
+
+    html[data-theme="light"] {
+      --bg: #f3f7fc;
+      --surface: #ffffff;
+      --surface-2: #eaf2fb;
+      --text: #17263a;
+      --muted: #5c7188;
+      --line: #d6e2ef;
+      --cyan: #087b7e;
+      --blue: #1768bf;
+      --purple: #7655c0;
+      --shadow: 0 25px 65px rgba(20,45,80,.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--cyan);
+    }
+
+    button {
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: auto;
+      padding: 0 25px;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-content {
+      min-height: 75px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .theme-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 9px;
+    }
+
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      z-index: 200;
+      background: linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--blue),
+        var(--purple)
+      );
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 115px 0 105px;
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(46, 152, 180, .20),
+          transparent 38%
+        ),
+        radial-gradient(
+          circle at 15% 85%,
+          rgba(112, 84, 190, .14),
+          transparent 42%
+        ),
+        var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(60px, 8vw, 110px);
+      line-height: 1;
+      letter-spacing: -6px;
+      margin: 25px 0;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--blue),
+        var(--purple)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+      max-width: 650px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 35px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      font-weight: 800;
+      font-size: 13px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .btn.primary {
+      background: linear-gradient(
+        110deg,
+        var(--cyan),
+        var(--blue)
+      );
+      color: #041c25;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .technology-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 30px;
+    }
+
+    .technology-tags span {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 6px 11px;
+      color: var(--muted);
+      font: 600 11px "JetBrains Mono", monospace;
+    }
+
+    /* Architecture visual */
+
+    .architecture-card {
+      background: linear-gradient(
+        145deg,
+        #122b40,
+        #091827
+      );
+      border: 1px solid #2b5267;
+      border-radius: 24px;
+      padding: 27px;
+      box-shadow: var(--shadow);
+    }
+
+    .architecture-card h3 {
+      color: #d8f6ff;
+      font-size: 12px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 1px;
+      margin: 0 0 27px;
+    }
+
+    .arch-flow {
+      display: grid;
+      justify-items: center;
+      gap: 11px;
+    }
+
+    .arch-box {
+      width: 100%;
+      border: 1px solid #32647a;
+      color: #d9f7ff;
+      background: #102d41;
+      border-radius: 11px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .arch-box.accent {
+      background: #174e56;
+      border-color: #2ebcae;
+    }
+
+    .arch-arrow {
+      color: #53c9bf;
+      font-size: 20px;
+    }
+
+    .arch-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Metrics */
+
+    .metrics {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .metric {
+      padding: 35px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-right: none;
+    }
+
+    .metric strong {
+      font: 700 40px "Space Grotesk", sans-serif;
+      letter-spacing: -2px;
+    }
+
+    .metric p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    /* Demonstrations */
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-title {
+      font: 700 43px "Space Grotesk", sans-serif;
+      letter-spacing: -2px;
+      margin: 12px 0;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .demo-grid {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .demo-card {
+      overflow: hidden;
+      border-radius: 15px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      transition: .25s;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--cyan);
+      box-shadow: var(--shadow);
+      color: var(--text);
+    }
+
+    .demo-card img {
+      width: 100%;
+      height: 165px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .demo-card-content {
+      padding: 20px;
+    }
+
+    .demo-number {
+      color: var(--cyan);
+      font: 600 11px "JetBrains Mono", monospace;
+    }
+
+    .demo-card h3 {
+      font-size: 16px;
+      margin: 10px 0;
+      line-height: 1.4;
+    }
+
+    .demo-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Documentation */
+
+    .documentation {
+      padding: 65px 0 100px;
+      border-top: 1px solid var(--line);
+    }
+
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 245px minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .sidebar h3 {
+      font: 700 12px "JetBrains Mono", monospace;
+      color: var(--cyan);
+      letter-spacing: 1px;
+    }
+
+    .sidebar a {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 9px 12px;
+      border-left: 2px solid transparent;
+      border-radius: 4px;
+    }
+
+    .sidebar a:hover {
+      color: var(--cyan);
+      background: var(--surface-2);
+      border-left-color: var(--cyan);
+    }
+
+    .sidebar a.subsection {
+      padding-left: 24px;
+    }
+
+    .doc-content {
+      min-width: 0;
+      padding: 45px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    /* README Markdown rendering */
+
+    .markdown-body {
+      font-size: 15px;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+    }
+
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      scroll-margin-top: 95px;
+    }
+
+    .markdown-body h2 {
+      font-size: 30px;
+      margin-top: 60px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .markdown-body h3 {
+      font-size: 23px;
+      margin-top: 40px;
+    }
+
+    .markdown-body h4 {
+      font-size: 18px;
+      margin-top: 30px;
+    }
+
+    .markdown-body h3[id^="demo-"] {
+      padding: 23px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+    }
+
+    .markdown-body p,
+    .markdown-body li {
+      color: var(--muted);
+    }
+
+    .markdown-body strong {
+      color: var(--text);
+    }
+
+    .markdown-body blockquote {
+      margin: 25px 0;
+      padding: 12px 22px;
+      border-left: 3px solid var(--cyan);
+      background: var(--surface-2);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .markdown-body hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 35px 0;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .markdown-body table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 480px;
+      font-size: 13px;
+    }
+
+    .markdown-body th,
+    .markdown-body td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+    }
+
+    .markdown-body th {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .markdown-body pre {
+      overflow: auto;
+      position: relative;
+      background: #0a1423;
+      color: #e2edfa;
+      border: 1px solid #294059;
+      border-radius: 12px;
+      padding: 42px 18px 18px;
+      margin: 25px 0;
+    }
+
+    .markdown-body pre code {
+      font: 12px/1.8 "JetBrains Mono", monospace;
+    }
+
+    .markdown-body code:not(pre code) {
+      background: var(--surface-2);
+      color: var(--cyan);
+      border-radius: 5px;
+      padding: 3px 6px;
+      font-size: .85em;
+    }
+
+    .copy-code {
+      position: absolute;
+      top: 9px;
+      right: 10px;
+      background: #1c3047;
+      color: #c5d9ed;
+      border: 1px solid #41546b;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+
+    .markdown-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 9px;
+    }
+
+    .markdown-body img[src$=".png"],
+    .markdown-body img[src$=".png.png"] {
+      cursor: zoom-in;
+      border: 1px solid var(--line);
+      margin: 15px auto;
+      display: block;
+    }
+
+    .markdown-body img[src^="https://img.shields.io"] {
+      display: inline-block;
+      border: 0;
+      margin: 2px;
+    }
+
+    .markdown-body .mermaid {
+      overflow-x: auto;
+      background: var(--surface-2);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    .markdown-body .mermaid svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Search & image viewer */
+
+    .search-dialog,
+    .image-dialog {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-dialog {
+      width: min(620px, 94vw);
+    }
+
+    .image-dialog {
+      width: min(1300px, 96vw);
+      max-height: 95vh;
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 5, 15, .85);
+      backdrop-filter: blur(8px);
+    }
+
+    .search-dialog input {
+      width: 100%;
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-radius: 9px;
+      outline: none;
+    }
+
+    #search-results {
+      max-height: 50vh;
+      overflow: auto;
+      margin-top: 12px;
+    }
+
+    #search-results button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 4px 0;
+      text-align: left;
+      color: var(--text);
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+    }
+
+    #search-results button:hover {
+      background: var(--surface-2);
+    }
+
+    .image-dialog img {
+      display: block;
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      margin: auto;
+    }
+
+    .dialog-close {
+      float: right;
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 12px;
+      margin-bottom: 12px;
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 50px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    footer h2 {
+      font-family: "Space Grotesk", sans-serif;
+      margin: 0 0 8px;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1100px) {
+      .hero-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .docs-layout {
+        grid-template-columns: 200px minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        max-height: 300px;
+      }
+
+      .doc-content {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        padding: 20px;
+      }
+
+      .metric strong {
+        font-size: 30px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+      .doc-content {
+        padding: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="progress"></div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-content">
+
+      <a href="#home" class="logo">
+        SHADOWSCOPE <span>AM</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#platform-architecture">Architecture</a>
+        <a href="#agentic-security-architecture">Agentic AI</a>
+        <a href="#demos">Demos</a>
+        <a href="#contact--collaboration">Contact</a>
+
+        <button id="search-btn" class="theme-btn">
+          Search
+        </button>
+
+        <button id="theme-btn" class="theme-btn">
+          ◐
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="home">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div>
+
+          <div class="eyebrow">
+            CYBER THREAT INTELLIGENCE · SECURITY ENGINEERING
+          </div>
+
+          <h1>
+            SHADOW<br>
+            <span class="gradient-text">SCOPE AM.</span>
+          </h1>
+
+          <p>
+            An advanced cybersecurity engineering platform
+            connecting global threat intelligence, knowledge
+            graphs, semantic search, local LLM investigations
+            and automated detection engineering.
+          </p>
+
+          <div class="hero-actions">
+
+            <a href="#demos" class="btn primary">
+              Explore Technical Demos →
+            </a>
+
+            <a href="#documentation" class="btn">
+              Read Documentation ↓
+            </a>
+
+            <a
+              href="https://github.com/aminemaouhoub1312/ShadowScope-AM"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn">
+              GitHub Repository ↗
+            </a>
+
+          </div>
+
+          <div class="technology-tags">
+            <span>OPENSEARCH</span>
+            <span>NEO4J</span>
+            <span>QDRANT</span>
+            <span>PYTHON</span>
+            <span>OLLAMA</span>
+          </div>
+
+        </div>
+
+        <!-- Conceptual architecture visualization -->
+        <div class="architecture-card">
+
+          <h3>SHADOWSCOPE AM / SYSTEM ARCHITECTURE</h3>
+
+          <div class="arch-flow">
+
+            <div class="arch-box">
+              GLOBAL CYBER THREAT INTELLIGENCE
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box">
+              NORMALIZATION · ENRICHMENT · RISK SCORING
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box accent">
+              SHADOWSCOPE INTELLIGENCE CORE
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-row">
+              <div class="arch-box">
+                KNOWLEDGE GRAPH<br>NEO4J
+              </div>
+              <div class="arch-box">
+                VECTOR SEARCH<br>QDRANT
+              </div>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box">
+              LLM-ASSISTED THREAT INVESTIGATION
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box">
+              SIGMA · SPLUNK · WAZUH · SURICATA
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Engineering metrics -->
+    <section class="metrics">
+      <div class="container metric-grid">
+
+        <div class="metric">
+          <strong>20</strong>
+          <p>CTI Collectors Tested</p>
+        </div>
+
+        <div class="metric">
+          <strong>08</strong>
+          <p>Technical Demonstrations</p>
+        </div>
+
+        <div class="metric">
+          <strong>384D</strong>
+          <p>Vector Embeddings</p>
+        </div>
+
+        <div class="metric">
+          <strong>04</strong>
+          <p>Detection Formats</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Demo gallery -->
+    <section class="section" id="demos">
+      <div class="container">
+
+        <div class="eyebrow">
+          TECHNICAL ENGINEERING / DEMONSTRATIONS
+        </div>
+
+        <h2 class="section-title">
+          Explore the Platform
+        </h2>
+
+        <p class="section-description">
+          Eight technical demonstrations covering the
+          intelligence lifecycle — from data acquisition
+          to graph analysis, semantic investigation and
+          detection engineering.
+        </p>
+
+        <div class="demo-grid" id="demo-grid"></div>
+
+      </div>
+    </section>
+
+    <!-- Rendered README -->
+    <section class="documentation" id="documentation">
+      <div class="container">
+
+        <div class="eyebrow">
+          ENGINEERING DOCUMENTATION
+        </div>
+
+        <h2 class="section-title">
+          Inside ShadowScope AM
+        </h2>
+
+        <p class="section-description">
+          Complete technical documentation rendered
+          automatically from the repository README.md.
+        </p>
+
+        <div class="docs-layout">
+
+          <aside class="sidebar">
+            <h3>ON THIS PAGE</h3>
+            <nav id="table-of-contents"></nav>
+          </aside>
+
+          <article class="doc-content">
+            <div id="readme" class="markdown-body">
+              Loading documentation from README.md…
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+
+      <h2>SHADOWSCOPE AM</h2>
+
+      <p>
+        Cyber Threat Intelligence × Knowledge Graphs ×
+        Semantic Search × Security Automation
+      </p>
+
+      <p>
+        Designed and developed by <strong>Amine Maouhoub</strong>
+      </p>
+
+      <p>
+        <a href="mailto:maouhoub.amine.pro@gmail.com">
+          maouhoub.amine.pro@gmail.com
+        </a>
+      </p>
+
+      <p>
+        Global Intelligence. Connected Threats.
+        Contextual Investigation. Proactive Defense.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- Search -->
+  <dialog id="search-dialog" class="search-dialog">
+
+    <button class="dialog-close" id="close-search">
+      Close ✕
+    </button>
+
+    <h3>Search ShadowScope AM</h3>
+
+    <input
+      type="search"
+      id="search-input"
+      placeholder="Search demos, technologies, architecture…">
+
+    <div id="search-results"></div>
+
+  </dialog>
+
+  <!-- Image viewer -->
+  <dialog id="image-dialog" class="image-dialog">
+
+    <button class="dialog-close" id="close-image">
+      Close ✕
+    </button>
+
+    <img id="image-preview" alt="Enlarged screenshot">
+
+    <p id="image-caption"></p>
+
+  </dialog>
+
+  <script type="module">
+
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => [...document.querySelectorAll(selector)];
+
+    const repository =
+      "https://github.com/aminemaouhoub1312/ShadowScope-AM";
+
+    const readme = $("#readme");
+
+    let headings = [];
+
+    // 01 — Theme
+
+    const savedTheme = localStorage.getItem("shadowscope-theme");
+
+    if (savedTheme === "light") {
+      document.documentElement.dataset.theme = "light";
+    }
+
+    $("#theme-btn").addEventListener("click", () => {
+      const theme =
+        document.documentElement.dataset.theme === "dark"
+          ? "light"
+          : "dark";
+
+      document.documentElement.dataset.theme = theme;
+
+      localStorage.setItem("shadowscope-theme", theme);
+
+      $("#syntax-theme").href =
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-" +
+        (theme === "dark" ? "dark" : "") +
+        ".min.css";
+    });
+
+    // 02 — Demo cards
+    // Screenshot filenames are unchanged.
+
+    const demos = [
+      {
+        number: "01",
+        title: "Global CTI Pipeline",
+        description: "Multi-source collection and normalization.",
+        image: "demo01-01-multi-source-cti-acquisition.png.png",
+        anchor: "demo-01--global-cti-pipeline"
+      },
+      {
+        number: "02",
+        title: "Enrichment & Risk Scoring",
+        description: "Contextual risk and priority assessment.",
+        image: "demo02-03-threat-risk-scoring.png",
+        anchor: "demo-02---enrichment-validation--scoring"
+      },
+      {
+        number: "03",
+        title: "Investigation Queue",
+        description: "Prioritized incident response intelligence.",
+        image: "demo03-01-ir-investigation-dashboard.png",
+        anchor: "demo-03---risk-based-investigation-queue"
+      },
+      {
+        number: "04",
+        title: "Cyber Threat Knowledge Graph",
+        description: "IOC correlations and malware relationships.",
+        image: "demo04-03-flowerstorm-malware-indicators.png",
+        anchor: "demo-04---automated-correlation--knowledge-graph"
+      },
+      {
+        number: "05",
+        title: "AI Context & Vector Intelligence",
+        description: "Qdrant embeddings and contextualized CTI.",
+        image: "demo05-01-qdrant-vector-intelligence.png",
+        anchor: "demo-05---ai-contexts-embeddings--vector-intelligence"
+      },
+      {
+        number: "06",
+        title: "Semantic Threat Search",
+        description: "Natural-language similarity-based retrieval.",
+        image: "demo06-01-semantic-search-top-results.png",
+        anchor: "demo-06---semantic-threat-search"
+      },
+      {
+        number: "07",
+        title: "CTI LLM Assistant",
+        description: "LLM-assisted security investigation.",
+        image: "demo07-01-llm-investigation-request.png",
+        anchor: "demo-07---llm-assisted-threat-investigation"
+      },
+      {
+        number: "08",
+        title: "Automated Detection Engineering",
+        description: "Sigma, Splunk, Wazuh and Suricata outputs.",
+        image: "demo08-01-automated-detection-engineering.png",
+        anchor: "demo-08---automated-detection-engineering"
+      }
+    ];
+
+    const gallery = $("#demo-grid");
+
+    demos.forEach(demo => {
+      const card = document.createElement("a");
+
+      card.className = "demo-card";
+      card.href = "#" + demo.anchor;
+
+      const image = document.createElement("img");
+      image.src = demo.image;
+      image.alt = demo.title;
+      image.loading = "lazy";
+
+      const content = document.createElement("div");
+      content.className = "demo-card-content";
+
+      const number = document.createElement("span");
+      number.className = "demo-number";
+      number.textContent = "DEMO / " + demo.number;
+
+      const title = document.createElement("h3");
+      title.textContent = demo.title;
+
+      const description = document.createElement("p");
+      description.textContent = demo.description;
+
+      content.append(number, title, description);
+      card.append(image, content);
+      gallery.appendChild(card);
+    });
+
+    // 03 — Markdown normalization
+    // README includes centered HTML divs containing Markdown.
+    // Remove these wrappers before passing text to the parser.
+
+    function normalizeMarkdown(text) {
+      let result = text
+        .replace(
+          /^\s*<div\s+align=["']center["']\s*>\s*$/gim,
+          "\n"
+        )
+        .replace(
+          /^\s*<\/div>\s*$/gim,
+          "\n"
+        );
+
+      // Hero already presents the README introduction.
+      // Render the original content beginning at Overview.
+      const heading = result.match(/^##\s+Overview\s*$/m);
+
+      if (heading && heading.index !== undefined) {
+        result = result.slice(heading.index);
+      }
+
+      return result;
+    }
+
+    // 04 — GitHub-compatible heading anchors
+
+    function slugify(text) {
+      return text
+        .trim()
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}\s_-]/gu, "")
+        .replace(/\s/g, "-");
+    }
+
+    function buildAnchors() {
+      const seen = new Map();
+
+      headings = $$(
+        "#readme h2, #readme h3, #readme h4"
+      );
+
+      headings.forEach(heading => {
+        const base = slugify(heading.textContent);
+        const count = seen.get(base) || 0;
+
+        heading.id = count
+          ? base + "-" + count
+          : base;
+
+        seen.set(base, count + 1);
+      });
+    }
+
+    // 05 — Table of contents
+
+    function buildTableOfContents() {
+      const nav = $("#table-of-contents");
+      nav.replaceChildren();
+
+      headings.forEach(heading => {
+        const title = heading.textContent.trim();
+
+        const isMain = heading.tagName === "H2";
+        const isDemo =
+          heading.tagName === "H3" &&
+          title.startsWith("Demo ");
+
+        if (!isMain && !isDemo) return;
+
+        const link = document.createElement("a");
+
+        link.href = "#" + heading.id;
+        link.textContent = title;
+
+        if (isDemo) link.classList.add("subsection");
+
+        nav.appendChild(link);
+      });
+    }
+
+    // 06 — Tables, images and code blocks
+
+    function enhanceMarkdown() {
+
+      $$("#readme table").forEach(table => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "table-wrapper";
+
+        table.replaceWith(wrapper);
+        wrapper.appendChild(table);
+      });
+
+      $$("#readme img").forEach(img => {
+        img.loading = "lazy";
+        img.decoding = "async";
+      });
+
+      $$("#readme pre").forEach(pre => {
+        const code = pre.querySelector("code");
+
+        if (!code) return;
+
+        if (code.classList.contains("language-mermaid")) {
+          const diagram = document.createElement("div");
+          diagram.className = "mermaid";
+
+          diagram.textContent = code.textContent;
+
+          pre.replaceWith(diagram);
+          return;
+        }
+
+        if (window.hljs) {
+          try {
+            window.hljs.highlightElement(code);
+          } catch (error) {
+            console.warn(error);
+          }
+        }
+
+        const button = document.createElement("button");
+
+        button.className = "copy-code";
+        button.textContent = "Copy code";
+
+        button.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(
+              code.textContent
+            );
+
+            button.textContent = "Copied ✓";
+          } catch {
+            button.textContent = "Select to copy";
+          }
+        });
+
+        pre.appendChild(button);
+      });
+
+      $$("#readme a").forEach(link => {
+        if (/^https?:\/\//.test(link.href)) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+      });
+    }
+
+    // 07 — Mermaid diagram rendering
+
+    async function renderDiagrams() {
+      const diagrams = $$("#readme .mermaid");
+
+      if (!diagrams.length) return;
+
+      try {
+        const { default: mermaid } = await import(
+          "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs"
+        );
+
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: "strict",
+          theme:
+            document.documentElement.dataset.theme === "dark"
+              ? "dark"
+              : "neutral"
+        });
+
+        await mermaid.run({
+          nodes: diagrams
+        });
+      } catch (error) {
+        console.warn("Mermaid rendering unavailable", error);
+      }
+    }
+
+    // 08 — Load README.md
+
+    async function loadDocumentation() {
+      try {
+
+        if (!window.marked || !window.DOMPurify) {
+          throw new Error(
+            "Markdown libraries could not load."
+          );
+        }
+
+        const response = await fetch("./README.md", {
+          cache: "no-cache"
+        });
+
+        if (!response.ok) {
+          throw new Error(
+            "README.md could not be loaded."
+          );
+        }
+
+        const source = await response.text();
+        const markdown = normalizeMarkdown(source);
+
+        window.marked.setOptions({
+          gfm: true,
+          breaks: false
+        });
+
+        const html = window.marked.parse(markdown);
+
+        // Sanitize rendered HTML before displaying it.
+        const safeHTML = window.DOMPurify.sanitize(html, {
+          ADD_ATTR: ["align"],
+          FORBID_TAGS: ["script", "iframe", "object", "embed"]
+        });
+
+        readme.innerHTML = safeHTML;
+
+        buildAnchors();
+        buildTableOfContents();
+        enhanceMarkdown();
+
+        await renderDiagrams();
+
+        // Navigate to a section requested by URL hash.
+        if (location.hash) {
+          const id = decodeURIComponent(
+            location.hash.substring(1)
+          );
+
+          document.getElementById(id)?.scrollIntoView();
+        }
+
+      } catch (error) {
+        const message = document.createElement("p");
+        message.textContent = error.message;
+
+        const link = document.createElement("a");
+        link.href = repository + "/blob/main/README.md";
+        link.textContent = "Read documentation on GitHub";
+
+        readme.replaceChildren(message, link);
+      }
+    }
+
+    // 09 — Documentation search
+
+    const searchDialog = $("#search-dialog");
+
+    $("#search-btn").addEventListener("click", () => {
+      searchDialog.showModal();
+      $("#search-input").focus();
+    });
+
+    $("#close-search").addEventListener("click", () => {
+      searchDialog.close();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "k"
+      ) {
+        event.preventDefault();
+        searchDialog.showModal();
+        $("#search-input").focus();
+      }
+    });
+
+    $("#search-input").addEventListener("input", event => {
+      const query = event.target.value.toLowerCase();
+      const results = $("#search-results");
+
+      results.replaceChildren();
+
+      if (!query) return;
+
+      headings
+        .filter(heading =>
+          heading.textContent.toLowerCase().includes(query)
+        )
+        .slice(0, 20)
+        .forEach(heading => {
+
+          const button = document.createElement("button");
+          button.textContent = heading.textContent;
+
+          button.addEventListener("click", () => {
+            searchDialog.close();
+
+            location.hash = heading.id;
+
+            heading.scrollIntoView({
+              behavior: "smooth"
+            });
+          });
+
+          results.appendChild(button);
+        });
+    });
+
+    // 10 — Fullscreen screenshot viewer
+
+    const imageDialog = $("#image-dialog");
+
+    readme.addEventListener("click", event => {
+      const img = event.target.closest("img");
+
+      if (!img) return;
+
+      const source = img.getAttribute("src") || "";
+
+      if (!/\.(png|jpg|jpeg|webp)$/i.test(source)) {
+        return;
+      }
+
+      $("#image-preview").src = img.currentSrc || img.src;
+      $("#image-preview").alt = img.alt;
+
+      $("#image-caption").textContent = img.alt;
+
+      imageDialog.showModal();
+    });
+
+    $("#close-image").addEventListener("click", () => {
+      imageDialog.close();
+    });
+
+    // 11 — Reading progress
+
+    function updateProgress() {
+      const maxScroll =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+      const percentage = maxScroll > 0
+        ? (window.scrollY / maxScroll) * 100
+        : 0;
+
+      $("#progress").style.width =
+        percentage + "%";
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateProgress,
+      { passive: true }
+    );
+
+    // Initialize
+    loadDocumentation();
+    updateProgress();
+
+  </script>
+
+</body>
+</html>
